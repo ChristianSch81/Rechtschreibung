@@ -1,0 +1,1134 @@
+<!doctype html>
+<html lang="de">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Startseite zum Lernpaket Rechtschreibung und Zeichensetzung">
+  <title>Deutsch Rechtschreibung und Zeichensetzung 10</title>
+  <style>
+    :root {
+      --ink: #252525;
+      --muted: #666;
+      --accent: #9d1f2f;
+      --accent-dark: #741622;
+      --paper: #fff;
+      --line: #d8d8d8;
+      --blue: #063970;
+      --green: #277a32;
+      --orange: #ef7d00;
+      --teal: #008491;
+      --shadow: 0 18px 42px rgba(45, 45, 45, .14);
+      --header-depth: 220px;
+      --radius: 8px;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      margin: 0;
+      color: var(--ink);
+      font-family: "Segoe UI", Arial, sans-serif;
+      background:
+        radial-gradient(circle at 8% 28%, rgba(255, 198, 78, .24) 0 74px, transparent 75px),
+        radial-gradient(circle at 92% 38%, rgba(121, 185, 177, .2) 0 92px, transparent 93px),
+        linear-gradient(180deg, var(--accent) 0 var(--header-depth), transparent var(--header-depth)),
+        linear-gradient(180deg, #f2f2f2, #fff 55%, #f4f4f4);
+    }
+
+    main {
+      width: min(1060px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 54px 0 64px;
+    }
+
+    header {
+      position: relative;
+      max-width: none;
+      margin-bottom: 46px;
+      padding-right: 150px;
+      color: #fff;
+    }
+
+    .header-media {
+      position: absolute;
+      top: 0;
+      right: 0;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .header-icon {
+      width: 112px;
+      height: 112px;
+      padding: 8px;
+      border: 1px solid rgba(255, 255, 255, .7);
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 12px 28px rgba(40, 10, 14, .24);
+      object-fit: contain;
+    }
+
+    .site-logo {
+      width: 112px;
+      height: 112px;
+      padding: 8px;
+      border: 1px solid rgba(255, 255, 255, .7);
+      border-radius: 12px;
+      background: #fff;
+      box-shadow: 0 12px 28px rgba(40, 10, 14, .24);
+      object-fit: contain;
+    }
+
+    .eyebrow {
+      margin: 0 0 8px;
+      font-size: .82rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2rem, 5vw, 3.15rem);
+      line-height: 1.05;
+    }
+
+    header p {
+      margin: 14px 0 0;
+      font-size: 1.06rem;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      position: relative;
+      display: flex;
+      min-height: 320px;
+      flex-direction: column;
+      padding: 30px 260px 30px 30px;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      text-decoration: none;
+      color: inherit;
+      transition: transform .2s ease, box-shadow .2s ease, border-color .2s ease;
+    }
+
+    .card-preview {
+      position: absolute;
+      top: 28px;
+      right: 28px;
+      width: 200px;
+      height: calc(100% - 56px);
+      padding: 5px;
+      border: 1px solid #d9e1ec;
+      border-radius: 8px;
+      background: #f8fafc;
+      box-shadow: 0 7px 18px rgba(24, 47, 82, .12);
+      object-fit: contain;
+    }
+
+    .card::before {
+      position: absolute;
+      inset: 0 0 auto;
+      height: 7px;
+      content: "";
+      background: var(--accent);
+    }
+
+    .card:hover,
+    .card:focus-visible {
+      transform: translateY(-5px);
+      border-color: rgba(157, 31, 47, .5);
+      box-shadow: 0 24px 52px rgba(45, 45, 45, .19);
+      outline: none;
+    }
+
+    .number {
+      display: grid;
+      width: 54px;
+      height: 54px;
+      place-items: center;
+      border-radius: 50%;
+      background: #fff1f2;
+      color: var(--accent);
+      font-size: 1.35rem;
+      font-weight: 850;
+    }
+
+    h2 {
+      margin: 22px 0 8px;
+      font-size: 1.75rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .open {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      margin-top: auto;
+      padding-top: 28px;
+      color: var(--accent-dark);
+      font-weight: 800;
+    }
+
+    .open::after {
+      content: "→";
+      font-size: 1.35rem;
+      transition: transform .2s ease;
+    }
+
+    .card:hover .open::after,
+    .card:focus-visible .open::after { transform: translateX(5px); }
+
+    /* ---------- Organigramm ---------- */
+    .overview-graphic {
+      margin-top: 32px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+    }
+
+    .overview-graphic > h2 {
+      margin: 0 0 4px;
+      color: var(--blue);
+      font-size: clamp(1.6rem, 3vw, 2.2rem);
+      text-align: center;
+    }
+
+    .overview-subtitle {
+      display: block;
+      width: fit-content;
+      margin: 0 auto 26px;
+      padding: 6px 16px;
+      border: 2px solid var(--blue);
+      border-radius: 999px;
+      color: var(--blue);
+      font-weight: 700;
+      font-size: .95rem;
+    }
+
+    .org-root {
+      width: fit-content;
+      max-width: 100%;
+      margin: 0 auto;
+      padding: 14px 26px;
+      border-radius: var(--radius);
+      background: var(--accent);
+      color: #fff;
+      font-weight: 800;
+      font-size: 1.05rem;
+      text-align: center;
+      box-shadow: 0 8px 18px rgba(116, 22, 34, .28);
+    }
+
+    .org-stem {
+      width: 3px;
+      height: 22px;
+      margin: 0 auto;
+      background: #c9c9c9;
+    }
+
+    .org-branches {
+      position: relative;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 0;
+      padding-top: 25px;
+      background:
+        linear-gradient(#c9c9c9, #c9c9c9) top 0 left 12.5% / 75% 3px no-repeat;
+    }
+
+    .org-col {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-top: 25px;
+      background:
+        linear-gradient(#c9c9c9, #c9c9c9) top 0 left 50% / 3px 25px no-repeat;
+    }
+
+    .org-chapter {
+      padding: 10px 12px;
+      border-radius: var(--radius);
+      color: #fff;
+      font-weight: 800;
+      font-size: .95rem;
+      line-height: 1.3;
+      text-align: center;
+    }
+
+    .org-col.c1 .org-chapter { background: var(--green); }
+    .org-col.c2 .org-chapter { background: var(--orange); }
+    .org-col.c3 .org-chapter { background: var(--blue); }
+    .org-col.c4 .org-chapter { background: var(--teal); }
+
+    .org-topic {
+      position: relative;
+      padding: 8px 10px 8px 16px;
+      border: 1px solid #e4e4e4;
+      border-radius: 6px;
+      background: #fafafa;
+      font-size: .86rem;
+      font-weight: 650;
+      line-height: 1.35;
+    }
+
+    .org-topic::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 4px;
+      border-radius: 6px 0 0 6px;
+    }
+
+    .org-col.c1 .org-topic::before { background: var(--green); }
+    .org-col.c2 .org-topic::before { background: var(--orange); }
+    .org-col.c3 .org-topic::before { background: var(--blue); }
+    .org-col.c4 .org-topic::before { background: var(--teal); }
+
+    .ov-footer {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 24px;
+      padding: 14px 18px;
+      border-radius: var(--radius);
+      background: #fdf0e0;
+      color: var(--ink);
+      font-weight: 650;
+      line-height: 1.45;
+    }
+
+    .ov-footer .bulb {
+      font-size: 1.5rem;
+      line-height: 1;
+    }
+
+    /* ---------- Lernstatistik ---------- */
+    .progress-dashboard {
+      margin-top: 32px;
+      padding: 30px;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      background: rgba(255, 255, 255, .96);
+      box-shadow: var(--shadow);
+    }
+
+    .dashboard-head {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .dashboard-kicker {
+      margin: 0 0 5px;
+      color: var(--accent);
+      font-size: .78rem;
+      font-weight: 850;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+    }
+
+    .dashboard-head h2 {
+      margin: 0;
+      font-size: clamp(1.55rem, 3vw, 2.15rem);
+    }
+
+    .dashboard-copy {
+      max-width: 650px;
+      margin: 8px 0 0;
+      color: var(--muted);
+    }
+
+    .progress-actions {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: 10px;
+    }
+
+    .progress-button {
+      min-height: 42px;
+      padding: 9px 16px;
+      border: 1px solid var(--accent);
+      border-radius: 8px;
+      background: var(--accent);
+      color: #fff;
+      font: inherit;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .progress-button.secondary {
+      background: #fff;
+      color: var(--accent-dark);
+    }
+
+    .progress-button:hover,
+    .progress-button:focus-visible {
+      background: var(--accent-dark);
+      color: #fff;
+      outline: 3px solid rgba(157, 31, 47, .2);
+      outline-offset: 2px;
+    }
+
+    .ring-key {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin: 22px 0 18px;
+      padding: 11px 14px;
+      border-radius: 8px;
+      background: #f5f5f5;
+      color: var(--muted);
+      font-size: .92rem;
+    }
+
+    .ring-key span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+    }
+
+    .ring-sample {
+      display: inline-block;
+      border-radius: 50%;
+      border-style: solid;
+      border-color: var(--accent);
+    }
+
+    .ring-sample.outer {
+      width: 20px;
+      height: 20px;
+      border-width: 5px;
+    }
+
+    .ring-sample.inner {
+      width: 16px;
+      height: 16px;
+      border-width: 3px;
+      opacity: .55;
+    }
+
+    .progress-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 20px;
+    }
+
+    .progress-panel {
+      --chart-color: #9d1f2f;
+      --chart-inner: #dd8792;
+      padding: 22px;
+      border: 1px solid #dedede;
+      border-radius: 10px;
+      background: #fff;
+    }
+
+    .progress-panel h3 {
+      margin: 0 0 16px;
+      font-size: 1.35rem;
+    }
+
+    .ring-summary {
+      display: grid;
+      grid-template-columns: 172px minmax(0, 1fr);
+      align-items: center;
+      gap: 20px;
+    }
+
+    .double-ring {
+      position: relative;
+      width: 172px;
+      height: 172px;
+    }
+
+    .double-ring svg {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+    .ring-track,
+    .ring-value {
+      fill: none;
+      transform: rotate(-90deg);
+      transform-origin: 80px 80px;
+    }
+
+    .ring-track { stroke: #e9e9e9; }
+    .ring-value {
+      stroke-linecap: round;
+      transition: stroke-dasharray .4s ease;
+    }
+
+    .ring-value.outer { stroke: var(--chart-color); }
+    .ring-value.inner { stroke: var(--chart-inner); }
+
+    .ring-center {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-content: center;
+      text-align: center;
+      pointer-events: none;
+    }
+
+    .ring-center strong {
+      color: var(--chart-color);
+      font-size: 1.65rem;
+      line-height: 1;
+    }
+
+    .ring-center span {
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: .77rem;
+      font-weight: 750;
+      text-transform: uppercase;
+    }
+
+    .score-legend {
+      display: grid;
+      gap: 11px;
+    }
+
+    .score-line {
+      display: grid;
+      grid-template-columns: 12px 1fr auto;
+      align-items: center;
+      gap: 9px;
+    }
+
+    .score-dot {
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      background: var(--chart-color);
+    }
+
+    .score-dot.inner { background: var(--chart-inner); }
+    .score-line span { color: var(--muted); }
+    .score-line strong { color: var(--ink); }
+
+    .score-meta {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: .88rem;
+      line-height: 1.45;
+    }
+
+    .progress-details {
+      margin-top: 18px;
+      border-top: 1px solid #e4e4e4;
+      padding-top: 14px;
+    }
+
+    .progress-details summary {
+      color: var(--accent-dark);
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    .breakdown {
+      margin-top: 14px;
+    }
+
+    .breakdown h4 {
+      margin: 0 0 8px;
+      font-size: .92rem;
+    }
+
+    .breakdown-list {
+      display: grid;
+      gap: 7px;
+    }
+
+    .breakdown-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) 80px auto;
+      align-items: center;
+      gap: 9px;
+      font-size: .84rem;
+    }
+
+    .breakdown-row span:first-child {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .mini-bar {
+      height: 7px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e8e8e8;
+    }
+
+    .mini-bar span {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: var(--chart-color);
+    }
+
+    .breakdown.exercises .mini-bar span { background: var(--chart-inner); }
+
+    .empty-breakdown {
+      margin: 8px 0 0;
+      color: var(--muted);
+      font-size: .86rem;
+    }
+
+    .progress-status {
+      min-height: 22px;
+      margin: 16px 0 0;
+      color: var(--accent-dark);
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .transfer-help {
+      margin-top: 28px;
+      padding: 28px 30px;
+      border: 1px solid #e4c7cc;
+      border-left: 6px solid var(--accent);
+      border-radius: var(--radius);
+      background: #fbf5f6;
+      box-shadow: 0 10px 24px rgba(45, 45, 45, .07);
+    }
+
+    .transfer-help h2 {
+      margin: 0 0 8px;
+      color: var(--accent-dark);
+      font-size: clamp(1.3rem, 2vw, 1.65rem);
+    }
+
+    .transfer-help > p {
+      margin: 0;
+      color: #4d4d4d;
+      line-height: 1.6;
+    }
+
+    .transfer-steps {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+      margin-top: 20px;
+    }
+
+    .transfer-step {
+      padding: 20px;
+      border: 1px solid #eadcdf;
+      border-radius: var(--radius);
+      background: var(--paper);
+    }
+
+    .transfer-step h3 {
+      margin: 0 0 8px;
+      color: var(--accent-dark);
+      font-size: 1.08rem;
+    }
+
+    .transfer-step p {
+      margin: 0;
+      line-height: 1.55;
+    }
+
+    .transfer-note {
+      margin-top: 16px !important;
+      color: var(--ink) !important;
+      font-weight: 700;
+    }
+
+    footer {
+      margin-top: 26px;
+      color: var(--muted);
+      font-size: .9rem;
+      text-align: center;
+    }
+
+    footer span { display: block; }
+    footer span + span { margin-top: 5px; }
+
+    @media (max-width: 900px) {
+      .org-branches { grid-template-columns: repeat(2, minmax(0, 1fr)); background: none; padding-top: 0; }
+      .org-col { background: none; padding-top: 0; }
+    }
+
+    @media (max-width: 680px) {
+      :root { --header-depth: 305px; }
+      main { padding-top: 38px; }
+      header {
+        margin-bottom: 30px;
+        padding-right: 0;
+      }
+      header h1 { margin-top: 52px; }
+      .site-logo {
+        width: 68px;
+        height: 68px;
+        padding: 5px;
+        border-radius: 9px;
+      }
+      .card { min-height: 270px; padding: 26px; }
+      .card-preview {
+        position: static;
+        width: 100%;
+        height: 300px;
+        margin: 20px 0 0;
+        order: 2;
+      }
+      .card h2 { order: 1; }
+      .card p { order: 3; }
+      .card .open { order: 4; }
+      .org-branches { grid-template-columns: 1fr; }
+      .dashboard-head { flex-direction: column; }
+      .progress-actions { justify-content: flex-start; }
+      .transfer-steps { grid-template-columns: 1fr; }
+      .ring-summary {
+        grid-template-columns: 1fr;
+        justify-items: center;
+      }
+      .score-legend { width: 100%; }
+      .breakdown-row { grid-template-columns: minmax(0, 1fr) 62px auto; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .card, .open::after, .ring-value { transition: none; }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="header-media">
+        <img class="header-icon" src="rechtschreibung-html/assets/rechtschreibung-icon.png" alt="Icon Rechtschreibung und Zeichensetzung">
+        <a href="https://asw-wutoeschingen.de" target="_blank" rel="noopener noreferrer" aria-label="Website der Alemannenschule Wutöschingen öffnen">
+          <img class="site-logo" src="rechtschreibung-html/assets/asw-logo.png" alt="Logo der Alemannenschule Wutöschingen">
+        </a>
+      </div>
+      <p class="eyebrow">Rechtschreibung &amp; Zeichensetzung</p>
+      <h1>Deutsch Rechtschreibung und Zeichensetzung · Phase 8 - 10</h1>
+      <p>Starte das Lernpaket mit Erklärungen, interaktiven Übungen und Abschlusstest.</p>
+    </header>
+
+    <section class="cards" aria-label="Themenauswahl">
+      <a class="card" href="rechtschreibung-html/index.html">
+        <span class="number" aria-hidden="true">✓</span>
+        <img class="card-preview" src="rechtschreibung-html/assets/uebersicht-rechtschreibung.svg" alt="Übersicht zur Rechtschreibung">
+        <h2>Rechtschreibung</h2>
+        <p>Rechtschreibstrategien, kurze und lange Vokale, s-Laute, das/dass, Groß- und Kleinschreibung sowie Getrennt- und Zusammenschreibung.</p>
+        <span class="open">Lernpaket öffnen</span>
+      </a>
+    </section>
+
+    <section class="overview-graphic" aria-labelledby="overviewGraphicTitle">
+      <h2 id="overviewGraphicTitle">Rechtschreibung &amp; Zeichensetzung</h2>
+      <span class="overview-subtitle">Wichtige Grundlagen im Überblick</span>
+
+      <div class="org-root">Rechtschreibung und Zeichensetzung</div>
+      <div class="org-stem" aria-hidden="true"></div>
+
+      <div class="org-branches">
+        <section class="org-col c1" aria-label="Kapitel 1: Rechtschreibstrategien">
+          <div class="org-chapter">Kapitel 1:<br>Rechtschreibstrategien</div>
+          <div class="org-topic">Sieben Rechtschreibstrategien</div>
+        </section>
+
+        <section class="org-col c2" aria-label="Kapitel 2: Laute und Buchstaben">
+          <div class="org-chapter">Kapitel 2:<br>Laute und Buchstaben</div>
+          <div class="org-topic">Kurze Vokale: Doppelkonsonant, ck und tz</div>
+          <div class="org-topic">Lange Vokale: ie, Doppelvokal, Dehnungs-h</div>
+          <div class="org-topic">s-Laute: s, ss oder ß</div>
+        </section>
+
+        <section class="org-col c3" aria-label="Kapitel 3: Wörter richtig schreiben">
+          <div class="org-chapter">Kapitel 3:<br>Wörter richtig schreiben</div>
+          <div class="org-topic">das oder dass</div>
+          <div class="org-topic">Groß- und Kleinschreibung</div>
+          <div class="org-topic">Zusammen- und Getrenntschreibung</div>
+        </section>
+
+        <section class="org-col c4" aria-label="Kapitel 4: Zeichensetzung (eigenes Lernpaket)">
+          <div class="org-chapter">Eigenes Paket:<br>Zeichensetzung</div>
+          <div class="org-topic">Direkte und indirekte Zitation</div>
+          <div class="org-topic">Die sieben Kommaregeln</div>
+        </section>
+      </div>
+
+      <p class="ov-footer"><span class="bulb" aria-hidden="true">💡</span> Überblick: Strategien nutzen, Laute unterscheiden, Wörter und Zeichen sicher schreiben.</p>
+    </section>
+
+    <section class="progress-dashboard" aria-labelledby="dashboardTitle">
+      <div class="dashboard-head">
+        <div>
+          <p class="dashboard-kicker">Lernstatistik</p>
+          <h2 id="dashboardTitle">Dein Lernstand</h2>
+          <p class="dashboard-copy">Der äußere Ring zeigt das Ergebnis des Abschlusstests. Der innere Ring zeigt, wie viele der bereits bearbeiteten Übungsaufgaben richtig gelöst wurden.</p>
+        </div>
+        <div class="progress-actions" aria-label="Fortschritt sichern oder wiederherstellen">
+          <button class="progress-button" id="exportProgressBtn" type="button">Export</button>
+          <button class="progress-button secondary" id="importProgressBtn" type="button">Import</button>
+          <input id="importProgressFile" type="file" accept=".json,application/json" hidden>
+        </div>
+      </div>
+
+      <div class="ring-key" aria-label="Legende der Ringdiagramme">
+        <span><i class="ring-sample outer" aria-hidden="true"></i>Äußerer Ring: Abschlusstest</span>
+        <span><i class="ring-sample inner" aria-hidden="true"></i>Innerer Ring: bearbeitete Übungen</span>
+      </div>
+
+      <div class="progress-grid" id="progressCharts"></div>
+      <p class="progress-status" id="progressStatus" aria-live="polite"></p>
+    </section>
+
+    <section class="transfer-help" aria-labelledby="transferHelpTitle">
+      <h2 id="transferHelpTitle">So sicherst du deinen Lernfortschritt</h2>
+      <p>Deine Ergebnisse werden nur in diesem Browser gespeichert. Mit Export kannst du eine Sicherungskopie erstellen und sie später wieder einlesen – auch auf einem anderen Gerät.</p>
+
+      <div class="transfer-steps">
+        <article class="transfer-step">
+          <h3>Export = Fortschritt sichern</h3>
+          <p>Wähle oben <strong>Export</strong>. Dein Browser lädt eine kleine JSON-Datei herunter. Bewahre sie an einem Ort auf, an dem du sie später wiederfindest.</p>
+        </article>
+        <article class="transfer-step">
+          <h3>Import = Fortschritt wiederherstellen</h3>
+          <p>Wähle oben <strong>Import</strong> und öffne deine zuvor gesicherte JSON-Datei. Bestätige anschließend, dass die vorhandenen Daten ersetzt werden dürfen.</p>
+        </article>
+      </div>
+
+      <p class="transfer-note">Wichtig: Eine Exportdatei enthält den Lernfortschritt aus beiden Lernpaketen. Beim Import wird der aktuell gespeicherte Fortschritt vollständig ersetzt.</p>
+    </section>
+
+    <footer>
+      <span>Deutsch · Rechtschreibung und Zeichensetzung · Klasse 10</span>
+      <span>Autor: Christian Schwend · Alemannenschule Wutöschingen</span>
+    </footer>
+  </main>
+  <script>
+    (() => {
+      const STORAGE_KEY = "sprachwissenProgressV1";
+      const EXPORT_FORMAT = "asw-sprachwissen-progress";
+      const PACKAGE_CONFIG = [
+        {
+          id: "rechtschreibung",
+          title: "Rechtschreibung",
+          color: "#9d1f2f",
+          innerColor: "#dd8792",
+          completedKey: "rechtschreibungDone",
+          topicTotal: 7
+        }
+      ];
+
+      let storage = { getItem:()=>null, setItem:()=>{}, removeItem:()=>{} };
+      let storageAvailable = false;
+      try {
+        storage = localStorage;
+        const probe = "__sprachwissen_probe__";
+        storage.setItem(probe, "1");
+        storage.removeItem(probe);
+        storageAvailable = true;
+      } catch(e) {}
+
+      const charts = document.getElementById("progressCharts");
+      const status = document.getElementById("progressStatus");
+      const exportButton = document.getElementById("exportProgressBtn");
+      const importButton = document.getElementById("importProgressBtn");
+      const importInput = document.getElementById("importProgressFile");
+
+      function clampNumber(value, maximum = 100000) {
+        const number = Number(value);
+        if (!Number.isFinite(number)) return 0;
+        return Math.max(0, Math.min(maximum, Math.round(number)));
+      }
+
+      function percent(correct, total) {
+        return total > 0 ? Math.round((correct / total) * 100) : 0;
+      }
+
+      function escapeHtml(value) {
+        return String(value)
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;")
+          .replaceAll('"', "&quot;")
+          .replaceAll("'", "&#039;");
+      }
+
+      function readJson(key, fallback) {
+        try {
+          const value = JSON.parse(storage.getItem(key) || "null");
+          return value ?? fallback;
+        } catch(e) {
+          return fallback;
+        }
+      }
+
+      function readProgress() {
+        const data = readJson(STORAGE_KEY, { version: 1, packages: {} });
+        if (!data || typeof data !== "object" || Array.isArray(data)) return { version: 1, packages: {} };
+        if (!data.packages || typeof data.packages !== "object" || Array.isArray(data.packages)) data.packages = {};
+        return data;
+      }
+
+      function exerciseTotals(packageData) {
+        const stored = packageData?.exercises?.totals;
+        if (stored && typeof stored === "object") {
+          return {
+            correct: clampNumber(stored.correct),
+            attempted: clampNumber(stored.attempted),
+            total: clampNumber(stored.total)
+          };
+        }
+        return Object.values(packageData?.exercises?.byTopic || {}).reduce((sum, item) => {
+          sum.correct += clampNumber(item.correct);
+          sum.attempted += clampNumber(item.attempted);
+          sum.total += clampNumber(item.total);
+          return sum;
+        }, { correct: 0, attempted: 0, total: 0 });
+      }
+
+      function breakdownMarkup(title, items, type) {
+        if (!items.length) {
+          return `<section class="breakdown ${type}"><h4>${escapeHtml(title)}</h4><p class="empty-breakdown">Noch keine Ergebnisse gespeichert.</p></section>`;
+        }
+        const rows = items.map(item => {
+          const itemPercent = percent(item.correct, item.total);
+          return `
+            <div class="breakdown-row">
+              <span title="${escapeHtml(item.title)}">${escapeHtml(item.title)}</span>
+              <span class="mini-bar" aria-hidden="true"><span style="width:${itemPercent}%"></span></span>
+              <strong>${itemPercent}%</strong>
+            </div>
+          `;
+        }).join("");
+        return `<section class="breakdown ${type}"><h4>${escapeHtml(title)}</h4><div class="breakdown-list">${rows}</div></section>`;
+      }
+
+      function panelMarkup(config, packageData) {
+        const exercises = exerciseTotals(packageData);
+        const finalTest = packageData?.finalTest || {};
+        const finalCorrect = clampNumber(finalTest.correct);
+        const finalTotal = clampNumber(finalTest.total);
+        const finalPercent = percent(finalCorrect, finalTotal);
+        const exercisePercent = percent(exercises.correct, exercises.attempted);
+        const completed = readJson(config.completedKey, []);
+        const completedCount = Array.isArray(completed) ? completed.length : 0;
+        const testSections = Array.isArray(finalTest.sections)
+          ? finalTest.sections.map(item => ({
+              title: String(item.title || "Teilbereich").slice(0, 120),
+              correct: clampNumber(item.correct),
+              total: clampNumber(item.total)
+            }))
+          : [];
+        const exerciseTopics = Object.values(packageData?.exercises?.byTopic || {})
+          .filter(item => clampNumber(item.attempted) > 0)
+          .map(item => ({
+            title: String(item.title || "Übungsbereich").slice(0, 120),
+            correct: clampNumber(item.correct),
+            total: clampNumber(item.attempted)
+          }));
+
+        const testText = finalTotal > 0 ? `${finalCorrect} von ${finalTotal} richtig` : "Noch nicht ausgewertet";
+        const exerciseText = exercises.attempted > 0
+          ? `${exercises.correct} von ${exercises.attempted} richtig`
+          : "Noch keine Übung ausgewertet";
+
+        return `
+          <article class="progress-panel" style="--chart-color:${config.color};--chart-inner:${config.innerColor}">
+            <h3>${escapeHtml(config.title)}</h3>
+            <div class="ring-summary">
+              <div class="double-ring">
+                <svg viewBox="0 0 160 160" role="img" aria-label="${escapeHtml(config.title)}: Abschlusstest ${finalPercent} Prozent, Übungen ${exercisePercent} Prozent">
+                  <circle class="ring-track" cx="80" cy="80" r="62" stroke-width="13"></circle>
+                  <circle class="ring-value outer" cx="80" cy="80" r="62" stroke-width="13" pathLength="100" stroke-dasharray="${finalPercent} ${100 - finalPercent}"></circle>
+                  <circle class="ring-track" cx="80" cy="80" r="44" stroke-width="9"></circle>
+                  <circle class="ring-value inner" cx="80" cy="80" r="44" stroke-width="9" pathLength="100" stroke-dasharray="${exercisePercent} ${100 - exercisePercent}"></circle>
+                </svg>
+                <div class="ring-center"><strong>${finalPercent}%</strong><span>Test</span></div>
+              </div>
+              <div class="score-legend">
+                <div class="score-line"><i class="score-dot" aria-hidden="true"></i><span>Abschlusstest</span><strong>${finalPercent}%</strong></div>
+                <p class="score-meta">${testText}</p>
+                <div class="score-line"><i class="score-dot inner" aria-hidden="true"></i><span>Bearbeitete Übungen</span><strong>${exercisePercent}%</strong></div>
+                <p class="score-meta">${exerciseText}<br>${completedCount} von ${config.topicTotal} Themen abgeschlossen</p>
+              </div>
+            </div>
+            <details class="progress-details">
+              <summary>Ergebnisse nach Teilbereich</summary>
+              ${breakdownMarkup("Abschlusstest", testSections, "tests")}
+              ${breakdownMarkup("Übungsaufgaben", exerciseTopics, "exercises")}
+            </details>
+          </article>
+        `;
+      }
+
+      function renderDashboard() {
+        const data = readProgress();
+        charts.innerHTML = PACKAGE_CONFIG
+          .map(config => panelMarkup(config, data.packages[config.id] || {}))
+          .join("");
+        if (!storageAvailable) {
+          status.textContent = "Der Browser erlaubt momentan keine lokale Fortschrittsspeicherung.";
+        }
+      }
+
+      function sanitizedArray(value) {
+        if (!Array.isArray(value)) return [];
+        return [...new Set(value.filter(item => typeof item === "string").map(item => item.slice(0, 80)))].slice(0, 100);
+      }
+
+      function sanitizeProgress(raw) {
+        if (!raw || typeof raw !== "object" || Array.isArray(raw)) throw new Error("Die Fortschrittsdaten fehlen.");
+        const clean = { version: 1, packages: {}, updatedAt: new Date().toISOString() };
+
+        PACKAGE_CONFIG.forEach(config => {
+          const sourcePackage = raw.packages?.[config.id];
+          if (!sourcePackage || typeof sourcePackage !== "object" || Array.isArray(sourcePackage)) return;
+          const cleanPackage = {};
+          const sourceTopics = sourcePackage.exercises?.byTopic;
+
+          if (sourceTopics && typeof sourceTopics === "object" && !Array.isArray(sourceTopics)) {
+            const byTopic = {};
+            Object.entries(sourceTopics).slice(0, 100).forEach(([id, item]) => {
+              if (!item || typeof item !== "object" || Array.isArray(item)) return;
+              const safeId = String(id).slice(0, 80);
+              if (!/^[a-z0-9_-]+$/i.test(safeId)) return;
+              const attempted = clampNumber(item.attempted, 1000);
+              const total = Math.max(attempted, clampNumber(item.total, 1000));
+              byTopic[safeId] = {
+                title: String(item.title || id).slice(0, 120),
+                correct: Math.min(attempted, clampNumber(item.correct, 1000)),
+                attempted,
+                total,
+                updatedAt: typeof item.updatedAt === "string" ? item.updatedAt.slice(0, 40) : undefined
+              };
+            });
+            const totals = Object.values(byTopic).reduce((sum, item) => {
+              sum.correct += item.correct;
+              sum.attempted += item.attempted;
+              sum.total += item.total;
+              return sum;
+            }, { correct: 0, attempted: 0, total: 0 });
+            cleanPackage.exercises = { byTopic, totals };
+          }
+
+          const sourceTest = sourcePackage.finalTest;
+          if (sourceTest && typeof sourceTest === "object" && !Array.isArray(sourceTest)) {
+            const total = clampNumber(sourceTest.total, 1000);
+            cleanPackage.finalTest = {
+              correct: Math.min(total, clampNumber(sourceTest.correct, 1000)),
+              total,
+              sections: Array.isArray(sourceTest.sections)
+                ? sourceTest.sections.slice(0, 30).map((item, index) => {
+                    const sectionTotal = clampNumber(item?.total, 1000);
+                    return {
+                      id: String(item?.id || `${config.id}-test-${index + 1}`).slice(0, 80),
+                      title: String(item?.title || `Teilbereich ${index + 1}`).slice(0, 120),
+                      correct: Math.min(sectionTotal, clampNumber(item?.correct, 1000)),
+                      total: sectionTotal
+                    };
+                  })
+                : [],
+              evaluatedAt: typeof sourceTest.evaluatedAt === "string" ? sourceTest.evaluatedAt.slice(0, 40) : undefined
+            };
+          }
+
+          clean.packages[config.id] = cleanPackage;
+        });
+
+        return clean;
+      }
+
+      function exportProgress() {
+        if (!storageAvailable) {
+          status.textContent = "Export nicht möglich: Die lokale Speicherung ist blockiert.";
+          return;
+        }
+        const payload = {
+          format: EXPORT_FORMAT,
+          version: 1,
+          exportedAt: new Date().toISOString(),
+          progress: readProgress(),
+          completions: {
+            rechtschreibungDone: sanitizedArray(readJson("rechtschreibungDone", []))
+          }
+        };
+        const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = `rechtschreibung-fortschritt-${new Date().toISOString().slice(0, 10)}.json`;
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        window.setTimeout(() => URL.revokeObjectURL(url), 1000);
+        status.textContent = "Fortschritt wurde als JSON-Datei exportiert.";
+      }
+
+      async function importProgress(file) {
+        if (!file) return;
+        if (file.size > 1024 * 1024) throw new Error("Die Importdatei ist größer als 1 MB.");
+        const payload = JSON.parse(await file.text());
+        if (payload?.format !== EXPORT_FORMAT || Number(payload?.version) !== 1) {
+          throw new Error("Die Datei ist kein gültiger Fortschrittsexport.");
+        }
+        const progress = sanitizeProgress(payload.progress);
+        const completions = payload.completions || {};
+
+        const confirmed = window.confirm("Vorhandene Fortschrittsdaten werden durch den Import ersetzt. Fortfahren?");
+        if (!confirmed) {
+          status.textContent = "Import wurde abgebrochen.";
+          return;
+        }
+
+        storage.setItem(STORAGE_KEY, JSON.stringify(progress));
+        storage.setItem("rechtschreibungDone", JSON.stringify(sanitizedArray(completions.rechtschreibungDone)));
+        renderDashboard();
+        status.textContent = "Fortschritt wurde erfolgreich importiert.";
+      }
+
+      exportButton.addEventListener("click", exportProgress);
+      importButton.addEventListener("click", () => importInput.click());
+      importInput.addEventListener("change", async () => {
+        try {
+          await importProgress(importInput.files?.[0]);
+        } catch(error) {
+          status.textContent = `Import fehlgeschlagen: ${error.message}`;
+        } finally {
+          importInput.value = "";
+        }
+      });
+
+      window.addEventListener("pageshow", renderDashboard);
+      window.addEventListener("storage", renderDashboard);
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) renderDashboard();
+      });
+
+      renderDashboard();
+    })();
+  </script>
+</body>
+</html>

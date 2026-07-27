@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 980" font-family="'Segoe UI', 'Trebuchet MS', system-ui, sans-serif">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#f7f9fc"/>
+      <stop offset="1" stop-color="#eef3f8"/>
+    </linearGradient>
+  </defs>
+  <rect width="760" height="980" fill="url(#bg)"/>
+
+  <!-- Title -->
+  <text x="380" y="58" text-anchor="middle" font-size="34" font-weight="800" fill="#9d1f2f">Rechtschreibung &amp; Zeichensetzung</text>
+  <text x="380" y="88" text-anchor="middle" font-size="17" fill="#5b6470">Wichtige Grundlagen im Überblick</text>
+  <line x1="60" y1="108" x2="700" y2="108" stroke="#d7dde6" stroke-width="2"/>
+
+  <!-- Column wrapper -->
+  <!-- ============ KAPITEL 1 (green) ============ -->
+  <g>
+    <rect x="40" y="140" width="165" height="800" rx="14" fill="#effaf0" stroke="#29a85b" stroke-width="2"/>
+    <rect x="40" y="140" width="165" height="46" rx="14" fill="#29a85b"/>
+    <rect x="40" y="164" width="165" height="22" fill="#29a85b"/>
+    <text x="122" y="170" text-anchor="middle" font-size="14.5" font-weight="800" fill="#fff">Kapitel 1</text>
+    <text x="122" y="216" text-anchor="middle" font-size="13.5" font-weight="800" fill="#1f7a40">Rechtschreib&#173;strategien</text>
+    <rect x="54" y="240" width="137" height="64" rx="8" fill="#fff" stroke="#bfe3cc" stroke-width="1.5"/>
+    <text x="122" y="266" text-anchor="middle" font-size="12" font-weight="700" fill="#33523f">Sieben</text>
+    <text x="122" y="284" text-anchor="middle" font-size="12" font-weight="700" fill="#33523f">Rechtschreib&#173;strategien</text>
+  </g>
+
+  <!-- ============ KAPITEL 2 (orange) ============ -->
+  <g>
+    <rect x="222" y="140" width="165" height="800" rx="14" fill="#fff5ec" stroke="#ff7c22" stroke-width="2"/>
+    <rect x="222" y="140" width="165" height="46" rx="14" fill="#ff7c22"/>
+    <rect x="222" y="164" width="165" height="22" fill="#ff7c22"/>
+    <text x="304" y="170" text-anchor="middle" font-size="14.5" font-weight="800" fill="#fff">Kapitel 2</text>
+    <text x="304" y="216" text-anchor="middle" font-size="13.5" font-weight="800" fill="#b8540a">Laute und Buchstaben</text>
+    <rect x="236" y="240" width="137" height="80" rx="8" fill="#fff" stroke="#ffd6b0" stroke-width="1.5"/>
+    <text x="304" y="264" text-anchor="middle" font-size="12" font-weight="700" fill="#6b3a12">Kurze Vokale:</text>
+    <text x="304" y="282" text-anchor="middle" font-size="11" font-weight="600" fill="#6b3a12">Doppelkonsonant,</text>
+    <text x="304" y="298" text-anchor="middle" font-size="11" font-weight="600" fill="#6b3a12">ck und tz</text>
+    <rect x="236" y="332" width="137" height="92" rx="8" fill="#fff" stroke="#ffd6b0" stroke-width="1.5"/>
+    <text x="304" y="356" text-anchor="middle" font-size="12" font-weight="700" fill="#6b3a12">Lange Vokale:</text>
+    <text x="304" y="374" text-anchor="middle" font-size="11" font-weight="600" fill="#6b3a12">ie, Doppelvokal,</text>
+    <text x="304" y="390" text-anchor="middle" font-size="11" font-weight="600" fill="#6b3a12">Dehnungs-h,</text>
+    <text x="304" y="406" text-anchor="middle" font-size="11" font-weight="600" fill="#6b3a12">silbentrennendes h</text>
+    <rect x="236" y="436" width="137" height="64" rx="8" fill="#fff" stroke="#ffd6b0" stroke-width="1.5"/>
+    <text x="304" y="462" text-anchor="middle" font-size="12" font-weight="700" fill="#6b3a12">s-Laute:</text>
+    <text x="304" y="480" text-anchor="middle" font-size="11" font-weight="600" fill="#6b3a12">s, ss oder ß</text>
+  </g>
+
+  <!-- ============ KAPITEL 3 (blue) ============ -->
+  <g>
+    <rect x="404" y="140" width="165" height="800" rx="14" fill="#eaf4fb" stroke="#0085b5" stroke-width="2"/>
+    <rect x="404" y="140" width="165" height="46" rx="14" fill="#0085b5"/>
+    <rect x="404" y="164" width="165" height="22" fill="#0085b5"/>
+    <text x="486" y="170" text-anchor="middle" font-size="14.5" font-weight="800" fill="#fff">Kapitel 3</text>
+    <text x="486" y="216" text-anchor="middle" font-size="13.5" font-weight="800" fill="#0a5a78">Wörter richtig schreiben</text>
+    <rect x="418" y="240" width="137" height="56" rx="8" fill="#fff" stroke="#b9dcef" stroke-width="1.5"/>
+    <text x="486" y="270" text-anchor="middle" font-size="12" font-weight="700" fill="#0c4a63">das oder dass</text>
+    <rect x="418" y="308" width="137" height="56" rx="8" fill="#fff" stroke="#b9dcef" stroke-width="1.5"/>
+    <text x="486" y="338" text-anchor="middle" font-size="12" font-weight="700" fill="#0c4a63">Groß- und Kleinschreibung</text>
+    <rect x="418" y="376" width="137" height="56" rx="8" fill="#fff" stroke="#b9dcef" stroke-width="1.5"/>
+    <text x="486" y="406" text-anchor="middle" font-size="12" font-weight="700" fill="#0c4a63">Zusammen- und Getrenntschreibung</text>
+  </g>
+
+  <!-- ============ KAPITEL 4 (teal) ============ -->
+  <g>
+    <rect x="586" y="140" width="134" height="800" rx="14" fill="#e9fafb" stroke="#0b8a96" stroke-width="2"/>
+    <rect x="586" y="140" width="134" height="46" rx="14" fill="#0b8a96"/>
+    <rect x="586" y="164" width="134" height="22" fill="#0b8a96"/>
+    <text x="653" y="170" text-anchor="middle" font-size="14.5" font-weight="800" fill="#fff">Kapitel 4</text>
+    <text x="653" y="216" text-anchor="middle" font-size="13" font-weight="800" fill="#07616b">Zeichen&#173;setzung</text>
+    <rect x="598" y="240" width="110" height="80" rx="8" fill="#fff" stroke="#a9dde2" stroke-width="1.5"/>
+    <text x="653" y="266" text-anchor="middle" font-size="11" font-weight="700" fill="#0a5560">Eigenes</text>
+    <text x="653" y="282" text-anchor="middle" font-size="11" font-weight="700" fill="#0a5560">Paket:</text>
+    <text x="653" y="300" text-anchor="middle" font-size="10.5" font-weight="600" fill="#0a5560">Zitation</text>
+    <text x="653" y="315" text-anchor="middle" font-size="10.5" font-weight="600" fill="#0a5560">und Komma</text>
+  </g>
+
+  <!-- Footer banner -->
+  <rect x="40" y="882" width="680" height="56" rx="12" fill="#fff7d6" stroke="#ffd659" stroke-width="2"/>
+  <text x="380" y="908" text-anchor="middle" font-size="13" font-weight="700" fill="#7a5b00">💡 Jedes Thema hat Übungen, Mini-Checks und einen Fehlertext.</text>
+  <text x="380" y="927" text-anchor="middle" font-size="11.5" font-weight="600" fill="#7a5b00">Der Abschlusstest zeigt, ob du sicher bist.</text>
+</svg>
