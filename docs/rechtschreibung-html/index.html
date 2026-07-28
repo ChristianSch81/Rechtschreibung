@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Deutsch Rechtschreibung und Zeichensetzung · Phase 8 - 10</title>
+  <title>Deutsch Rechtschreibung · Phase 8–10</title>
   <style>
     :root {
       --ink: #232323;
@@ -15,8 +15,8 @@
       --blue: #063970;
       --blue-soft: #eef6ff;
       --green: #277a32;
-      --orange: #ef7d00;
-      --teal: #008491;
+      --orange: #a94700;
+      --teal: #006d75;
       --violet: #6b3fa0;
       --danger: #b3261e;
       --success: #226c3f;
@@ -1455,6 +1455,18 @@
       .overview-icons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .memory-box { grid-template-columns: 1fr; }
     }
+
+    .quiz-options { border: 0; padding: 0; margin: 0; min-width: 0; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    button, a.action, select, input[type="text"], textarea { min-height: 42px; }
+    @media (max-width: 680px) {
+      .topbar { position: static; }
+      .controls { position: static; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
   </style>
 </head>
 <body>
@@ -1462,12 +1474,12 @@
     <aside class="side" aria-label="Themennavigation">
       <section class="brand">
         <p class="brand-eyebrow">Rechtschreibung &amp; Zeichensetzung</p>
-        <h1>Deutsch Rechtschreibung und Zeichensetzung · Phase 8 - 10</h1>
+        <h1>Deutsch Rechtschreibung · Phase 8–10</h1>
         <p>Rechtschreibstrategien, Laute und Buchstaben und Wortschreibung</p>
       </section>
       <section class="progress-box" aria-label="Fortschritt">
         <div class="progress-title">
-          <span>Mini-Checks</span>
+          <span>Themen abgeschlossen</span>
           <span id="progressText">0 von 7</span>
         </div>
         <div class="bar" aria-hidden="true"><span id="progressBar"></span></div>
@@ -1487,7 +1499,7 @@
           </a>
           <img class="grammar-icon" src="assets/rechtschreibung-icon.png" alt="Icon Rechtschreibung und Zeichensetzung">
           <a class="action" id="overviewBtn" href="../index.html">← Zurück zur Startseite</a>
-          <a class="action" id="siblingBtn" href="zeichensetzung-html/index.html">→ Zeichensetzung</a>
+          <a class="action" id="siblingBtn" href="../zeichensetzung-html/index.html">→ Zeichensetzung</a>
           <button class="action export-action" id="exportBtnTop" type="button">Export</button>
           <button class="action import-action" id="importBtnTop" type="button">Import</button>
           <button class="action primary" id="completeBtn" type="button">Ich habe das Thema verstanden</button>
@@ -1522,15 +1534,16 @@
           <h2>Teste dein Wissen: Rechtschreibung</h2>
           <p class="intro">Der Abschlusstest ist in drei Niveaus unterteilt. Zuerst bearbeitest du den Mindeststandard. Erst wenn du dort mindestens 80&nbsp;% erreicht hast, schaltest du den Regelstandard frei – und mit 80&nbsp;% im Regelstandard den Expertenstandard. Sobald du alle drei Niveaus erfolgreich gemeistert hast, kannst du den Gelingensnachweis (GN) schreiben.</p>
           <div class="quiz-tabs" id="quizTabs" role="tablist">
-            <button class="quiz-tab" type="button" data-level="mindest" role="tab">Mindeststandard</button>
-            <button class="quiz-tab" type="button" data-level="regel" role="tab">Regelstandard</button>
-            <button class="quiz-tab" type="button" data-level="experte" role="tab">Expertenstandard</button>
+            <button class="quiz-tab" id="quizTabMindest" type="button" data-level="mindest" role="tab" aria-selected="true" aria-controls="quizContainer">Mindeststandard</button>
+            <button class="quiz-tab" id="quizTabRegel" type="button" data-level="regel" role="tab" aria-selected="false" aria-controls="quizContainer">Regelstandard</button>
+            <button class="quiz-tab" id="quizTabExperte" type="button" data-level="experte" role="tab" aria-selected="false" aria-controls="quizContainer">Expertenstandard</button>
           </div>
-          <div id="quizContainer"></div>
+          <div id="quizContainer" role="tabpanel" aria-labelledby="quizTabMindest" tabindex="0"></div>
           <div class="controls">
             <button class="check-btn" type="button" id="quizCheckBtn">Auswerten</button>
-            <button class="reset-btn" type="button" id="quizResetBtn">Zurücksetzen</button>
-            <span id="quizScore" class="score"></span>
+            <button class="reset-btn" type="button" id="quizResetBtn">Eingaben leeren</button>
+            <button class="reset-btn" type="button" id="quizClearResultsBtn">Testergebnisse löschen</button>
+            <span id="quizScore" class="score" aria-live="polite"></span>
           </div>
         </section>
 
@@ -1556,7 +1569,7 @@
       ["1 · Verlängerungsprobe", "Plural / Infinitiv / Komparativ", "Wald → Wälder"],
       ["2 · Ableitungsprobe", "Wortfamilie suchen", "lästig → Last"],
       ["3 · Silbenprobe", "Silben trennen", "ge|hen"],
-      ["4 · Ersatzprobe", "Synonym einsetzen", "das → welches?"],
+      ["4 · Ersatzprobe", "dieses/jenes/welches einsetzen", "das → welches?"],
       ["5 · Artikel & Signal", "Hinweis auf Nomen", "beim Gehen"],
       ["6 · Wortart", "Nachsilben -keit, -nis", "Geheimnis"],
       ["7 · Vokallänge", "kurz → Doppelkonsonant", "Schrott"]
@@ -1566,8 +1579,8 @@
     title: "Kurze Vokale",
     nodes: [
       ["Doppelkonsonant", "kurzer Vokal → Konsonant doppelt", "Koma → Komma"],
-      ["ck", "kurzer Vokal + k am Ende", "Mücke"],
-      ["tz", "kurzer Vokal + z am Ende", "Witze"],
+      ["ck", "nach kurzem betontem Vokal im Wortstamm", "Mücke"],
+      ["tz", "nach kurzem betontem Vokal im Wortstamm", "Witze"],
       ["Achtung", "einsilbig: das, mit, ob", "keine Verdopplung"]
     ]
   },
@@ -1576,14 +1589,14 @@
     nodes: [
       ["ie", "langer Vokal i", "die, Liebe"],
       ["Doppelvokal", "zwei gleiche Vokale", "Boot, Meer"],
-      ["Dehnungs-h", "h dehnt den Vokal", "Stuhl, Zäune"],
+      ["Dehnungs-h", "h kennzeichnet oft einen langen Vokal", "Stuhl, Zahn"],
       ["silbentrennendes h", "h trennt Vokale", "ge|hen"]
     ]
   },
   slaute: {
     title: "s-Laute",
     nodes: [
-      ["s (stimmhaft)", "nach Vokal / Diphthong", "Hase, lesen"],
+      ["s (stimmhaft)", "s-Laut klingt summend", "Hase, lesen"],
       ["ß", "langer Vokal / Diphthong", "Straße, Fuß"],
       ["ss", "kurzer Vokal", "Kissen, Fass"],
       ["Achtung", "Fremdwort: einfaches s", "Sibelius"]
@@ -1594,7 +1607,7 @@
     nodes: [
       ["das", "Artikel / Pronomen", "das Buch"],
       ["das", "Ersatz: welches?", "das ist mein"],
-      ["dass", "Subjunktion (Konjunktiv)", "ich hoffe, dass"],
+      ["dass", "unterordnende Konjunktion", "ich hoffe, dass"],
       ["Probe", "dass = ,dass ich …‘", "Ersatzprobe"]
     ]
   },
@@ -1673,127 +1686,1843 @@
 };
 
     const errorTexts = {
-  strategien: {
-    mindest: {
-      hint: "Sport (Thema) – Fußball, Trikots",
-      tokens: [["Unser", true], ["Fußbalteam", false], ["trainiert", false], ["jeden", false], ["Dienstag", false], ["auf", false], ["dem", false], ["Schulhof.", false], ["Die", false], ["Spieler", false], ["laufen", false], ["vor", false], ["dem", false], ["Spiel", false], ["noch", false], ["eine", false], ["Runde", false], ["um", false], ["das", false], ["Feld.", false], ["Mein", false], ["Bruder", false], ["bewahrt", false], ["seine", false], ["Trikots", true], ["immer", false], ["sauber", false], ["in", false], ["seinem", false], ["Schrank", false], ["auf.", false], ["Wir", false], ["trinken", false], ["nach", false], ["dem", false], ["Training", false], ["gern", false], ["ein", false], ["Glas", false], ["Wasser", false], ["oder", false], ["Saft.", false], ["Der", false], ["Trainer", false], ["erklärt", false], ["uns", false], ["die", false], ["wichtigsten", false], ["Regeln", false], ["ganz", false], ["deutlich.", false], ["In", false], ["der", false], ["Pause", false], ["essen", false], ["wir", false], ["eine", false], ["Banane", false], ["und", false], ["trinken", false], ["etwas.", false], ["Viele", false], ["Kinder", false], ["kommen", false], ["mit", false], ["ihren", false], ["Freunden", false], ["zum", false], ["Training.", false], ["Wir", false], ["freuen", false], ["uns,", false], ["wenn", false], ["wir", false], ["ein", false], ["Tor", false], ["schießen.", false], ["Das", false], ["Spiel", false], ["macht", false], ["uns", false], ["jedes", false], ["Mal", false], ["wieder", false], ["Spaß.", false], ["Am", false], ["Wochenende", false], ["fahren", false], ["wir", false], ["oft", false], ["zu", false], ["einem", false], ["Turnier", false], ["in", false], ["die", false], ["Nachbarstadt.", false], ["Ich", false], ["glaube,", false], ["Sport", false], ["hält", false], ["den", false], ["Körper", false], ["gesund", false], ["und", false], ["stark.", false], ["Unsere", false], ["Mannschaft", false], ["hat", false], ["dieses", false], ["Jahr", false], ["schon", false], ["drei", false], ["Spiele", false], ["gewonnen.", false], ["Wir", false], ["hoffen,", false], ["dass", false], ["wir", false], ["noch", false], ["besser", false], ["werden.", false]],
-      solution: "Fußball, Trikots"
+  "strategien": {
+    "mindest": {
+      "hint": "Nutze Verlängern und Ableiten.",
+      "tokens": [
+        [
+          "Unser",
+          false
+        ],
+        [
+          "Fußbalteam",
+          true
+        ],
+        [
+          "trainiert",
+          false
+        ],
+        [
+          "heute.",
+          false
+        ],
+        [
+          "Vor",
+          false
+        ],
+        [
+          "dem",
+          false
+        ],
+        [
+          "Spiel",
+          false
+        ],
+        [
+          "kontrolieren",
+          true
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Trikots.",
+          false
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "erklären",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "jede",
+          false
+        ],
+        [
+          "Korrektur",
+          false
+        ],
+        [
+          "mit",
+          false
+        ],
+        [
+          "einer",
+          false
+        ],
+        [
+          "Probe.",
+          false
+        ]
+      ],
+      "solution": "Fußballteam | kontrollieren"
     },
-    regel: {
-      hint: "Musik (Thema) – Donnerstag, reibungslos",
-      tokens: [["In", false], ["unserer", false], ["Band", false], ["spielen", false], ["wir", false], ["jeden", false], ["Donnerstag", true], ["in", false], ["der", false], ["Schulaula.", false], ["Der", false], ["Schlagzeuger", false], ["übt", false], ["geduldig", false], ["die", false], ["neuen", false], ["Rhythmen", false], ["mit", false], ["uns.", false], ["Meine", false], ["Freundin", false], ["singt", false], ["die", false], ["Hauptstimme", false], ["mit", false], ["einer", false], ["klaren", false], ["und", false], ["warmen", false], ["Stimme.", false], ["Wir", false], ["schreiben", false], ["unsere", false], ["eigenen", false], ["Lieder", false], ["über", false], ["Freundschaft", false], ["und", false], ["das", false], ["Leben.", false], ["Das", false], ["Publikum", false], ["klatscht", false], ["laut,", false], ["wenn", false], ["wir", false], ["ein", false], ["bekanntes", false], ["Lied", false], ["anfangen.", false], ["Der", false], ["Techniker", false], ["stellt", false], ["die", false], ["Mikrofone", false], ["und", false], ["die", false], ["Lichter", false], ["sorgfältig", false], ["ein.", false], ["Wir", false], ["proben", false], ["den", false], ["Auftritt,", false], ["bis", false], ["alles", false], ["reibungslos", true], ["funktioniert.", false], ["Nach", false], ["dem", false], ["Konzert", false], ["feiern", false], ["wir", false], ["zusammen", false], ["mit", false], ["unseren", false], ["Eltern.", false], ["Die", false], ["Musik", false], ["verbindet", false], ["uns", false], ["alle", false], ["trotz", false], ["unterschiedlicher", false], ["Geschmäcker.", false], ["Ich", false], ["lerne", false], ["auf", false], ["der", false], ["Gitarre", false], ["jeden", false], ["Tag", false], ["ein", false], ["neues", false], ["Lied.", false], ["Unsere", false], ["Lehrerin", false], ["sagt,", false], ["dass", false], ["regelmäßiges", false], ["Üben", false], ["am", false], ["wichtigsten", false], ["ist.", false], ["Wir", false], ["träumen", false], ["davon,", false], ["einmal", false], ["auf", false], ["einem", false], ["echten", false], ["Festival", false], ["zu", false], ["spielen.", false], ["Die", false], ["Band", false], ["ist", false], ["für", false], ["uns", false], ["mehr", false], ["als", false], ["nur", false], ["ein", false], ["Hobby.", false]],
-      solution: "Donnerstag, reibungslos"
+    "regel": {
+      "hint": "Prüfe Wortstamm und Silben.",
+      "tokens": [
+        [
+          "Beim",
+          false
+        ],
+        [
+          "Schreiben",
+          false
+        ],
+        [
+          "verlengert",
+          true
+        ],
+        [
+          "Mia",
+          false
+        ],
+        [
+          "schwierige",
+          false
+        ],
+        [
+          "Wörter.",
+          false
+        ],
+        [
+          "Für",
+          false
+        ],
+        [
+          "den",
+          false
+        ],
+        [
+          "Randt",
+          true
+        ],
+        [
+          "sucht",
+          false
+        ],
+        [
+          "sie",
+          false
+        ],
+        [
+          "eine",
+          false
+        ],
+        [
+          "passende",
+          false
+        ],
+        [
+          "Mehrzahl.",
+          false
+        ],
+        [
+          "Ihre",
+          false
+        ],
+        [
+          "Begründung",
+          false
+        ],
+        [
+          "notiert",
+          false
+        ],
+        [
+          "sie",
+          false
+        ],
+        [
+          "daneben.",
+          false
+        ]
+      ],
+      "solution": "verlängert | Rand"
     },
-    experte: {
-      hint: "Freundschaft (Thema) – bedeutet(bedeutet dass), unterstützt, saggen",
-      tokens: [["Echte", false], ["Freundschaft", false], ["bedeutet,", true], ["dass", false], ["man", false], ["in", false], ["schweren", false], ["Zeiten", false], ["zusammenhält.", false], ["Mein", false], ["bester", false], ["Freund", false], ["unterstützt", true], ["mich,", false], ["wenn", false], ["ich", false], ["mich", false], ["traurig", false], ["fühle.", false], ["Wir", false], ["teilen", false], ["unsere", false], ["Geheimnisse", false], ["und", false], ["bewahren", false], ["sie", false], ["sorgfältig", false], ["vor", false], ["anderen.", false], ["Im", false], ["Streit", false], ["suchen", false], ["wir", false], ["nach", false], ["einer", false], ["Lösung,", false], ["statt", false], ["uns", false], ["einfach", false], ["wegzudrehen.", false], ["Vertrauen", false], ["ist", false], ["das", false], ["Fundament,", false], ["auf", false], ["dem", false], ["jede", false], ["gute", false], ["Beziehung", false], ["ruht.", false], ["Wir", false], ["unternehmen", false], ["in", false], ["den", false], ["Ferien", false], ["gemeinsam", false], ["lange", false], ["Radtouren", false], ["durch", false], ["den", false], ["Wald.", false], ["Seine", false], ["Meinung", false], ["zählt", false], ["für", false], ["mich,", false], ["auch", false], ["wenn", false], ["wir", false], ["nicht", false], ["immer", false], ["gleich", false], ["denken.", false], ["Freunde", false], ["helfen", false], ["einander,", false], ["ohne", false], ["sofort", false], ["etwas", false], ["dafür", false], ["zu", false], ["erwarten.", false], ["Ich", false], ["schätze", false], ["die", false], ["ehrlichen", false], ["Worte,", false], ["die", false], ["er", false], ["mir", false], ["manchmal", false], ["saggen", true], ["muss.", false], ["Zusammen", false], ["lachen", false], ["wir", false], ["über", false], ["die", false], ["gleichen", false], ["albernen", false], ["Witze", false], ["im", false], ["Unterricht.", false], ["Eine", false], ["starke", false], ["Freundschaft", false], ["übersteht", false], ["auch", false], ["lange", false], ["Phasen", false], ["der", false], ["Stille.", false], ["Wir", false], ["wissen,", false], ["dass", false], ["wir", false], ["im", false], ["Notfall", false], ["immer", false], ["aufeinander", false], ["zählen", false], ["können.", false], ["Solche", false], ["Verbundenheit", false], ["macht", false], ["das", false], ["Leben", false], ["viel", false], ["leichter", false], ["und", false], ["schöner.", false]],
-      solution: "bedeutet(bedeutet dass), unterstützt, saggen"
-    },
+    "experte": {
+      "hint": "Kombiniere mehrere Rechtschreibstrategien.",
+      "tokens": [
+        [
+          "Im",
+          false
+        ],
+        [
+          "Lernjournal",
+          false
+        ],
+        [
+          "steht",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Begrundung",
+          true
+        ],
+        [
+          "sehr",
+          false
+        ],
+        [
+          "genau.",
+          false
+        ],
+        [
+          "Ein",
+          false
+        ],
+        [
+          "zweiter",
+          false
+        ],
+        [
+          "Eintrag",
+          false
+        ],
+        [
+          "nennt",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Ersazprobe",
+          true
+        ],
+        [
+          "an",
+          false
+        ],
+        [
+          "einer",
+          false
+        ],
+        [
+          "unpassenden",
+          false
+        ],
+        [
+          "Stelle.",
+          false
+        ],
+        [
+          "Die",
+          false
+        ],
+        [
+          "Gruppe",
+          false
+        ],
+        [
+          "verbessert",
+          false
+        ],
+        [
+          "beides",
+          false
+        ],
+        [
+          "gemeinsam.",
+          false
+        ]
+      ],
+      "solution": "Begründung | Verlängerungsprobe"
+    }
   },
-  kurzevokale: {
-    mindest: {
-      hint: "Freizeit (Thema) – Halle, Netz",
-      tokens: [["Am", false], ["Nachmittag", false], ["treffe", false], ["ich", false], ["mich", false], ["mit", false], ["meinen", false], ["Freunden", false], ["auf", false], ["dem", false], ["Schulhof.", false], ["Wir", false], ["spielen", false], ["Tischtennis", false], ["in", false], ["der", false], ["kleinen", false], ["Sporthale.", true], ["Der", false], ["Ball", false], ["fliegt", false], ["dabei", false], ["oft", false], ["über", false], ["das", false], ["Netz", true], ["hinweg.", false], ["Meine", false], ["Schwester", false], ["backt", false], ["zu", false], ["Hause", false], ["leckere", false], ["Kekse", false], ["für", false], ["uns", false], ["alle.", false], ["Wir", false], ["sitzen", false], ["zusammen", false], ["und", false], ["erzählen", false], ["uns", false], ["Geschichten", false], ["aus", false], ["dem", false], ["Alltag.", false], ["Draußen", false], ["scheint", false], ["die", false], ["Sonne,", false], ["und", false], ["der", false], ["Himmel", false], ["ist", false], ["hellblau.", false], ["Die", false], ["Kinder", false], ["lachen", false], ["laut,", false], ["während", false], ["sie", false], ["durch", false], ["den", false], ["Garten", false], ["rennen.", false], ["Ich", false], ["finde", false], ["solche", false], ["ruhigen", false], ["Nachmittage", false], ["wirklich", false], ["sehr", false], ["entspannt.", false], ["Später", false], ["gehen", false], ["wir", false], ["noch", false], ["eine", false], ["Runde", false], ["durch", false], ["den", false], ["nahen", false], ["Park.", false], ["Unsere", false], ["Nachbarn", false], ["grüßen", false], ["uns", false], ["freundlich", false], ["vor", false], ["ihrem", false], ["Haus.", false], ["Wir", false], ["verbringen", false], ["die", false], ["Freizeit", false], ["gern", false], ["ohne", false], ["Handy", false], ["und", false], ["Fernseher.", false], ["Ein", false], ["gutes", false], ["Buch", false], ["liest", false], ["sich", false], ["an", false], ["solchen", false], ["Tagen", false], ["besonders", false], ["gut.", false], ["Solche", false], ["Momente", false], ["bleiben", false], ["als", false], ["schöne", false], ["Erinnerung", false], ["im", false], ["Kopf.", false]],
-      solution: "Halle, Netz"
+  "kurzevokale": {
+    "mindest": {
+      "hint": "Sprich den Vokal kurz und deutlich.",
+      "tokens": [
+        [
+          "In",
+          false
+        ],
+        [
+          "der",
+          false
+        ],
+        [
+          "Sporthale",
+          true
+        ],
+        [
+          "liegt",
+          false
+        ],
+        [
+          "ein",
+          false
+        ],
+        [
+          "roter",
+          false
+        ],
+        [
+          "Ball.",
+          false
+        ],
+        [
+          "Daneben",
+          false
+        ],
+        [
+          "steht",
+          false
+        ],
+        [
+          "eine",
+          false
+        ],
+        [
+          "volle",
+          false
+        ],
+        [
+          "Waserflasche.",
+          true
+        ],
+        [
+          "Wir",
+          false
+        ],
+        [
+          "hören",
+          false
+        ],
+        [
+          "bei",
+          false
+        ],
+        [
+          "beiden",
+          false
+        ],
+        [
+          "Wörtern",
+          false
+        ],
+        [
+          "einen",
+          false
+        ],
+        [
+          "kurzen",
+          false
+        ],
+        [
+          "Vokal.",
+          false
+        ]
+      ],
+      "solution": "Sporthalle | Wasserflasche"
     },
-    regel: {
-      hint: "Umwelt (Thema) – Stadt, Mücke",
-      tokens: [["Wir", false], ["müssen", false], ["die", false], ["Natur", false], ["besser", false], ["schützen,", false], ["damit", false], ["sie", false], ["überlebt.", false], ["In", false], ["unserem", false], ["Garten", false], ["pflanzen", false], ["wir", false], ["jedes", false], ["Jahr", false], ["neue", false], ["Bäume", false], ["und", false], ["Blumen.", false], ["Der", false], ["alte", false], ["Staz", true], ["im", false], ["Park", false], ["sieht", false], ["im", false], ["Frühling", false], ["wieder", false], ["grün", false], ["aus.", false], ["Eine", false], ["kleine", false], ["Müke", true], ["summt", false], ["summend", false], ["um", false], ["die", false], ["frischen", false], ["Äpfel", false], ["herum.", false], ["Viele", false], ["Menschen", false], ["trennen", false], ["ihren", false], ["Müll", false], ["und", false], ["sparen", false], ["wertvolle", false], ["Energie.", false], ["Unsere", false], ["Klasse", false], ["sammelt", false], ["Plastikflaschen", false], ["für", false], ["das", false], ["Recyclingprojekt", false], ["ein.", false], ["Die", false], ["Ente", false], ["auf", false], ["dem", false], ["Teich", false], ["schwimmt", false], ["friedlich", false], ["zwischen", false], ["den", false], ["Schilfrohren.", false], ["Wir", false], ["fahren", false], ["mit", false], ["dem", false], ["Fahrrad", false], ["zur", false], ["Schule", false], ["statt", false], ["mit", false], ["dem", false], ["Auto.", false], ["Saubere", false], ["Luft", false], ["und", false], ["klares", false], ["Wasser", false], ["sind", false], ["Geschenke,", false], ["die", false], ["wir", false], ["erhalten.", false], ["Jeder", false], ["Einzelne", false], ["kann", false], ["etwas", false], ["für", false], ["den", false], ["Klimaschutz", false], ["tun.", false], ["Die", false], ["Sonne", false], ["scheint", false], ["warm", false], ["auf", false], ["die", false], ["Wiesen", false], ["voller", false], ["bunter", false], ["Blumen.", false], ["Unsere", false], ["Lehrerin", false], ["erklärt", false], ["uns,", false], ["wie", false], ["ein", false], ["Kreislauf", false], ["funktioniert.", false], ["Wenn", false], ["wir", false], ["achtsam", false], ["handeln,", false], ["bleibt", false], ["die", false], ["Erde", false], ["lebenswert", false], ["für", false], ["alle.", false]],
-      solution: "Stadt, Mücke"
+    "regel": {
+      "hint": "Prüfe die Konsonanten nach kurzem Vokal.",
+      "tokens": [
+        [
+          "Die",
+          false
+        ],
+        [
+          "Müke",
+          true
+        ],
+        [
+          "sitzt",
+          false
+        ],
+        [
+          "auf",
+          false
+        ],
+        [
+          "dem",
+          false
+        ],
+        [
+          "Fensterbrett.",
+          false
+        ],
+        [
+          "Ein",
+          false
+        ],
+        [
+          "Schuler",
+          true
+        ],
+        [
+          "schreibt",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Wörter",
+          false
+        ],
+        [
+          "in",
+          false
+        ],
+        [
+          "sein",
+          false
+        ],
+        [
+          "Heft.",
+          false
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "markiert",
+          false
+        ],
+        [
+          "er",
+          false
+        ],
+        [
+          "den",
+          false
+        ],
+        [
+          "kurzen",
+          false
+        ],
+        [
+          "Vokal.",
+          false
+        ]
+      ],
+      "solution": "Mücke | Schüler"
     },
-    experte: {
-      hint: "Liebe (Thema) – Lachen, verfolgst",
-      tokens: [["Die", false], ["erste", false], ["große", false], ["Liebe", false], ["fühlt", false], ["sich", false], ["oft", false], ["wie", false], ["ein", false], ["aufregendes", false], ["Abenteuer", false], ["an.", false], ["Mein", false], ["Herz", false], ["schlägt", false], ["schneller,", false], ["wenn", false], ["ich", false], ["dich", false], ["morgens", false], ["in", false], ["der", false], ["Schule", false], ["sehe.", false], ["Wir", false], ["teilen", false], ["ein", false], ["Geheimnis,", false], ["das", false], ["nur", false], ["uns", false], ["beiden", false], ["gehört", false], ["und", false], ["niemanden", false], ["stört.", false], ["Dein", false], ["lachen", true], ["erfüllt", false], ["meine", false], ["Gedanken", false], ["bis", false], ["tief", false], ["in", false], ["die", false], ["Nacht", false], ["hinein.", false], ["Ein", false], ["zärtlicher", false], ["Brief", false], ["schreibt", false], ["sich", false], ["leichter,", false], ["als", false], ["man", false], ["ehrlich", false], ["zu", false], ["sprechen", false], ["wagt.", false], ["Ich", false], ["bewundere", false], ["deinen", false], ["Mut,", false], ["mit", false], ["dem", false], ["du", false], ["deine", false], ["Träume", false], ["verfolgst", true], ["jeden", false], ["Tag.", false], ["Manchmal", false], ["reicht", false], ["ein", false], ["Blick,", false], ["um", false], ["zu", false], ["verstehen,", false], ["was", false], ["im", false], ["anderen", false], ["vorgeht.", false], ["Wir", false], ["träumen", false], ["von", false], ["einem", false], ["Sommer,", false], ["den", false], ["wir", false], ["gemeinsam", false], ["am", false], ["Meer", false], ["verbringen.", false], ["Deine", false], ["Worte", false], ["geben", false], ["mir", false], ["Kraft,", false], ["wenn", false], ["der", false], ["Alltag", false], ["mich", false], ["müde", false], ["macht.", false], ["Vertrauen", false], ["wächst", false], ["langsam,", false], ["doch", false], ["es", false], ["hält", false], ["eine", false], ["Beziehung", false], ["fest", false], ["zusammen.", false], ["Ich", false], ["möchte", false], ["dich", false], ["beschützen", false], ["vor", false], ["allem,", false], ["was", false], ["dir", false], ["wehtun", false], ["könnte.", false], ["Unsere", false], ["Geschichte", false], ["ist", false], ["noch", false], ["jung,", false], ["aber", false], ["sie", false], ["fühlt", false], ["sich", false], ["echt", false], ["und", false], ["warm", false], ["an.", false], ["Mit", false], ["dir", false], ["wird", false], ["aus", false], ["einem", false], ["gewöhnlichen", false], ["Tag", false], ["etwas", false], ["ganz", false], ["Besonderes.", false]],
-      solution: "Lachen, verfolgst"
-    },
+    "experte": {
+      "hint": "Achte auf ck und tz nach kurzem Vokal.",
+      "tokens": [
+        [
+          "Beim",
+          false
+        ],
+        [
+          "Pakken",
+          true
+        ],
+        [
+          "der",
+          false
+        ],
+        [
+          "Tasche",
+          false
+        ],
+        [
+          "fehlt",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Mütze.",
+          false
+        ],
+        [
+          "Später",
+          false
+        ],
+        [
+          "skizirt",
+          true
+        ],
+        [
+          "Leni",
+          false
+        ],
+        [
+          "einen",
+          false
+        ],
+        [
+          "Trainingsplatz.",
+          false
+        ],
+        [
+          "Sie",
+          false
+        ],
+        [
+          "begründet",
+          false
+        ],
+        [
+          "jede",
+          false
+        ],
+        [
+          "Schreibweise",
+          false
+        ],
+        [
+          "mit",
+          false
+        ],
+        [
+          "der",
+          false
+        ],
+        [
+          "Vokallänge.",
+          false
+        ]
+      ],
+      "solution": "Packen | skizziert"
+    }
   },
-  langevokale: {
-    mindest: {
-      hint: "Tiere (Thema) – Meer, Tiere",
-      tokens: [["Der", false], ["kleine", false], ["Hund", false], ["läuft", false], ["fröhlich", false], ["über", false], ["das", false], ["grüne", false], ["Feld", false], ["am", false], ["Meer.", true], ["Die", false], ["Tiere", true], ["im", false], ["Zoo", false], ["freuen", false], ["sich", false], ["über", false], ["das", false], ["frische", false], ["Obst", false], ["vom", false], ["Pfleger.", false], ["Wir", false], ["beobachten", false], ["die", false], ["Vögel,", false], ["die", false], ["hoch", false], ["am", false], ["Himmel", false], ["hin", false], ["und", false], ["her", false], ["ziehen.", false], ["Mein", false], ["Kaninchen", false], ["frisst", false], ["gern", false], ["frischen", false], ["Salat", false], ["aus", false], ["unserem", false], ["eigenen", false], ["Garten.", false], ["Die", false], ["Katze", false], ["schläft", false], ["den", false], ["ganzen", false], ["Nachmittag", false], ["auf", false], ["dem", false], ["warmen", false], ["Sofa", false], ["in", false], ["der", false], ["Sonne.", false], ["Pferde", false], ["galoppieren", false], ["frei", false], ["über", false], ["die", false], ["weite", false], ["Wiese", false], ["voller", false], ["bunter", false], ["Blumen.", false], ["Im", false], ["Wald", false], ["hören", false], ["wir", false], ["den", false], ["Fuchs,", false], ["der", false], ["leise", false], ["durch", false], ["das", false], ["Unterholz", false], ["schleicht.", false], ["Der", false], ["Fisch", false], ["im", false], ["Teich", false], ["bläst", false], ["kleine", false], ["Blasen", false], ["an", false], ["die", false], ["Oberfläche", false], ["des", false], ["Wassers.", false], ["Kinder", false], ["staunen,", false], ["wenn", false], ["sie", false], ["zum", false], ["ersten", false], ["Mal", false], ["ein", false], ["Reh", false], ["im", false], ["Wald", false], ["erblicken.", false], ["Jedes", false], ["Tier", false], ["hat", false], ["seine", false], ["eigene", false], ["Art,", false], ["die", false], ["Welt", false], ["zu", false], ["erspüren", false], ["und", false], ["zu", false], ["leben.", false], ["Unsere", false], ["Lehrerin", false], ["erzählt,", false], ["wie", false], ["wichtig", false], ["ein", false], ["Lebensraum", false], ["für", false], ["sie", false], ["ist.", false], ["Wir", false], ["bauen", false], ["aus", false], ["Holz", false], ["ein", false], ["kleines", false], ["Haus", false], ["für", false], ["die", false], ["Vögel", false], ["an", false], ["den", false], ["Baum.", false], ["Tiere", false], ["sind", false], ["Freunde,", false], ["die", false], ["uns", false], ["ohne", false], ["Worte", false], ["verstehen", false], ["und", false], ["begleiten.", false]],
-      solution: "Meer, Tiere"
+  "langevokale": {
+    "mindest": {
+      "hint": "Höre auf die Länge des Vokals.",
+      "tokens": [
+        [
+          "Auf",
+          false
+        ],
+        [
+          "dem",
+          false
+        ],
+        [
+          "Schulweg",
+          false
+        ],
+        [
+          "sieht",
+          false
+        ],
+        [
+          "Ben",
+          false
+        ],
+        [
+          "ein",
+          false
+        ],
+        [
+          "Reeh.",
+          true
+        ],
+        [
+          "Am",
+          false
+        ],
+        [
+          "Ziel",
+          false
+        ],
+        [
+          "trinkt",
+          false
+        ],
+        [
+          "er",
+          false
+        ],
+        [
+          "Tee",
+          false
+        ],
+        [
+          "aus",
+          false
+        ],
+        [
+          "einer",
+          false
+        ],
+        [
+          "Tase.",
+          true
+        ],
+        [
+          "Beide",
+          false
+        ],
+        [
+          "Wörter",
+          false
+        ],
+        [
+          "werden",
+          false
+        ],
+        [
+          "langsam",
+          false
+        ],
+        [
+          "gesprochen.",
+          false
+        ]
+      ],
+      "solution": "Reh | Tasse"
     },
-    regel: {
-      hint: "Schule (Thema) – Stuhl, sehe",
-      tokens: [["Der", false], ["Stuhl", true], ["in", false], ["unserem", false], ["Klassenzimmer", false], ["ist", false], ["schon", false], ["sehr", false], ["alt", false], ["und", false], ["wackelig.", false], ["Ich", false], ["sehe", true], ["dort", false], ["oft", false], ["meine", false], ["Freunde,", false], ["die", false], ["gemeinsam", false], ["die", false], ["Hausaufgaben", false], ["machen.", false], ["Die", false], ["Lehrerin", false], ["erklärt", false], ["am", false], ["schwarzen", false], ["Brett", false], ["die", false], ["Regeln", false], ["für", false], ["den", false], ["nächsten", false], ["Test.", false], ["Wir", false], ["lernen", false], ["fleißig,", false], ["damit", false], ["wir", false], ["gute", false], ["Noten", false], ["am", false], ["Ende", false], ["des", false], ["Jahres", false], ["bekommen.", false], ["Das", false], ["Buch", false], ["liegt", false], ["auf", false], ["dem", false], ["Tisch", false], ["und", false], ["wartet", false], ["darauf,", false], ["endlich", false], ["gelesen", false], ["zu", false], ["werden.", false], ["Mein", false], ["Lehrer", false], ["lobt", false], ["mich,", false], ["wenn", false], ["ich", false], ["eine", false], ["schwierige", false], ["Frage", false], ["richtig", false], ["beantworte.", false], ["In", false], ["der", false], ["Pause", false], ["spielen", false], ["wir", false], ["draußen", false], ["und", false], ["atmen", false], ["frische", false], ["Luft", false], ["tief", false], ["ein.", false], ["Die", false], ["Schüler", false], ["helfen", false], ["einander,", false], ["wenn", false], ["jemand", false], ["die", false], ["Aufgabe", false], ["nicht", false], ["versteht.", false], ["Wir", false], ["schreiben", false], ["mit", false], ["einem", false], ["Stift,", false], ["der", false], ["flüssig", false], ["über", false], ["das", false], ["Papier", false], ["gleitet.", false], ["Jeden", false], ["Morgen", false], ["beginnt", false], ["der", false], ["Unterricht", false], ["pünktlich", false], ["mit", false], ["einem", false], ["kurzen", false], ["Lied.", false], ["Die", false], ["Schule", false], ["ist", false], ["ein", false], ["Ort,", false], ["an", false], ["dem", false], ["wir", false], ["viel", false], ["Neues", false], ["entdecken", false], ["dürfen.", false], ["Unsere", false], ["Klasse", false], ["fährt", false], ["im", false], ["Frühling", false], ["zu", false], ["einem", false], ["Ausflug", false], ["ans", false], ["nahe", false], ["Meer.", false], ["Lernen", false], ["macht", false], ["Spaß,", false], ["wenn", false], ["man", false], ["neugierig", false], ["an", false], ["die", false], ["Dinge", false], ["herangeht.", false]],
-      solution: "Stuhl, sehe"
+    "regel": {
+      "hint": "Prüfe ie und Dehnungs-h.",
+      "tokens": [
+        [
+          "Mia",
+          false
+        ],
+        [
+          "spielt",
+          false
+        ],
+        [
+          "auf",
+          false
+        ],
+        [
+          "der",
+          false
+        ],
+        [
+          "Wise",
+          true
+        ],
+        [
+          "Fußball.",
+          false
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "fehrt",
+          true
+        ],
+        [
+          "sie",
+          false
+        ],
+        [
+          "mit",
+          false
+        ],
+        [
+          "dem",
+          false
+        ],
+        [
+          "Rad",
+          false
+        ],
+        [
+          "nach",
+          false
+        ],
+        [
+          "Hause.",
+          false
+        ],
+        [
+          "Sie",
+          false
+        ],
+        [
+          "erklärt",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "lange",
+          false
+        ],
+        [
+          "Vokalaussprache.",
+          false
+        ]
+      ],
+      "solution": "Wiese | fährt"
     },
-    experte: {
-      hint: "Technik (Thema) – Tier, gehen",
-      tokens: [["Das", false], ["Tier", true], ["im", false], ["Gartenzoom", false], ["ist", false], ["ein", false], ["kleiner", false], ["Vogel", false], ["mit", false], ["buntem", false], ["Gefieder.", false], ["Wir", false], ["gehen", true], ["später", false], ["ins", false], ["Museum,", false], ["um", false], ["alte", false], ["Computer", false], ["zu", false], ["bestaunen", false], ["mit", false], ["Staunen.", false], ["Die", false], ["Kamera", false], ["speichert", false], ["jedes", false], ["Bild", false], ["auf", false], ["einer", false], ["winzigen,", false], ["schnellen", false], ["Speicherkarte.", false], ["Ein", false], ["Roboter", false], ["fährt", false], ["selbstständig", false], ["durch", false], ["das", false], ["Lager", false], ["und", false], ["sortiert", false], ["die", false], ["Pakete.", false], ["Mein", false], ["Bruder", false], ["repariert", false], ["das", false], ["Fahrrad", false], ["mit", false], ["Werkzeug,", false], ["das", false], ["er", false], ["sich", false], ["gekauft", false], ["hat.", false], ["Die", false], ["App", false], ["zeigt", false], ["mir", false], ["den", false], ["Weg", false], ["durch", false], ["die", false], ["fremde", false], ["Stadt", false], ["ohne", false], ["langes", false], ["Suchen.", false], ["Wir", false], ["programmieren", false], ["ein", false], ["Spiel,", false], ["in", false], ["dem", false], ["der", false], ["Held", false], ["mutig", false], ["Drachen", false], ["bekämpft.", false], ["Das", false], ["Internet", false], ["verbindet", false], ["Menschen", false], ["über", false], ["weite", false], ["Entfernungen", false], ["hinweg", false], ["miteinander.", false], ["Ein", false], ["Smartphone", false], ["kann", false], ["heute", false], ["fast", false], ["alles", false], ["außer", false], ["echte", false], ["Nähe", false], ["zu", false], ["ersetzen.", false], ["Ingenieure", false], ["denken", false], ["sich", false], ["jeden", false], ["Tag", false], ["neue", false], ["Maschinen", false], ["aus", false], ["für", false], ["unser", false], ["Leben.", false], ["Die", false], ["Technik", false], ["verändert", false], ["die", false], ["Schule,", false], ["seit", false], ["wir", false], ["Tablets", false], ["im", false], ["Unterricht", false], ["nutzen.", false], ["Wir", false], ["lernen,", false], ["dass", false], ["Code", false], ["eine", false], ["Sprache", false], ["ist,", false], ["die", false], ["Maschinen", false], ["verstehen", false], ["können.", false], ["Wer", false], ["neugierig", false], ["bleibt,", false], ["findet", false], ["in", false], ["der", false], ["Technik", false], ["unendlich", false], ["viele", false], ["Antworten.", false]],
-      solution: "Tier, gehen"
-    },
+    "experte": {
+      "hint": "Unterscheide langen Vokal und Dehnungszeichen.",
+      "tokens": [
+        [
+          "Der",
+          false
+        ],
+        [
+          "Sohn",
+          false
+        ],
+        [
+          "wohnt",
+          false
+        ],
+        [
+          "in",
+          false
+        ],
+        [
+          "einer",
+          false
+        ],
+        [
+          "ruhigen",
+          false
+        ],
+        [
+          "Wohhnung.",
+          true
+        ],
+        [
+          "Seine",
+          false
+        ],
+        [
+          "Schwester",
+          false
+        ],
+        [
+          "liest",
+          false
+        ],
+        [
+          "ein",
+          false
+        ],
+        [
+          "schwiriges",
+          true
+        ],
+        [
+          "Buch.",
+          false
+        ],
+        [
+          "Beide",
+          false
+        ],
+        [
+          "markieren",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "gedehnten",
+          false
+        ],
+        [
+          "Vokale.",
+          false
+        ]
+      ],
+      "solution": "Wohnung | schwieriges"
+    }
   },
-  slaute: {
-    mindest: {
-      hint: "Essen (Thema) – Kissen, nass",
-      tokens: [["Der", false], ["Hase", false], ["frisst", false], ["gern", false], ["frisches", false], ["Gras", false], ["auf", false], ["der", false], ["Wiese", false], ["hinter", false], ["dem", false], ["Haus.", false], ["Meine", false], ["Mutter", false], ["backt", false], ["weiche", false], ["Kissen", true], ["aus", false], ["Teig", false], ["und", false], ["süßem", false], ["Obst", false], ["für", false], ["uns.", false], ["Nach", false], ["dem", false], ["Sport", false], ["sind", false], ["wir", false], ["oft", false], ["nass", true], ["geschwitzt", false], ["und", false], ["durstig", false], ["zugleich.", false], ["Wir", false], ["kochen", false], ["zusammen", false], ["eine", false], ["Suppe", false], ["aus", false], ["Gemüse,", false], ["das", false], ["im", false], ["Garten", false], ["wächst.", false], ["Der", false], ["Käse", false], ["schmeckt", false], ["würzig", false], ["und", false], ["passt", false], ["gut", false], ["auf", false], ["ein", false], ["frisches,", false], ["knuspriges", false], ["Brot.", false], ["Mein", false], ["Vater", false], ["brät", false], ["die", false], ["Äpfel", false], ["in", false], ["der", false], ["Pfanne", false], ["mit", false], ["etwas", false], ["Zimt", false], ["und", false], ["Zucker.", false], ["Die", false], ["Kinder", false], ["essen", false], ["das", false], ["Eis", false], ["besonders", false], ["gern", false], ["an", false], ["heißen", false], ["Sommertagen.", false], ["Wir", false], ["trinken", false], ["Wasser", false], ["aus", false], ["der", false], ["Flasche,", false], ["statt", false], ["Limonade", false], ["zu", false], ["kaufen", false], ["im", false], ["Laden.", false], ["Frisches", false], ["Obst", false], ["hält", false], ["den", false], ["Körper", false], ["gesund", false], ["und", false], ["gibt", false], ["neue", false], ["Kraft", false], ["für", false], ["den", false], ["Tag.", false], ["Ein", false], ["gedeckter", false], ["Tisch", false], ["lädt", false], ["die", false], ["ganze", false], ["Familie", false], ["zum", false], ["gemeinsamen", false], ["Essen", false], ["ein.", false], ["Backen", false], ["macht", false], ["Spaß,", false], ["wenn", false], ["man", false], ["das", false], ["Mehl", false], ["nicht", false], ["überall", false], ["auf", false], ["den", false], ["Boden", false], ["streut.", false], ["Wir", false], ["teilen", false], ["die", false], ["letzte", false], ["Scheibe", false], ["Brot", false], ["fair", false], ["unter", false], ["allen", false], ["Geschwistern", false], ["auf.", false], ["Gutes", false], ["Essen", false], ["schmeckt", false], ["am", false], ["besten,", false], ["wenn", false], ["man", false], ["es", false], ["langsam", false], ["und", false], ["genießt.", false]],
-      solution: "Kissen, nass"
+  "slaute": {
+    "mindest": {
+      "hint": "Höre: stimmhaft oder stimmlos?",
+      "tokens": [
+        [
+          "Der",
+          false
+        ],
+        [
+          "Hase",
+          false
+        ],
+        [
+          "frisst",
+          false
+        ],
+        [
+          "frisches",
+          false
+        ],
+        [
+          "Graß.",
+          true
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "muß",
+          true
+        ],
+        [
+          "er",
+          false
+        ],
+        [
+          "in",
+          false
+        ],
+        [
+          "den",
+          false
+        ],
+        [
+          "Stall.",
+          false
+        ],
+        [
+          "Wir",
+          false
+        ],
+        [
+          "prüfen",
+          false
+        ],
+        [
+          "Vokallänge",
+          false
+        ],
+        [
+          "und",
+          false
+        ],
+        [
+          "Klang",
+          false
+        ],
+        [
+          "des",
+          false
+        ],
+        [
+          "s-Lauts.",
+          false
+        ]
+      ],
+      "solution": "Gras | muss"
     },
-    regel: {
-      hint: "Mode (Thema) – Fuß, Küsse, Straße",
-      tokens: [["Der", false], ["Fuß", true], ["ist", false], ["nach", false], ["dem", false], ["langen", false], ["Lauf", false], ["ein", false], ["wenig", false], ["schmerzhaft", false], ["und", false], ["rot", false], ["angeschwollen.", false], ["Meine", false], ["Schwester", false], ["küsst", true], ["die", false], ["Fotos", false], ["von", false], ["ihren", false], ["Lieblingsmodels", false], ["aus", false], ["der", false], ["Zeitschrift.", false], ["Die", false], ["Straße", true], ["vor", false], ["dem", false], ["Geschäft", false], ["ist", false], ["voller", false], ["Menschen", false], ["mit", false], ["bunten", false], ["Einkaufstüten.", false], ["Wir", false], ["suchen", false], ["nach", false], ["einem", false], ["Mantel,", false], ["der", false], ["warm", false], ["und", false], ["doch", false], ["nicht", false], ["zu", false], ["teuer", false], ["ist.", false], ["Die", false], ["Schuhe", false], ["passen", false], ["genau", false], ["und", false], ["drücken", false], ["nicht", false], ["an", false], ["den", false], ["schmalen", false], ["Fersen.", false], ["Ein", false], ["schlichtes", false], ["Hemd", false], ["wirkt", false], ["edel,", false], ["wenn", false], ["man", false], ["es", false], ["sauber", false], ["bügelt", false], ["vor", false], ["dem", false], ["Tragen.", false], ["Der", false], ["Stoff", false], ["fühlt", false], ["sich", false], ["weich", false], ["an", false], ["und", false], ["schmiegt", false], ["sich", false], ["an", false], ["die", false], ["Haut", false], ["ganz", false], ["zart.", false], ["Wir", false], ["bewundern", false], ["die", false], ["Auslagen,", false], ["in", false], ["denen", false], ["die", false], ["neuen", false], ["Trends", false], ["leuchten", false], ["farbig.", false], ["Mode", false], ["ist", false], ["ein", false], ["Spiel", false], ["mit", false], ["Farben,", false], ["das", false], ["jeder", false], ["auf", false], ["seine", false], ["Weise", false], ["spielen", false], ["kann.", false], ["Mein", false], ["Freund", false], ["trägt", false], ["gern", false], ["Hüte,", false], ["die", false], ["ihn", false], ["vor", false], ["der", false], ["Sonne", false], ["schützen", false], ["sollen.", false], ["Die", false], ["Verkäuferin", false], ["lächelt", false], ["freundlich", false], ["und", false], ["zeigt", false], ["uns", false], ["die", false], ["richtige", false], ["Größe.", false], ["Wir", false], ["bezahlen", false], ["an", false], ["der", false], ["Kasse", false], ["und", false], ["packen", false], ["die", false], ["Tüten", false], ["sorgfältig", false], ["in", false], ["den", false], ["Korb.", false], ["Guter", false], ["Stil", false], ["kommt", false], ["nicht", false], ["vom", false], ["Preis,", false], ["sondern", false], ["von", false], ["der", false], ["Mut", false], ["zur", false], ["Eigenart.", false]],
-      solution: "Fuß, Küsse, Straße"
+    "regel": {
+      "hint": "Prüfe den Vokal vor dem s-Laut.",
+      "tokens": [
+        [
+          "Im",
+          false
+        ],
+        [
+          "Fluß",
+          true
+        ],
+        [
+          "schwimmt",
+          false
+        ],
+        [
+          "ein",
+          false
+        ],
+        [
+          "großer",
+          false
+        ],
+        [
+          "Fisch.",
+          false
+        ],
+        [
+          "Auf",
+          false
+        ],
+        [
+          "der",
+          false
+        ],
+        [
+          "Terasse",
+          true
+        ],
+        [
+          "beobachten",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "ihn.",
+          false
+        ],
+        [
+          "Beide",
+          false
+        ],
+        [
+          "Schreibweisen",
+          false
+        ],
+        [
+          "lassen",
+          false
+        ],
+        [
+          "sich",
+          false
+        ],
+        [
+          "mit",
+          false
+        ],
+        [
+          "der",
+          false
+        ],
+        [
+          "Vokallänge",
+          false
+        ],
+        [
+          "klären.",
+          false
+        ]
+      ],
+      "solution": "Fluss | Terrasse"
     },
-    experte: {
-      hint: "Familie (Thema) – Wasser, Ufer, Straße",
-      tokens: [["Das", false], ["Wasser", true], ["in", false], ["der", false], ["Badewanne", false], ["ist", false], ["angenehm", false], ["warm", false], ["und", false], ["duftet", false], ["nach", false], ["Lavendel.", false], ["Wir", false], ["reisen", false], ["an", false], ["das", false], ["Ufer", true], ["eines", false], ["Sees,", false], ["an", false], ["dem", false], ["unsere", false], ["Großeltern", false], ["wohnen", false], ["ruhig.", false], ["Die", false], ["Straße", true], ["endet", false], ["vor", false], ["einem", false], ["weißen", false], ["Haus", false], ["mit", false], ["blauen", false], ["Fensterläden", false], ["im", false], ["Dorf.", false], ["Mein", false], ["Bruder", false], ["beißt", false], ["herzhaft", false], ["in", false], ["das", false], ["Brot,", false], ["das", false], ["frisch", false], ["vom", false], ["Bäcker", false], ["kam.", false], ["Sie", false], ["lesen", false], ["abends", false], ["ein", false], ["Buch,", false], ["während", false], ["draußen", false], ["der", false], ["Regen", false], ["sanft", false], ["gegen", false], ["die", false], ["Scheibe", false], ["trommelt.", false], ["Der", false], ["Bus", false], ["bringt", false], ["uns", false], ["pünktlich", false], ["zurück,", false], ["bevor", false], ["die", false], ["Dunkelheit", false], ["hereinbricht", false], ["über", false], ["die", false], ["Felder.", false], ["Unsere", false], ["Eltern", false], ["erzählen", false], ["Geschichten", false], ["aus", false], ["ihrer", false], ["eigenen,", false], ["längst", false], ["vergangenen", false], ["Jugend.", false], ["Die", false], ["Großmutter", false], ["strickt", false], ["einen", false], ["Schal,", false], ["der", false], ["uns", false], ["im", false], ["Winter", false], ["schützend", false], ["umhüllen", false], ["soll.", false], ["Wir", false], ["feiern", false], ["Geburtstage", false], ["mit", false], ["Kerzen,", false], ["Gesang", false], ["und", false], ["selbstgebackenem", false], ["Kuchen", false], ["zusammen.", false], ["Die", false], ["Familie", false], ["ist", false], ["der", false], ["Ort,", false], ["an", false], ["dem", false], ["man", false], ["ganz", false], ["man", false], ["selbst", false], ["sein", false], ["darf.", false], ["Wir", false], ["helfen", false], ["im", false], ["Garten,", false], ["damit", false], ["die", false], ["Blumen", false], ["im", false], ["nächsten", false], ["Frühjahr", false], ["wieder", false], ["blühen.", false], ["Zusammen", false], ["zu", false], ["sein", false], ["ist", false], ["wichtiger", false], ["als", false], ["alles,", false], ["was", false], ["man", false], ["sich", false], ["kaufen", false], ["kann.", false], ["Solche", false], ["Stunden", false], ["geben", false], ["einem", false], ["ein", false], ["Gefühl", false], ["von", false], ["Sicherheit", false], ["und", false], ["von", false], ["Zugehörigkeit.", false]],
-      solution: "Wasser, Ufer, Straße"
-    },
+    "experte": {
+      "hint": "Begründe s, ss oder ß vollständig.",
+      "tokens": [
+        [
+          "Die",
+          false
+        ],
+        [
+          "Klasse",
+          false
+        ],
+        [
+          "grüst",
+          true
+        ],
+        [
+          "den",
+          false
+        ],
+        [
+          "neuen",
+          false
+        ],
+        [
+          "Trainer.",
+          false
+        ],
+        [
+          "Später",
+          false
+        ],
+        [
+          "beschliest",
+          true
+        ],
+        [
+          "das",
+          false
+        ],
+        [
+          "Team",
+          false
+        ],
+        [
+          "eine",
+          false
+        ],
+        [
+          "Pause.",
+          false
+        ],
+        [
+          "Für",
+          false
+        ],
+        [
+          "jedes",
+          false
+        ],
+        [
+          "Wort",
+          false
+        ],
+        [
+          "nennen",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "Klang",
+          false
+        ],
+        [
+          "und",
+          false
+        ],
+        [
+          "Vokallänge.",
+          false
+        ]
+      ],
+      "solution": "grüßt | beschließt"
+    }
   },
-  dasdass: {
-    mindest: {
-      hint: "Reisen (Thema) – dass/das je nach Stelle",
-      tokens: [["Ich", false], ["weiß,", false], ["dass", true], ["du", false], ["dieses", false], ["Jahr", false], ["mit", false], ["uns", false], ["in", false], ["den", false], ["Urlaub", false], ["fahren", false], ["willst.", false], ["Das", true], ["Hotel,", false], ["das", false], ["wir", false], ["gebucht", false], ["haben,", false], ["liegt", false], ["direkt", false], ["am", false], ["blauen", false], ["Strand.", false], ["Wir", false], ["hoffen,", false], ["dass", true], ["das", false], ["Wetter", false], ["warm", false], ["und", false], ["sonnig", false], ["bleiben", false], ["wird", false], ["die", false], ["ganze", false], ["Zeit.", false], ["Das", true], ["Schiff", false], ["bringt", false], ["uns", false], ["hinüber", false], ["zu", false], ["einer", false], ["kleinen,", false], ["stillen", false], ["Insel", false], ["im", false], ["Meer.", false], ["Ich", false], ["freue", false], ["mich,", false], ["dass", true], ["wir", false], ["endlich", false], ["die", false], ["Berge", false], ["im", false], ["Süden", false], ["besuchen", false], ["dürfen.", false], ["Das", true], ["Zelt", false], ["steht", false], ["schon", false], ["auf", false], ["der", false], ["Wiese,", false], ["wo", false], ["wir", false], ["die", false], ["Nächte", false], ["verbringen", false], ["wollen.", false], ["Er", false], ["sagt,", false], ["dass", true], ["die", false], ["Fahrt", false], ["mit", false], ["dem", false], ["Zug", false], ["viel", false], ["entspannter", false], ["ist", false], ["als", false], ["mit", false], ["dem", false], ["Auto.", false], ["Die", false], ["Karte", false], ["zeigt,", false], ["dass", true], ["der", false], ["Weg", false], ["zum", false], ["Wasserfall", false], ["nicht", false], ["mehr", false], ["weit", false], ["entfernt", false], ["ist.", false], ["Wir", false], ["glauben,", false], ["dass", true], ["diese", false], ["Reise", false], ["zu", false], ["den", false], ["schönsten", false], ["unseres", false], ["Lebens", false], ["gehören", false], ["wird.", false], ["Das", true], ["Dorf", false], ["am", false], ["See", false], ["ist", false], ["berühmt", false], ["für", false], ["seinen", false], ["leckeren", false], ["frischen", false], ["Fisch.", false], ["Ich", false], ["hoffe,", false], ["dass", true], ["du", false], ["deinen", false], ["Koffer", false], ["rechtzeitig", false], ["vor", false], ["der", false], ["Abfahrt", false], ["packst.", false], ["Das", true], ["Abenteuer", false], ["beginnt,", false], ["sobald", false], ["wir", false], ["den", false], ["Flughafen", false], ["gemeinsam", false], ["betreten.", false], ["Jeder", false], ["von", false], ["uns", false], ["merkt,", false], ["dass", true], ["das", false], ["Reisen", false], ["die", false], ["Welt", false], ["ein", false], ["kleines", false], ["Stück", false], ["weiter", false], ["öffnet.", false]],
-      solution: "dass/das je nach Stelle"
+  "dasdass": {
+    "mindest": {
+      "hint": "Versuche welches, dieses oder jenes.",
+      "tokens": [
+        [
+          "Ich",
+          false
+        ],
+        [
+          "weiß,",
+          false
+        ],
+        [
+          "das",
+          true
+        ],
+        [
+          "du",
+          false
+        ],
+        [
+          "kommst.",
+          false
+        ],
+        [
+          "Das",
+          false
+        ],
+        [
+          "Buch,",
+          false
+        ],
+        [
+          "dass",
+          true
+        ],
+        [
+          "dort",
+          false
+        ],
+        [
+          "liegt,",
+          false
+        ],
+        [
+          "gehört",
+          false
+        ],
+        [
+          "mir.",
+          false
+        ],
+        [
+          "Mit",
+          false
+        ],
+        [
+          "der",
+          false
+        ],
+        [
+          "Ersatzprobe",
+          false
+        ],
+        [
+          "finden",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "beide",
+          false
+        ],
+        [
+          "Fehler.",
+          false
+        ]
+      ],
+      "solution": "dass | das"
     },
-    regel: {
-      hint: "Freundschaft (Thema) – dass/das je nach Stelle",
-      tokens: [["Die", false], ["Lehrerin", false], ["sagt,", false], ["dass", true], ["wir", false], ["täglich", false], ["etwas", false], ["für", false], ["andere", false], ["tun", false], ["sollen", false], ["im", false], ["Stillen.", false], ["Das", true], ["Buch,", false], ["das", false], ["auf", false], ["meinem", false], ["Tisch", false], ["liegt,", false], ["handelt", false], ["von", false], ["wahren", false], ["Freundschaften", false], ["und", false], ["Vertrauen.", false], ["Ich", false], ["hoffe,", false], ["dass", true], ["unser", false], ["Streit", false], ["sich", false], ["bald", false], ["in", false], ["Versöhnung", false], ["und", false], ["Gelächter", false], ["verwandelt.", false], ["Das", true], ["Geschenk,", false], ["das", false], ["ich", false], ["dir", false], ["bastelte,", false], ["ist", false], ["aus", false], ["Holz", false], ["und", false], ["bunt", false], ["bemalten", false], ["Steinen.", false], ["Er", false], ["behauptet,", false], ["dass", true], ["er", false], ["mir", false], ["bei", false], ["den", false], ["Hausaufgaben", false], ["immer", false], ["helfen", false], ["wird", false], ["geduldig.", false], ["Die", false], ["Gruppe", false], ["merkt,", false], ["dass", true], ["Zusammenhalt", false], ["mehr", false], ["zählt", false], ["als", false], ["jeder", false], ["einzelne", false], ["Erfolg", false], ["allein.", false], ["Wir", false], ["wissen,", false], ["dass", true], ["ein", false], ["ehrliches", false], ["Wort", false], ["manchmal", false], ["schwerer", false], ["fällt", false], ["als", false], ["tausend", false], ["schöne", false], ["Lügen.", false], ["Das", true], ["Foto,", false], ["das", false], ["uns", false], ["zusammen", false], ["zeigt,", false], ["hängt", false], ["bei", false], ["mir", false], ["über", false], ["dem", false], ["kleinen", false], ["Bett.", false], ["Sie", false], ["glaubt,", false], ["dass", true], ["wir", false], ["den", false], ["langen", false], ["Weg", false], ["gemeinsam", false], ["viel", false], ["leichter", false], ["gehen", false], ["können.", false], ["Das", true], ["Lied,", false], ["das", false], ["wir", false], ["im", false], ["Chor", false], ["singen,", false], ["handelt", false], ["von", false], ["Treue", false], ["und", false], ["von", false], ["Hoffnung.", false], ["Ich", false], ["spüre,", false], ["dass", true], ["unsere", false], ["Verbundenheit", false], ["mit", false], ["jedem", false], ["Jahr", false], ["nur", false], ["noch", false], ["tiefer", false], ["wird.", false], ["Das", true], ["Versprechen,", false], ["das", false], ["wir", false], ["uns", false], ["gaben,", false], ["gilt", false], ["auch", false], ["in", false], ["schweren,", false], ["dunklen", false], ["Zeiten.", false], ["Freunde", false], ["sind", false], ["sicher,", false], ["dass", true], ["sie", false], ["einander", false], ["nie", false], ["ganz", false], ["aus", false], ["dem", false], ["Herzen", false], ["verlieren.", false]],
-      solution: "dass/das je nach Stelle"
+    "regel": {
+      "hint": "Unterscheide Artikel, Pronomen und Konjunktion.",
+      "tokens": [
+        [
+          "Das",
+          false
+        ],
+        [
+          "Mädchen",
+          false
+        ],
+        [
+          "sagt,",
+          false
+        ],
+        [
+          "das",
+          true
+        ],
+        [
+          "es",
+          false
+        ],
+        [
+          "später",
+          false
+        ],
+        [
+          "kommt.",
+          false
+        ],
+        [
+          "Ich",
+          false
+        ],
+        [
+          "nehme",
+          false
+        ],
+        [
+          "dass",
+          true
+        ],
+        [
+          "Heft",
+          false
+        ],
+        [
+          "vom",
+          false
+        ],
+        [
+          "Tisch.",
+          false
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "begründen",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "jede",
+          false
+        ],
+        [
+          "Entscheidung.",
+          false
+        ]
+      ],
+      "solution": "dass | das"
     },
-    experte: {
-      hint: "Schule (Thema) – dass/das je nach Stelle",
-      tokens: [["Der", false], ["Lehrer", false], ["erklärt,", false], ["dass", true], ["die", false], ["Verlängerungsprobe", false], ["bei", false], ["Vokalen", false], ["fast", false], ["immer", false], ["hilft.", false], ["Das", true], ["Wort,", false], ["das", false], ["ich", false], ["nicht", false], ["kannte,", false], ["stand", false], ["in", false], ["der", false], ["Mitte", false], ["des", false], ["langen", false], ["Satzes.", false], ["Wir", false], ["stellen", false], ["fest,", false], ["dass", true], ["regelmäßiges", false], ["Üben", false], ["am", false], ["Ende", false], ["besser", false], ["lohnt", false], ["als", false], ["jede", false], ["Panik.", false], ["Das", true], ["Beispiel,", false], ["das", false], ["er", false], ["an", false], ["die", false], ["Tafel", false], ["schrieb,", false], ["zeigte", false], ["den", false], ["Unterschied", false], ["zwischen", false], ["beiden", false], ["Regeln.", false], ["Sie", false], ["betont,", false], ["dass", true], ["Geduld", false], ["beim", false], ["Lernen", false], ["wichtiger", false], ["ist", false], ["als", false], ["rohe", false], ["Schnelligkeit", false], ["allein.", false], ["Das", true], ["Heft,", false], ["das", false], ["ich", false], ["verlor,", false], ["enthielt", false], ["alle", false], ["wichtigen", false], ["Notizen", false], ["aus", false], ["dem", false], ["letzten", false], ["Monat.", false], ["Er", false], ["erkennt,", false], ["dass", true], ["ein", false], ["Fehler", false], ["oft", false], ["nur", false], ["ein", false], ["vergessenes", false], ["ck", false], ["am", false], ["Ende", false], ["des", false], ["Wortes", false], ["war.", false], ["Die", false], ["Klasse", false], ["merkt,", false], ["dass", true], ["Zusammenarbeit", false], ["das", false], ["eigene", false], ["Denken", false], ["enorm", false], ["bereichert", false], ["und", false], ["weitet.", false], ["Wir", false], ["ahnen,", false], ["dass", true], ["die", false], ["Prüfung", false], ["uns", false], ["stärker", false], ["abverlangt,", false], ["als", false], ["wir", false], ["anfangs", false], ["fürchteten.", false], ["Das", true], ["Thema,", false], ["das", false], ["uns", false], ["heute", false], ["beschäftigt,", false], ["reicht", false], ["von", false], ["der", false], ["Grammatik", false], ["bis", false], ["zur", false], ["Logik.", false], ["Ich", false], ["verstehe,", false], ["dass", true], ["ein", false], ["gutes", false], ["Fundament", false], ["später", false], ["jedes", false], ["neue", false], ["Wissen", false], ["trägt.", false], ["Das", true], ["Ergebnis,", false], ["das", false], ["wir", false], ["erzielten,", false], ["zeigt,", false], ["wie", false], ["viel", false], ["wir", false], ["wirklich", false], ["schon", false], ["können.", false], ["Gute", false], ["Schule", false], ["weiß,", false], ["dass", true], ["jeder", false], ["Schüler", false], ["auf", false], ["seinem", false], ["eigenen", false], ["Weg", false], ["wächst", false], ["in", false], ["der", false], ["Zeit.", false]],
-      solution: "dass/das je nach Stelle"
-    },
+    "experte": {
+      "hint": "Bestimme zuerst Wortart und Aufgabe im Satz.",
+      "tokens": [
+        [
+          "Die",
+          false
+        ],
+        [
+          "Hoffnung,",
+          false
+        ],
+        [
+          "dass",
+          true
+        ],
+        [
+          "uns",
+          false
+        ],
+        [
+          "trägt,",
+          false
+        ],
+        [
+          "ist",
+          false
+        ],
+        [
+          "stark.",
+          false
+        ],
+        [
+          "Er",
+          false
+        ],
+        [
+          "glaubt,",
+          false
+        ],
+        [
+          "das",
+          true
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Lösung",
+          false
+        ],
+        [
+          "einfach",
+          false
+        ],
+        [
+          "sei.",
+          false
+        ],
+        [
+          "Wir",
+          false
+        ],
+        [
+          "erklären",
+          false
+        ],
+        [
+          "beide",
+          false
+        ],
+        [
+          "Fälle",
+          false
+        ],
+        [
+          "mit",
+          false
+        ],
+        [
+          "Ersatzprobe",
+          false
+        ],
+        [
+          "und",
+          false
+        ],
+        [
+          "Satzbau.",
+          false
+        ]
+      ],
+      "solution": "die | dass"
+    }
   },
-  grossklein: {
-    mindest: {
-      hint: "Sport (Thema) – Hund, Wetter, Trainer, Freundin, Ball, Mannschaft, Spikes, Ende, Sport, Schule, Bewegung, Tage",
-      tokens: [["Mein", false], ["hund", true], ["springt", false], ["freudig", false], ["durch", false], ["das", false], ["hohe", false], ["Gras", false], ["auf", false], ["der", false], ["Wiese", false], ["am", false], ["See.", false], ["Das", false], ["wetter", true], ["ist", false], ["heute", false], ["mild,", false], ["und", false], ["die", false], ["Sonne", false], ["scheint", false], ["warm", false], ["auf", false], ["unsere", false], ["Gesichter.", false], ["Wir", false], ["spielen", false], ["im", false], ["Garten", false], ["eine", false], ["Runde", false], ["Fußball,", false], ["bis", false], ["wir", false], ["vor", false], ["Erschöpfung", false], ["keuchen.", false], ["Der", false], ["trainer", true], ["ruft", false], ["uns", false], ["an,", false], ["damit", false], ["wir", false], ["pünktlich", false], ["zum", false], ["Training", false], ["erscheinen", false], ["alle.", false], ["Meine", false], ["freundin", true], ["jubelt", false], ["laut,", false], ["als", false], ["ich", false], ["das", false], ["entscheidende", false], ["Tor", false], ["endlich", false], ["schieße.", false], ["Ein", false], ["ball", true], ["rollt", false], ["über", false], ["den", false], ["Platz", false], ["und", false], ["bleibt", false], ["genau", false], ["vor", false], ["dem", false], ["Torwart", false], ["liegen.", false], ["Wir", false], ["feuern", false], ["unsere", false], ["mannschaft", true], ["mit", false], ["lautem", false], ["Rufen", false], ["und", false], ["klatschenden", false], ["Händen", false], ["an.", false], ["Das", false], ["spike", true], ["meines", false], ["Schuhs", false], ["hat", false], ["sich", false], ["gelöst", false], ["und", false], ["muss", false], ["schnell", false], ["repariert", false], ["werden.", false], ["Am", false], ["ende", true], ["sitzen", false], ["wir", false], ["erschöpft,", false], ["aber", false], ["stolz", false], ["auf", false], ["dem", false], ["warmen", false], ["Holz", false], ["der", false], ["Bank.", false], ["Der", false], ["sport", true], ["hält", false], ["uns", false], ["fit", false], ["und", false], ["schenkt", false], ["uns", false], ["jeden", false], ["Tag", false], ["neue", false], ["Energie", false], ["und", false], ["Freude.", false], ["Unsere", false], ["schule", true], ["organisiert", false], ["im", false], ["Sommer", false], ["ein", false], ["großes,", false], ["buntes", false], ["Sportfest", false], ["für", false], ["alle.", false], ["Ich", false], ["glaube,", false], ["bewegung", true], ["ist", false], ["die", false], ["beste", false], ["Medizin", false], ["gegen", false], ["schlechte", false], ["Laune", false], ["und", false], ["Stress.", false], ["Solche", false], ["tage", true], ["bleiben", false], ["als", false], ["helle", false], ["Erinnerung", false], ["in", false], ["meinem", false], ["Kopf", false], ["für", false], ["immer.", false]],
-      solution: "Hund, Wetter, Trainer, Freundin, Ball, Mannschaft, Spikes, Ende, Sport, Schule, Bewegung, Tage"
+  "grossklein": {
+    "mindest": {
+      "hint": "Suche Artikel und nominalisierte Verben.",
+      "tokens": [
+        [
+          "Am",
+          false
+        ],
+        [
+          "montag",
+          true
+        ],
+        [
+          "gehen",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "schwimmen.",
+          false
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "wünschen",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "allen",
+          false
+        ],
+        [
+          "alles",
+          false
+        ],
+        [
+          "gute.",
+          true
+        ],
+        [
+          "Wir",
+          false
+        ],
+        [
+          "markieren",
+          false
+        ],
+        [
+          "Nomen",
+          false
+        ],
+        [
+          "und",
+          false
+        ],
+        [
+          "Zeitangaben.",
+          false
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "erklären",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Regel",
+          false
+        ],
+        [
+          "in",
+          false
+        ],
+        [
+          "einem",
+          false
+        ],
+        [
+          "kurzen",
+          false
+        ],
+        [
+          "Satz.",
+          false
+        ]
+      ],
+      "solution": "Montag | Gute"
     },
-    regel: {
-      hint: "Musik (Thema) – Gutes, Beginn, Gehen, Frühstücken, Spielen, Lehrer, Lied, Probe, Begeisterung, Lernen, Schule, Lachen, Musizieren, Kunst",
-      tokens: [["Ich", false], ["wünsche", false], ["dir", false], ["alles", false], ["gute", true], ["zum", false], ["beginn", true], ["des", false], ["neuen", false], ["Konzerts", false], ["in", false], ["unserer", false], ["Aula.", false], ["Beim", false], ["gehen", true], ["höre", false], ["ich", false], ["die", false], ["klaren", false], ["Stimmen,", false], ["die", false], ["vom", false], ["Flur", false], ["zu", false], ["uns", false], ["herübertragen.", false], ["Zum", false], ["frühstücken", true], ["treffen", false], ["wir", false], ["uns", false], ["und", false], ["stimmen", false], ["die", false], ["Gitarren", false], ["gemeinsam", false], ["mit", false], ["viel", false], ["Geduld.", false], ["Das", false], ["spielen", true], ["der", false], ["Band", false], ["gelingt", false], ["heute", false], ["besser", false], ["als", false], ["bei", false], ["jeder", false], ["früheren,", false], ["langen", false], ["Probe.", false], ["Mein", false], ["lehrer", true], ["lobt", false], ["das", false], ["saubere,", false], ["gefühlvolle", false], ["Zusammenspiel", false], ["der", false], ["jungen", false], ["Musikerinnen", false], ["und", false], ["Musiker.", false], ["Wir", false], ["singen", false], ["ein", false], ["lied,", true], ["das", false], ["von", false], ["Freiheit", false], ["und", false], ["von", false], ["Mut", false], ["zu", false], ["träumen", false], ["leise", false], ["erzählt.", false], ["Die", false], ["probe", true], ["endet", false], ["erst,", false], ["als", false], ["jeder", false], ["Ton", false], ["an", false], ["seinem", false], ["richtigen", false], ["Platz", false], ["ruht.", false], ["Eure", false], ["begeisterung", true], ["treibt", false], ["uns", false], ["an,", false], ["über", false], ["unsere", false], ["eigenen", false], ["Grenzen", false], ["hinaus", false], ["mutig", false], ["zu", false], ["wachsen.", false], ["Das", false], ["lernen", true], ["eines", false], ["Instruments", false], ["braucht", false], ["Zeit,", false], ["Geduld", false], ["und", false], ["tägliches,", false], ["beharrliches", false], ["Üben.", false], ["Unsere", false], ["schule", true], ["feiert", false], ["am", false], ["Abend", false], ["das", false], ["Talent", false], ["der", false], ["Schüler", false], ["mit", false], ["warmem,", false], ["offenem", false], ["Applaus.", false], ["Ich", false], ["höre", false], ["das", false], ["lachen", true], ["der", false], ["Kinder,", false], ["das", false], ["durch", false], ["die", false], ["hellen", false], ["Gänge", false], ["fröhlich", false], ["schallt.", false], ["Das", false], ["musizieren", true], ["verbindet", false], ["Menschen,", false], ["die", false], ["sich", false], ["sonst", false], ["vielleicht", false], ["niemals", false], ["hätten", false], ["treffen", false], ["können.", false], ["Gute", false], ["kunst", true], ["entsteht,", false], ["wo", false], ["Ernsthaftigkeit", false], ["auf", false], ["Leichtigkeit", false], ["im", false], ["Herzen", false], ["trifft.", false]],
-      solution: "Gutes, Beginn, Gehen, Frühstücken, Spielen, Lehrer, Lied, Probe, Begeisterung, Lernen, Schule, Lachen, Musizieren, Kunst"
+    "regel": {
+      "hint": "Achte auf Signalwörter vor Nominalisierungen.",
+      "tokens": [
+        [
+          "Beim",
+          false
+        ],
+        [
+          "laufen",
+          true
+        ],
+        [
+          "höre",
+          false
+        ],
+        [
+          "ich",
+          false
+        ],
+        [
+          "Musik.",
+          false
+        ],
+        [
+          "Das",
+          false
+        ],
+        [
+          "beste",
+          true
+        ],
+        [
+          "daran",
+          false
+        ],
+        [
+          "ist",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Ruhe.",
+          false
+        ],
+        [
+          "Wir",
+          false
+        ],
+        [
+          "setzen",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Großbuchstaben",
+          false
+        ],
+        [
+          "bewusst.",
+          false
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "erklären",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Regel",
+          false
+        ],
+        [
+          "in",
+          false
+        ],
+        [
+          "einem",
+          false
+        ],
+        [
+          "kurzen",
+          false
+        ],
+        [
+          "Satz.",
+          false
+        ]
+      ],
+      "solution": "Laufen | Beste"
     },
-    experte: {
-      hint: "Umwelt (Thema) – Ich, Ihnen, Stadt, Flut, Sandra, Köln, Ufer, blaue, Sonne, Wasser, Luft, Kind, Bürgermeister, Bürger, Emmy, Löwenzahn, Klasse, Haus, Beet, Wissenschaft, Klima, Max, Moor, Klima, Strand, Flut, Meer, Natur, System, Erde, Zuhause",
-      tokens: [["ich", true], ["danke", false], ["ihnen,", true], ["dass", false], ["sie", false], ["unsere", false], ["stadt", true], ["gegen", false], ["die", false], ["flut", true], ["mutig", false], ["verteidigt", false], ["haben.", false], ["Sandra", true], ["besucht", false], ["köln", true], ["und", false], ["berichtet", false], ["von", false], ["den", false], ["sauberen", false], ["ufer", true], ["des", false], ["breiten", false], ["Rheins.", false], ["Das", false], ["blaue", true], ["meer", false], ["leuchtet", false], ["türkis,", false], ["wenn", false], ["die", false], ["sonne", true], ["flach", false], ["über", false], ["das", false], ["wasser", true], ["streicht.", false], ["Wir", false], ["pflanzen", false], ["bäume,", false], ["damit", false], ["die", false], ["luft", true], ["rein", false], ["bleibt", false], ["für", false], ["jedes", false], ["kommende", false], ["kind", true], ["auf", false], ["der", false], ["welt.", false], ["Der", false], ["bürgermeister", true], ["ruft", false], ["die", false], ["bürger", true], ["auf,", false], ["weniger", false], ["plastik", false], ["im", false], ["Alltag", false], ["zu", false], ["verbrauchen.", false], ["Emmy", true], ["fotografiert", false], ["den", false], ["schmetterling,", false], ["der", false], ["auf", false], ["dem", false], ["löwenzahn", true], ["sanft", false], ["im", false], ["Wind", false], ["wiegt.", false], ["Unsere", false], ["klasse", true], ["baut", false], ["auf", false], ["dem", false], ["Dach", false], ["des", false], ["hauses", true], ["ein", false], ["beetes", true], ["für", false], ["wilde,", false], ["duftende", false], ["kräuter", false], ["an.", false], ["Die", false], ["wissenschaft", true], ["warnt,", false], ["dass", false], ["das", false], ["klima", true], ["sich", false], ["schneller", false], ["erwärmt,", false], ["als", false], ["viele", false], ["ahnen.", false], ["Max", true], ["erklärt,", false], ["warum", false], ["das", false], ["moor", true], ["als", false], ["Schutz", false], ["für", false], ["das", false], ["klima", true], ["so", false], ["wichtig", false], ["ist.", false], ["Wir", false], ["sammeln", false], ["müll", false], ["am", false], ["strand,", true], ["bevor", false], ["die", false], ["flut", true], ["die", false], ["Reste", false], ["ins", false], ["meer", true], ["trägt.", false], ["Die", false], ["natur", true], ["zeigt", false], ["uns,", false], ["dass", false], ["schon", false], ["kleine", false], ["Taten", false], ["das", false], ["ganze", false], ["system", true], ["langsam", false], ["heilen.", false], ["Wer", false], ["hinhört,", false], ["versteht,", false], ["dass", false], ["die", false], ["erde", true], ["kein", false], ["Besitz,", false], ["sondern", false], ["unser", false], ["gemeinsames", false], ["zuhause", true], ["ist.", false]],
-      solution: "Ich, Ihnen, Stadt, Flut, Sandra, Köln, Ufer, blaue, Sonne, Wasser, Luft, Kind, Bürgermeister, Bürger, Emmy, Löwenzahn, Klasse, Haus, Beet, Wissenschaft, Klima, Max, Moor, Klima, Strand, Flut, Meer, Natur, System, Erde, Zuhause"
-    },
+    "experte": {
+      "hint": "Bestimme die Wortart im Satz.",
+      "tokens": [
+        [
+          "Sie",
+          false
+        ],
+        [
+          "hat",
+          false
+        ],
+        [
+          "im",
+          false
+        ],
+        [
+          "allgemeinen",
+          true
+        ],
+        [
+          "recht.",
+          false
+        ],
+        [
+          "Nach",
+          false
+        ],
+        [
+          "langem",
+          false
+        ],
+        [
+          "hin",
+          false
+        ],
+        [
+          "und",
+          false
+        ],
+        [
+          "her",
+          true
+        ],
+        [
+          "treffen",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "eine",
+          false
+        ],
+        [
+          "Entscheidung.",
+          false
+        ],
+        [
+          "Wir",
+          false
+        ],
+        [
+          "begründen",
+          false
+        ],
+        [
+          "beide",
+          false
+        ],
+        [
+          "Großschreibungen.",
+          false
+        ]
+      ],
+      "solution": "Allgemeinen | Hin und Her"
+    }
   },
-  zusammengetrennt: {
-    mindest: {
-      hint: "Freizeit (Thema) – spazieren gehen, Spazieren gehen, laut rufen, aufräumen, krankmelden, tanzen gehen, radfahren, aufstehen, mitsingen, mitkommen, sitzen bleiben, schwimmen lernen, laufen spielen",
-      tokens: [["Wir", false], ["wollen", false], ["spazierengehen.", true], ["Beim", false], ["Spazieren", true], ["gehen", false], ["traf", false], ["er", false], ["Nadine", false], ["an", false], ["der", false], ["frischen", false], ["Luft.", false], ["Die", false], ["Kinder", false], ["dürfen", false], ["draußen", false], ["laut", false], ["rufen", true], ["und", false], ["fröhlich", false], ["um", false], ["die", false], ["Büsche", false], ["rennen.", false], ["Ich", false], ["helfe", false], ["meiner", false], ["Mutter,", false], ["das", false], ["Zimmer", false], ["aufzuräumen", true], ["und", false], ["die", false], ["Bücher", false], ["zu", false], ["ordnen.", false], ["Er", false], ["muss", false], ["sich", false], ["krankmelden,", true], ["weil", false], ["er", false], ["plötzlich", false], ["starke", false], ["Kopfschmerzen", false], ["bekommt.", false], ["Wir", false], ["lernen", false], ["tanzengehen", true], ["in", false], ["der", false], ["neuen", false], ["Gruppe,", false], ["die", false], ["jeden", false], ["Dienstag", false], ["trifft.", false], ["Mein", false], ["Bruder", false], ["begann,", false], ["gern", false], ["radzufahren,", true], ["als", false], ["er", false], ["das", false], ["neue", false], ["Fahrrad", false], ["bekam.", false], ["Sie", false], ["übt,", false], ["jeden", false], ["Morgen", false], ["früh", false], ["aufzustehen,", true], ["um", false], ["die", false], ["Ruhe", false], ["zu", false], ["genießen.", false], ["Wir", false], ["singen", false], ["zusammen", false], ["ein", false], ["Lied", false], ["und", false], ["fangen", false], ["an,", false], ["leise", false], ["mitzusingen", true], ["im", false], ["Chor.", false], ["Er", false], ["bat", false], ["uns,", false], ["mitzukommen", true], ["zu", false], ["der", false], ["Feier", false], ["am", false], ["See", false], ["mit", false], ["den", false], ["Freunden.", false], ["Ich", false], ["versuche,", false], ["ruhig", false], ["sitzenzubleiben,", true], ["während", false], ["die", false], ["Anderen", false], ["laut", false], ["lachen.", false], ["Wir", false], ["gehen", false], ["schwimmenlernen", true], ["in", false], ["dem", false], ["warmen,", false], ["hellen", false], ["Becken", false], ["des", false], ["Sommerbads.", false], ["Wer", false], ["fertig", false], ["ist,", false], ["darf", false], ["nach", false], ["draußen", false], ["laufenspielen", true], ["in", false], ["den", false], ["sonnigen", false], ["Garten.", false]],
-      solution: "spazieren gehen, Spazieren gehen, laut rufen, aufräumen, krankmelden, tanzen gehen, radfahren, aufstehen, mitsingen, mitkommen, sitzen bleiben, schwimmen lernen, laufen spielen"
+  "zusammengetrennt": {
+    "mindest": {
+      "hint": "Prüfe Wortart und Bedeutung.",
+      "tokens": [
+        [
+          "Wir",
+          false
+        ],
+        [
+          "gehen",
+          false
+        ],
+        [
+          "heute",
+          false
+        ],
+        [
+          "spazierengehen.",
+          true
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "möchten",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "Eis",
+          false
+        ],
+        [
+          "essen.",
+          true
+        ],
+        [
+          "Die",
+          false
+        ],
+        [
+          "erste",
+          false
+        ],
+        [
+          "Verbindung",
+          false
+        ],
+        [
+          "braucht",
+          false
+        ],
+        [
+          "eine",
+          false
+        ],
+        [
+          "Trennung,",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "zweite",
+          false
+        ],
+        [
+          "bleibt",
+          false
+        ],
+        [
+          "getrennt.",
+          false
+        ]
+      ],
+      "solution": "spazieren gehen | Eis essen"
     },
-    regel: {
-      hint: "Liebe (Thema) – laut singen, krankschreiben, zusammen bleiben, freundlich grüßen, mitsulaufen, bitte warten, mitlachen, vorlesen, zuzuhören, mitessen, mitsingen, kennenlernen, verstehen",
-      tokens: [["Sie", false], ["kann", false], ["lautsingen,", true], ["obwohl", false], ["sie", false], ["eigentlich", false], ["sehr", false], ["schüchtern", false], ["vor", false], ["fremden", false], ["Leuten", false], ["ist.", false], ["Er", false], ["muss", false], ["sich", false], ["krankschreiben", true], ["lassen,", false], ["weil", false], ["ihn", false], ["eine", false], ["heftige", false], ["Grippe", false], ["trifft.", false], ["Wir", false], ["wollen", false], ["zusammenbleiben,", true], ["egal", false], ["was", false], ["die", false], ["Zukunft", false], ["für", false], ["uns", false], ["beide", false], ["bereithält.", false], ["Du", false], ["sollst", false], ["freundlich", false], ["grüßen,", true], ["wenn", false], ["du", false], ["meinen", false], ["Vater", false], ["an", false], ["der", false], ["Tür", false], ["triffst", false], ["im", false], ["Haus.", false], ["Er", false], ["liebt", false], ["es,", false], ["fröhlich", false], ["mitsulaufen,", true], ["wenn", false], ["wir", false], ["am", false], ["Fluss", false], ["entlang", false], ["durch", false], ["den", false], ["Park", false], ["joggen.", false], ["Ich", false], ["bitte", false], ["dich,", false], ["bitte", false], ["warten,", true], ["bis", false], ["ich", false], ["meine", false], ["Jacke", false], ["schnell", false], ["geholt", false], ["habe", false], ["drinnen.", false], ["Sie", false], ["darf", false], ["ruhig", false], ["mitlachen,", true], ["wenn", false], ["die", false], ["Geschichte", false], ["zu", false], ["komisch", false], ["für", false], ["uns", false], ["wird.", false], ["Wir", false], ["üben,", false], ["gemeinsam", false], ["vorzulesen,", true], ["damit", false], ["die", false], ["kleine", false], ["Schwester", false], ["gut", false], ["einschläft.", false], ["Er", false], ["lernt,", false], ["geduldig", false], ["zuzuhören,", true], ["während", false], ["ich", false], ["von", false], ["meinem", false], ["Tag", false], ["erzähle.", false], ["Du", false], ["kannst", false], ["gern", false], ["mitessen,", true], ["wenn", false], ["bei", false], ["uns", false], ["am", false], ["Sonntag", false], ["der", false], ["große", false], ["Tisch", false], ["gedeckt", false], ["ist.", false], ["Wir", false], ["fangen", false], ["an,", false], ["leise", false], ["mitzusingen,", true], ["sobald", false], ["der", false], ["Song", false], ["im", false], ["Radio", false], ["läuft.", false], ["Ich", false], ["möchte", false], ["dich", false], ["kennenlernen,", true], ["weil", false], ["du", false], ["anders", false], ["als", false], ["die", false], ["anderen", false], ["Mädchen", false], ["wirkst.", false], ["Liebe", false], ["heißt,", false], ["einander", false], ["im", false], ["Alltag", false], ["immer", false], ["wieder", false], ["neu", false], ["zu", false], ["verstehen", true], ["mit", false], ["Offenheit.", false]],
-      solution: "laut singen, krankschreiben, zusammen bleiben, freundlich grüßen, mitsulaufen, bitte warten, mitlachen, vorlesen, zuzuhören, mitessen, mitsingen, kennenlernen, verstehen"
+    "regel": {
+      "hint": "Nutze Steigerungs- und Nomenprobe.",
+      "tokens": [
+        [
+          "Die",
+          false
+        ],
+        [
+          "Klasse",
+          false
+        ],
+        [
+          "will",
+          false
+        ],
+        [
+          "zusammen",
+          false
+        ],
+        [
+          "arbeiten.",
+          true
+        ],
+        [
+          "Beim",
+          false
+        ],
+        [
+          "rad",
+          false
+        ],
+        [
+          "fahren",
+          true
+        ],
+        [
+          "sprechen",
+          false
+        ],
+        [
+          "alle",
+          false
+        ],
+        [
+          "über",
+          false
+        ],
+        [
+          "den",
+          false
+        ],
+        [
+          "Ausflug.",
+          false
+        ],
+        [
+          "Wir",
+          false
+        ],
+        [
+          "prüfen",
+          false
+        ],
+        [
+          "feste",
+          false
+        ],
+        [
+          "Verbindungen.",
+          false
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "erklären",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Regel",
+          false
+        ],
+        [
+          "in",
+          false
+        ],
+        [
+          "einem",
+          false
+        ],
+        [
+          "kurzen",
+          false
+        ],
+        [
+          "Satz.",
+          false
+        ]
+      ],
+      "solution": "zusammenarbeiten | Radfahren"
     },
-    experte: {
-      hint: "Technik (Thema) – schwarzarbeiten, Rad fahren, Schwarzarbeiten, Radfahren, krankschreiben, programmieren, radfahren, mithelfen, aufsetzen, testen, mitdenken, kennenlernen, Ganzes",
-      tokens: [["Er", false], ["will", false], ["schwarzarbeiten,", true], ["obwohl", false], ["er", false], ["genau", false], ["weiß,", false], ["dass", false], ["das", false], ["Gesetz", false], ["es", false], ["verbietet.", false], ["Wir", false], ["radfahren", true], ["am", false], ["Sonntag", false], ["durch", false], ["den", false], ["Wald,", false], ["bis", false], ["die", false], ["Beine", false], ["müde", false], ["werden.", false], ["Das", false], ["Schwarzarbeiten", true], ["ist", false], ["illegal,", false], ["weil", false], ["keine", false], ["Steuern", false], ["davon", false], ["bezahlt", false], ["werden.", false], ["Beim", false], ["Radfahren", true], ["trifft", false], ["sie", false], ["Freunde,", false], ["die", false], ["gerade", false], ["ihre", false], ["Drohne", false], ["starten", false], ["wollen.", false], ["Sie", false], ["lässt", false], ["sich", false], ["krankschreiben,", true], ["nachdem", false], ["der", false], ["Arzt", false], ["die", false], ["Diagnose", false], ["ernsthaft", false], ["bestätigt", false], ["hat.", false], ["Wir", false], ["lernen", false], ["programmieren,", true], ["um", false], ["unsere", false], ["eigenen", false], ["kleinen", false], ["Spiele", false], ["endlich", false], ["zu", false], ["bauen.", false], ["Er", false], ["begann,", false], ["gern", false], ["radzufahren,", true], ["seit", false], ["ihm", false], ["das", false], ["neue", false], ["Sportgerät", false], ["geschenkt", false], ["wurde.", false], ["Du", false], ["darfst", false], ["ruhig", false], ["mithelfen,", true], ["wenn", false], ["wir", false], ["den", false], ["Server", false], ["im", false], ["Keller", false], ["aufstellen", false], ["und", false], ["verkabeln.", false], ["Ich", false], ["helfe", false], ["ihm,", false], ["das", false], ["System", false], ["aufzusetzen,", true], ["damit", false], ["es", false], ["morgen", false], ["stabil", false], ["laufen", false], ["kann.", false], ["Wir", false], ["üben,", false], ["gemeinsam", false], ["zu", false], ["testen,", true], ["ob", false], ["die", false], ["App", false], ["auf", false], ["allen", false], ["Handys", false], ["funktioniert", false], ["fehlerfrei.", false], ["Er", false], ["probt,", false], ["laut", false], ["mitzudenken,", true], ["während", false], ["der", false], ["Code", false], ["langsam", false], ["auf", false], ["dem", false], ["Bildschirm", false], ["entsteht.", false], ["Ich", false], ["möchte", false], ["dich", false], ["kennenlernen,", true], ["weil", false], ["du", false], ["die", false], ["gleiche", false], ["Neugier", false], ["auf", false], ["Technik", false], ["teilst.", false], ["Wer", false], ["bastelt,", false], ["lernt,", false], ["dass", false], ["aus", false], ["vielen", false], ["kleinen", false], ["Teilen", false], ["plötzlich", false], ["ein", false], ["Ganzes", true], ["werden", false], ["kann.", false]],
-      solution: "schwarzarbeiten, Rad fahren, Schwarzarbeiten, Radfahren, krankschreiben, programmieren, radfahren, mithelfen, aufsetzen, testen, mitdenken, kennenlernen, Ganzes"
-    },
-  },
-};;;
-
+    "experte": {
+      "hint": "Vergleiche wörtliche und übertragene Bedeutung.",
+      "tokens": [
+        [
+          "Der",
+          false
+        ],
+        [
+          "Hinweis",
+          false
+        ],
+        [
+          "bleibt",
+          false
+        ],
+        [
+          "liegen",
+          true
+        ],
+        [
+          "lassen.",
+          false
+        ],
+        [
+          "Später",
+          false
+        ],
+        [
+          "soll",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Gruppe",
+          false
+        ],
+        [
+          "das",
+          false
+        ],
+        [
+          "Ergebnis",
+          false
+        ],
+        [
+          "bekannt",
+          false
+        ],
+        [
+          "geben.",
+          true
+        ],
+        [
+          "Wir",
+          false
+        ],
+        [
+          "bestimmen",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "passende",
+          false
+        ],
+        [
+          "Verbindung.",
+          false
+        ]
+      ],
+      "solution": "liegen lassen | bekannt geben"
+    }
+  }
+};
     const topicIntroTexts = {
   strategien: "Nicht jedes Wort kannst du auswendig lernen. Gute Rechtschreiberinnen und Rechtschreiber nutzen deshalb Strategien: Sie verlängern Wörter, leiten sie ab, zerlegen sie in Silben oder ersetzen sie durch andere Wörter. Mit diesen Proben findest du die richtige Schreibweise fast immer selbst heraus. In diesem Kapitel lernst du sieben Strategien kennen, mit denen du deine Schreibweise systematisch überprüfen kannst.",
   kurzevokale: "Ob ein Vokal kurz oder lang gesprochen wird, entscheidet oft über die Schreibweise. Nach einem kurzen Vokal steht meist ein Doppelkonsonant – oder bei k und z die Verbindungen ck und tz. In diesem Thema lernst du, kurze Vokale zu erkennen und die passende Kennzeichnung zu wählen.",
@@ -1805,7 +3534,7 @@
 };
     const topicDiscoveries = {
   strategien: { text: "Vergleiche die Wortpaare. Welche Probe hilft dir, die richtige Schreibweise zu finden?", items: ["<strong>Wald</strong> oder Walt? → W<strong>ä</strong>lder", "<strong>lästig</strong> → die Last, belästigen", "gel<strong>h</strong>en? → ge|hen – zwei Silben"], question: "Welche drei Proben wurden hier benutzt?" },
-  kurzevokale: { text: "Sprich die Wörter laut aus. Ist der Vokal kurz oder lang?", items: ["k<strong>a</strong>lt – lang", "K<strong>u</strong>tte – kurz", "best<strong>e</strong>llen – kurz", "M<strong>ü</strong>cke – kurz"], question: "Was passiert nach einem kurzen Vokal?" },
+  kurzevokale: { text: "Sprich die Wörter laut aus. Ist der Vokal kurz oder lang?", items: ["k<strong>a</strong>lt – kurz", "K<strong>u</strong>tte – kurz", "best<strong>e</strong>llen – kurz", "M<strong>ü</strong>cke – kurz"], question: "Was passiert nach einem kurzen Vokal?" },
   langevokale: { text: "Vergleiche die Kennzeichnungen langer Vokale.", items: ["T<strong>ie</strong>r – ie", "M<strong>ee</strong>r – Doppelvokal", "St<strong>uh</strong>l – Dehnungs-h", "ge<strong>h</strong>en – silbentrennendes h"], question: "Welche vier Arten der Kennzeichnung siehst du?" },
   slaute: { text: "Achte auf den Vokal vor dem s-Laut und ob das s stimmhaft ist.", items: ["Ha<strong>s</strong>e – stimmhaft, langer Vokal", "Ki<strong>ss</strong>en – stimmlos, kurzer Vokal", "Fü<strong>ß</strong>e – stimmlos, langer Vokal"], question: "Welche zwei Merkmale entscheiden über s, ss oder ß?" },
   dasdass: { text: "Setze die Ersatzprobe ein: Welches Wort lässt sich ersetzen?", items: ["Das T-Shirt, <strong>das</strong> (= welches) ich trage", "Ich freue mich, <strong>dass</strong> du kommst (kein Ersatz möglich)", "<strong>Das</strong> (= dieses) hätte ich nie erwartet"], question: "Wann schreibst du das mit einem s?" },
@@ -1825,7 +3554,7 @@
       "Verlängerungsprobe: Bilde Plural, Infinitiv oder Komparativ. Wald → Wälder; heftig → heftiger.",
       "Ableitungsprobe: Suche ein Wort aus der gleichen Wortfamilie. lästig → Last, belästigen; essen → isst, Esstisch.",
       "Silbenprobe: Zerlege das Wort in Silben. ge|hen → das h trennt die Silben.",
-      "Ersatzprobe: Ersetze das Wort durch ein Synonym. das → welches? Dann Relativpronomen.",
+      "Ersatzprobe: Ersetze „das“ probeweise durch „dieses“, „jenes“ oder „welches“. Passt eines davon, schreibst du „das“ mit einem s.",
       "Artikel und Signalwörter geben Hinweise auf Großschreibung: nichts Gutes, beim Gehen.",
       "Wortart bestimmen: Nachsilben wie -keit, -nis weisen auf Nomen hin: Heiterkeit, Geheimnis.",
       "Vokallänge beachten: Schrot oder Schrott? Kurzer Vokal → Doppelkonsonant."
@@ -1874,7 +3603,7 @@
     "deep": [
       "Hörst du nach dem kurzen Vokal nur einen Konsonanten, verdopple ihn: bestellen, kennen.",
       "Ein Doppelkonsonant im Wortstamm bleibt in allen Wortformen erhalten: bestellen – bestellt, kennen – bekannt.",
-      "k und z werden nie verdoppelt: Statt kk schreibt man ck, statt zz schreibt man tz: Mücke, Witze.",
+      "In deutschen Stammwörtern schreibt man nach kurzem Vokal meist ck statt kk und tz statt zz: Mücke, Witze. In Fremdwörtern sind andere Schreibungen möglich.",
       "Manche einsilbige Wörter haben keinen Doppelkonsonanten: das, mit, ob, zum."
     ],
     "examples": [
@@ -1905,7 +3634,7 @@
         "title": "Fehler korrigieren",
         "prompt": "Korrigiere die Schreibweise: „Die Muke summt.“",
         "wrong": "Die Muke summt.",
-        "answers": ["mücke", "die mücke summt", "mucke"],
+        "answers": ["Mücke", "Die Mücke summt"], "caseSensitive": true,
         "solution": "Die Mücke summt."
       }
     }
@@ -1923,7 +3652,7 @@
       "Ein langes i wird in der Regel mit ie wiedergegeben: Tier, lieben, Knie. Fremdwörter mit einfachem i: Notiz, Kino, Virus.",
       "Doppelvokale musst du auswendig lernen: Aal, Meer, Moor.",
       "Nach l, m, n, r steht bei manchen Wörtern ein Dehnungs-h: Stuhl, Rahm. Ohne h: Schal, Person.",
-      "Folgt auf einen langen Vokal ein kurzer, zeigt ein silbentrennendes h die neue Silbe: ge|hen, fliehen, se|hen."
+      "Treffen Vokale aus zwei Silben aufeinander, kann ein silbentrennendes h die Silbengrenze markieren: ge|hen, flie|hen, se|hen."
     ],
     "examples": [
       "Tier, lieben, Knie (ie)",
@@ -1971,7 +3700,7 @@
       "Einfaches s: stimmhaft, z. B. Hase, leise, lesen. Das s klingt weich wie ein summendes s.",
       "ß: stimmlos nach langem Vokal oder Doppelvokal: Ruß, Füße, beißen, heiß, Straße.",
       "ss: stimmlos nach kurzem Vokal: wissen, Kissen, Masse, nass.",
-      "Zweifelsfall: Wort verlängern! Kuss → Küsse (langer Vokal → ß im Plural? Nein: Küsse mit ss, weil kurz). Besser: Fuß → Füße (ß), Bus → Busse (ss)."
+      "Vergleiche die Vokallänge: Kuss → Küsse bleibt kurz und wird mit ss geschrieben; Fuß → Füße bleibt lang und wird mit ß geschrieben. Ein stimmhaftes s hörst du zum Beispiel in Hase."
     ],
     "examples": [
       "Hase, lesen, leise (stimmhaftes s)",
@@ -2097,7 +3826,7 @@
         "title": "Fehler korrigieren",
         "prompt": "Korrigiere die Schreibweise: „ich wünsche dir alles gute.“",
         "wrong": "ich wünsche dir alles gute.",
-        "answers": ["ich wünsche dir alles gute.", "alles gute", "ich wünsche dir alles Gute", "alles Gute"],
+        "answers": ["Ich wünsche dir alles Gute.", "alles Gute"], "caseSensitive": true,
         "solution": "Ich wünsche dir alles Gute."
       }
     }
@@ -2256,7 +3985,7 @@
     "level": "mindest",
     "topic": "Strategien",
     "question": "Finde den Fehler und schreibe das Wort richtig.",
-    "sentence": "Mit der Verlängerungssprobe prüfst du, ob ein Vokal lang oder kurz ist.",
+    "sentence": "Mit der Verlängerungssprobe machst du den Endlaut eines Wortes hörbar.",
     "errorWord": "Verlängerungssprobe",
     "answers": [
       "Verlängerungsprobe"
@@ -2306,8 +4035,7 @@
     "sentence": "Der Apfel wächst am Bomen.",
     "errorWord": "Bomen",
     "answers": [
-      "Baum",
-      "Bäumen"
+      "Baum"
     ]
   },
   {
@@ -2417,6 +4145,43 @@
     ]
   },
   {
+    "type": "strategy",
+    "level": "mindest",
+    "topic": "Strategien",
+    "question": "Erkläre mit der richtigen Strategie: Warum schreibt man „kämmen“ mit doppeltem m?",
+    "options": [
+      "Verlängerungsprobe (Kämme)",
+      "Ableitungsprobe (Kamm – kämmen)",
+      "Vokallänge prüfen: kurzes ä → mm",
+      "Ersatzprobe (der – dem)"
+    ],
+    "answer": 2
+  },
+  {
+    "type": "errorfind",
+    "level": "mindest",
+    "topic": "Kurze Vokale",
+    "question": "Finde den Fehler und schreibe das Wort richtig.",
+    "sentence": "Der Bok trägt ein schwarzes Fell.",
+    "errorWord": "Bok",
+    "answers": [
+      "Bock"
+    ]
+  },
+  {
+    "type": "strategy",
+    "level": "mindest",
+    "topic": "Strategien",
+    "question": "Welche Strategie klärt die Schreibung von „Rad – Räder“?",
+    "options": [
+      "Verlängerungsprobe",
+      "Silbenprobe",
+      "Ersatzprobe",
+      "Artikelprobe"
+    ],
+    "answer": 0
+  },
+  {
     "type": "single",
     "level": "regel",
     "topic": "Strategien",
@@ -2433,16 +4198,17 @@
     "type": "multiple",
     "level": "regel",
     "topic": "Strategien",
-    "question": "Welche Strategien helfen bei unsicherem i oder ie? (Mehrere)",
+    "question": "Welche Strategien helfen bei unsicherer Schreibweise? (Mehrere)",
     "options": [
-      "Verlängerungsprobe (Biet – bieten)",
-      "Ableitungsprobe (gib – geben)",
+      "Verlängerungsprobe (Rad – Räder)",
+      "Ableitungsprobe (Haus – Häuser)",
       "Silbenprobe (ge|hen)",
-      "Ersatzprobe (die – dem)"
+      "Buchstaben raten"
     ],
     "answers": [
       0,
-      1
+      1,
+      2
     ]
   },
   {
@@ -2451,8 +4217,7 @@
     "topic": "Strategien",
     "question": "Ergänze: Die ______ zeigt, ob ein Wort mit d/t, g/k oder b/p geschrieben wird (z. B. Tag – Tage).",
     "answers": [
-      "Ersatzprobe",
-      "ersatzprobe"
+      "Verlängerungsprobe"
     ]
   },
   {
@@ -2530,14 +4295,14 @@
     "type": "single",
     "level": "regel",
     "topic": "Lange Vokale",
-    "question": "Welches Wort hat KEIN Dehnungs-h?",
+    "question": "In welchem Wort ist das h ein Dehnungs-h und kein silbentrennendes h?",
     "options": [
-      "Sehen",
-      "Stehen",
-      "Malen",
-      "Ruhe"
+      "Stuhl",
+      "sehen",
+      "Ruhe",
+      "gehen"
     ],
-    "answer": 2
+    "answer": 0
   },
   {
     "type": "fill",
@@ -2566,7 +4331,7 @@
     "topic": "s-Laute",
     "question": "Warum schreibt man „heißen“ mit ß?",
     "options": [
-      "Weil der Vokal lang ist",
+      "Weil der s-Laut nach langem Vokal stimmlos ist",
       "Weil der Vokal kurz ist",
       "Weil es am Wortanfang steht",
       "Weil es ein Fremdwort ist"
@@ -2619,10 +4384,10 @@
     "topic": "das/dass",
     "question": "Wann schreibt man „dass“? (Mehrere)",
     "options": [
-      "Nach Verben des Sagens oder Denkens",
+      "Wenn es als Konjunktion einen Subjektsatz einleitet",
       "Wenn es ein Relativpronomen ist",
       "Wenn ein Artikelwort davorsteht",
-      "Im Nebensatz mit der Konjunktion „dass“"
+      "Wenn es als Konjunktion einen Objektsatz einleitet"
     ],
     "answers": [
       0,
@@ -2639,6 +4404,44 @@
     "answers": [
       "dass"
     ]
+  },
+  {
+    "type": "strategy",
+    "level": "regel",
+    "topic": "Strategien",
+    "question": "Erkläre mit der passenden Strategie: Warum heißt es „Flagge“ mit doppeltem g?",
+    "options": [
+      "Weil der Vokal kurz ist (Mitlautverdopplung)",
+      "Weil der Vokal lang ist",
+      "Weil es ein Fremdwort ist",
+      "Weil es am Wortende steht"
+    ],
+    "answer": 0
+  },
+  {
+    "type": "errorfind",
+    "level": "regel",
+    "topic": "Groß/Klein",
+    "question": "Finde den Fehler und schreibe das Wort richtig.",
+    "sentence": "Im frühling blüht der Apfelbaum.",
+    "errorWord": "frühling",
+    "answers": [
+      "Frühling"
+    ],
+    "caseSensitive": true
+  },
+  {
+    "type": "strategy",
+    "level": "regel",
+    "topic": "Strategien",
+    "question": "Erkläre: Warum schreibt man „Knie“ mit ie und nicht mit i?",
+    "options": [
+      "Weil der Vokal lang ist (langes i)",
+      "Weil der Vokal kurz ist",
+      "Weil es ein Fremdwort ist",
+      "Weil das ie ein Dehnungs-h ersetzt"
+    ],
+    "answer": 0
   },
   {
     "type": "single",
@@ -2666,7 +4469,7 @@
     ],
     "items": [
       {
-        "left": "Wald – Wälder (langes a)",
+        "left": "Tag – Tage (g/k)",
         "answer": "Verlängerungsprobe"
       },
       {
@@ -2674,7 +4477,7 @@
         "answer": "Ableitungsprobe"
       },
       {
-        "left": "Tag – Tage (g/k)",
+        "left": "das – dieses/welches",
         "answer": "Ersatzprobe"
       },
       {
@@ -2688,10 +4491,10 @@
     "level": "experte",
     "topic": "Strategien",
     "question": "Finde den Fehler und schreibe das Wort richtig.",
-    "sentence": "Die Silbenprobe hilft bei der Unterscheidung von s und ß.",
-    "errorWord": "Silbenprobe",
+    "sentence": "Bei der Silbenprobe trennst du ein Wort in Sprechsielben.",
+    "errorWord": "Sprechsielben",
     "answers": [
-      "Verlängerungsprobe"
+      "Sprechsilben"
     ]
   },
   {
@@ -2734,9 +4537,9 @@
     "topic": "Lange Vokale",
     "question": "Welches Wort hat ein Dehnungs-h?",
     "options": [
-      "Ahren",
+      "Schal",
       "Sparen",
-      "Wahren",
+      "fahren",
       "Lesen"
     ],
     "answer": 2
@@ -2768,19 +4571,19 @@
     "topic": "s-Laute",
     "question": "„Er liest den Text vor.“ – hier steht s, weil …",
     "options": [
-      "der Vokal kurz ist",
-      "s hier stimmhaft gesprochen wird",
+      "die Ableitungsprobe mit „lesen“ den Wortstamm mit s zeigt",
+      "s hier immer stimmhaft gesprochen wird",
       "es am Wortende steht",
       "es ein Fremdwort ist"
     ],
-    "answer": 1
+    "answer": 0
   },
   {
     "type": "errorfind",
     "level": "experte",
     "topic": "s-Laute",
     "question": "Finde den Fehler und schreibe das Wort richtig.",
-    "sentence": "Der Gäss schmeckt würzig über dem Brot.",
+    "sentence": "Der Gäss schmeckt würzig auf dem Brot.",
     "errorWord": "Gäss",
     "answers": [
       "Käse"
@@ -2823,18 +4626,20 @@
     "errorWord": "montag",
     "answers": [
       "Montag"
-    ]
+    ],
+    "caseSensitive": true
   },
   {
     "type": "errorfind",
     "level": "experte",
     "topic": "Zusammen/Getrennt",
     "question": "Finde den Fehler und schreibe die Wörter richtig.",
-    "sentence": "Er fährt am Wochenende radfahren.",
+    "sentence": "Am Wochenende möchte er radfahren.",
     "errorWord": "radfahren",
     "answers": [
       "Rad fahren"
-    ]
+    ],
+    "caseSensitive": true
   },
   {
     "type": "assign",
@@ -2869,10 +4674,10 @@
     "level": "experte",
     "topic": "Strategien",
     "question": "Finde den Fehler und schreibe das Wort richtig.",
-    "sentence": "Die Silbenprobe hilft bei der Schreibung von s und ß.",
-    "errorWord": "Silbenprobe",
+    "sentence": "Die Ableitunsgprobe zeigt die Wortfamilie von Haus und Häuser.",
+    "errorWord": "Ableitunsgprobe",
     "answers": [
-      "Verlängerungsprobe"
+      "Ableitungsprobe"
     ]
   },
   {
@@ -2883,54 +4688,6 @@
     "answers": [
       "kurzen",
       "kurz"
-    ]
-  },
-  {
-    "type": "strategy",
-    "level": "mindest",
-    "topic": "Strategien",
-    "question": "Erkläre mit der richtigen Strategie: Warum schreibt man „Kamm“ mit doppeltem m?",
-    "options": [
-      "Verlängerungsprobe (Kämme)",
-      "Ableitungsprobe (Kamm – kämmen)",
-      "Silbenprobe (kam|men)",
-      "Ersatzprobe (der – dem)"
-    ],
-    "answer": 0
-  },
-  {
-    "type": "errorfind",
-    "level": "mindest",
-    "topic": "Kurze Vokale",
-    "question": "Finde den Fehler und schreibe das Wort richtig.",
-    "sentence": "Der Bock trägt ein schwarzes Fell.",
-    "errorWord": "Bock",
-    "answers": [
-      "Bock"
-    ]
-  },
-  {
-    "type": "strategy",
-    "level": "regel",
-    "topic": "Strategien",
-    "question": "Erkläre mit der passenden Strategie: Warum heißt es „Flagge“ mit doppeltem g?",
-    "options": [
-      "Weil der Vokal kurz ist (Mitlautverdopplung)",
-      "Weil der Vokal lang ist",
-      "Weil es ein Fremdwort ist",
-      "Weil es am Wortende steht"
-    ],
-    "answer": 0
-  },
-  {
-    "type": "errorfind",
-    "level": "regel",
-    "topic": "Groß/Klein",
-    "question": "Finde den Fehler und schreibe das Wort richtig.",
-    "sentence": "Im frühling blüht der apfelbaum.",
-    "errorWord": "frühling",
-    "answers": [
-      "Frühling"
     ]
   },
   {
@@ -2959,40 +4716,14 @@
   },
   {
     "type": "strategy",
-    "level": "mindest",
-    "topic": "Strategien",
-    "question": "Welche Strategie erklärt die Schreibung von „Teller – tellern“ (d/t)?",
-    "options": [
-      "Ersatzprobe (der Teller – dem Teller)",
-      "Verlängerungsprobe",
-      "Silbenprobe",
-      "Ableitungsprobe"
-    ],
-    "answer": 0
-  },
-  {
-    "type": "strategy",
-    "level": "regel",
-    "topic": "Strategien",
-    "question": "Erkläre: Warum schreibt man „Knie“ mit ie und nicht mit i?",
-    "options": [
-      "Weil der Vokal lang ist (langes i)",
-      "Weil der Vokal kurz ist",
-      "Weil es ein Fremdwort ist",
-      "Weil das ie ein Dehnungs-h ersetzt"
-    ],
-    "answer": 0
-  },
-  {
-    "type": "strategy",
     "level": "experte",
     "topic": "Strategien",
-    "question": "Begründe mit der Strategie: „Sonne“ hat kein h, „Sohn“ auch nicht. Warum?",
+    "question": "Warum schreibt man „Sohn“ mit h, aber „Sonne“ ohne h?",
     "options": [
-      "Weil jeweils ein einfaches langes o vorliegt (kein Dehnungs-h nötig)",
-      "Weil beide Wörter kurz gesprochen werden",
-      "Weil es Fremdwörter sind",
-      "Weil h am Wortanfang steht"
+      "„Sohn“ hat einen langen Vokal mit Dehnungs-h; „Sonne“ einen kurzen Vokal vor nn",
+      "Beide Wörter haben einen kurzen Vokal",
+      "Das h in „Sohn“ ist ein Silbenanfang",
+      "Die Schreibung lässt sich nicht erklären"
     ],
     "answer": 0
   }
@@ -3055,16 +4786,18 @@
             return { ...current, exercises: { byTopic, totals } };
           });
         },
+        saveCompletedTopics(packageId, ids) {
+          const unique = [...new Set(Array.isArray(ids) ? ids : [])];
+          updatePackage(packageId, current => ({ ...current, completedTopics: unique }));
+        },
         saveFinalTest(packageId, result) {
-          updatePackage(packageId, current => ({
-            ...current,
-            finalTest: {
-              correct: result.correct,
-              total: result.total,
-              sections: result.sections || [],
-              evaluatedAt: new Date().toISOString()
-            }
-          }));
+          updatePackage(packageId, current => {
+            const previous = current.finalTest && typeof current.finalTest === "object" ? current.finalTest : {};
+            const levels = { ...(previous.levels || {}) };
+            if (result.level) levels[result.level] = { correct: result.correct, total: result.total, pct: result.pct, passed: !!result.passed, evaluatedAt: result.evaluatedAt || new Date().toISOString() };
+            const totals = Object.values(levels).reduce((sum, item) => ({ correct: sum.correct + (Number(item.correct) || 0), total: sum.total + (Number(item.total) || 0) }), { correct: 0, total: 0 });
+            return { ...current, finalTest: { ...previous, ...totals, levels, sections: Object.entries(levels).map(([id,item]) => ({ id, title: id, correct: item.correct, total: item.total })), evaluatedAt: new Date().toISOString() } };
+          });
         },
         clearFinalTest(packageId) {
           updatePackage(packageId, current => {
@@ -3082,7 +4815,15 @@
     }
 
     window.SprachwissenProgress = createSharedProgressStore(progressStorage);
-    const completed = new Set(JSON.parse(localStorage.getItem("rechtschreibungDone") || "[]"));
+    function safeJsonParse(value, fallback) { try { const parsed = JSON.parse(value); return parsed ?? fallback; } catch (e) { return fallback; } }
+    function readDoneIds() {
+      const allowed = new Set(topics.map(topic => topic.id));
+      const local = safeJsonParse(localStorage.getItem("rechtschreibungDone"), null);
+      const shared = window.SprachwissenProgress?.read?.()?.packages?.rechtschreibung?.completedTopics;
+      const raw = Array.isArray(local) ? local : (Array.isArray(shared) ? shared : []);
+      return [...new Set(raw.filter(id => allowed.has(id)))];
+    }
+    const completed = new Set(readDoneIds());
     let activeTopic = topics[0];
     let activeView = "overview";
 
@@ -3120,8 +4861,12 @@
         .replaceAll('"', "&quot;");
     }
 
-    function normalizeAnswer(value) {
-      return String(value).trim().replace(/\s+/g, " ").replace(/[.!?]+$/g, "").toLowerCase();
+    function normalizeAnswer(value, caseSensitive = false) {
+      const normalized = String(value).trim().replace(/\s+/g, " ").replace(/[.!?]+$/g, "");
+      return caseSensitive ? normalized : normalized.toLowerCase();
+    }
+    function foldAnswer(value, caseSensitive = false) {
+      return normalizeAnswer(value, caseSensitive).replaceAll("ä", "ae").replaceAll("ö", "oe").replaceAll("ü", "ue").replaceAll("ß", "ss");
     }
 
     function renderNav() {
@@ -3221,9 +4966,9 @@
 
     function renderCloze(topic) {
       const [start, options, answer] = topic.check.cloze;
-      return '<section class="check-card" data-check="cloze"><h3>Mini-Check 2: Lückentext</h3><div class="cloze-row"><span>' + escapeHtml(start) + '</span><select data-correct="' + escapeHtml(answer) + '"><option value="">auswählen</option>' +
+      return '<section class="check-card" data-check="cloze"><h3>Mini-Check 2: Lückentext</h3><label class="cloze-row"><span>' + escapeHtml(start) + '</span><select data-correct="' + escapeHtml(answer) + '"><option value="">auswählen</option>' +
         options.map(option => '<option value="' + escapeHtml(option) + '">' + escapeHtml(option) + '</option>').join("") +
-        '</select></div><div class="feedback"></div></section>';
+        '</select></label><div class="feedback"></div></section>';
     }
 
     function renderMatch(topic) {
@@ -3231,9 +4976,9 @@
       const tokens = pairs.map(pair => pair[1]).sort(() => Math.random() - .5);
       const prompt = topic.check.matchPrompt ? '<p>' + escapeHtml(topic.check.matchPrompt) + '</p>' : "";
       return '<section class="check-card" data-check="match"><h3>Mini-Check 3: Zuordnen</h3>' + prompt + '<div class="match-wrap"><div class="match-bank" aria-label="Antworten">' +
-        tokens.map(token => '<div class="drag-token" draggable="true" data-value="' + escapeHtml(token) + '">' + escapeHtml(token) + '</div>').join("") +
+        tokens.map(token => '<div class="drag-token" role="button" tabindex="0" draggable="true" data-value="' + escapeHtml(token) + '">' + escapeHtml(token) + '</div>').join("") +
         '</div><div class="match-targets" aria-label="Zuordnungen">' +
-        pairs.map(pair => '<div class="drop-slot" data-correct="' + escapeHtml(pair[1]) + '"><strong>' + escapeHtml(pair[0]) + '</strong></div>').join("") +
+        pairs.map(pair => '<div class="drop-slot" role="button" tabindex="0" data-correct="' + escapeHtml(pair[1]) + '"><strong>' + escapeHtml(pair[0]) + '</strong></div>').join("") +
         '</div></div><div class="feedback"></div></section>';
     }
 
@@ -3344,7 +5089,8 @@
         textBox.innerHTML = data.tokens.map(([token, isError], index) =>
           '<button class="error-token" type="button" data-error="' + isError + '" data-index="' + index + '">' + escapeHtml(token) + '</button>'
         ).join("");
-        card.dataset.solved = "false";
+        delete card.dataset.solved;
+        delete card.dataset.attempted;
         card.querySelector(".feedback").textContent = "";
       }
 
@@ -3363,6 +5109,7 @@
       });
 
       card.querySelector(".error-check-btn").addEventListener("click", () => {
+        card.dataset.attempted = "true";
         const data = task[activeLevel];
         const levelLabel = { mindest: "Mindeststandard", regel: "Regelstandard", experte: "Expertenstandard" }[activeLevel] || activeLevel;
         let allFound = true;
@@ -3414,7 +5161,7 @@
           '</div><div class="feedback"></div></section>';
       }
       if (check.type === "correct") {
-        return '<section class="check-card" data-check="extra" data-type="correct" data-answers="' + encodeData(check.answers) + '"><h3>Mini-Check 4: ' + escapeHtml(check.title) + '</h3><p>' + escapeHtml(check.prompt) + '</p><p><strong>Fehler:</strong> ' + escapeHtml(check.wrong) + '</p><input class="extra-input" type="text" placeholder="Antwort eingeben"><div class="extra-actions"><button class="extra-check-btn" type="button">Prüfen</button></div><div class="feedback" data-solution="' + escapeHtml(check.solution) + '"></div></section>';
+        return '<section class="check-card" data-check="extra" data-type="correct" data-answers="' + encodeData(check.answers) + '"><h3>Mini-Check 4: ' + escapeHtml(check.title) + '</h3><p>' + escapeHtml(check.prompt) + '</p><p><strong>Fehler:</strong> ' + escapeHtml(check.wrong) + '</p><input class="extra-input" type="text" aria-label="Korrigierte Antwort" placeholder="Antwort eingeben"><div class="extra-actions"><button class="extra-check-btn" type="button">Prüfen</button></div><div class="feedback" data-solution="' + escapeHtml(check.solution) + '"></div></section>';
       }
       if (check.type === "multi") {
         return '<section class="check-card" data-check="extra" data-type="multi"><h3>Mini-Check 4: ' + escapeHtml(check.title) + '</h3><p>' + escapeHtml(check.prompt) + '</p><div class="choice-grid">' +
@@ -3422,7 +5169,7 @@
           '</div><div class="extra-actions"><button class="extra-check-btn" type="button">Prüfen</button></div><div class="feedback"></div></section>';
       }
       if (check.type === "explain") {
-        return '<section class="check-card" data-check="extra" data-type="explain"><h3>Mini-Check 4: ' + escapeHtml(check.title) + '</h3><p>' + escapeHtml(check.prompt) + '</p><textarea class="extra-textarea" placeholder="Schreibe deine Erklärung in 1-2 Sätzen."></textarea><div class="extra-actions"><button class="extra-check-btn" type="button">Beispielantwort anzeigen</button></div><div class="feedback" data-solution="' + escapeHtml(check.sample) + '"></div></section>';
+        return '<section class="check-card" data-check="extra" data-type="explain"><h3>Mini-Check 4: ' + escapeHtml(check.title) + '</h3><p>' + escapeHtml(check.prompt) + '</p><textarea class="extra-textarea" aria-label="Eigene Erklärung" placeholder="Schreibe deine Erklärung in 1-2 Sätzen."></textarea><div class="extra-actions"><button class="extra-check-btn" type="button">Beispielantwort anzeigen</button></div><div class="feedback" data-solution="' + escapeHtml(check.sample) + '"></div></section>';
       }
       return "";
     }
@@ -3453,12 +5200,14 @@
           topicArea.querySelectorAll(".drag-token").forEach(item => item.classList.remove("selected"));
           token.classList.add("selected");
         });
+        token.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); token.click(); } });
       });
       topicArea.querySelectorAll(".drop-slot").forEach(slot => {
         slot.addEventListener("click", () => {
           const selected = topicArea.querySelector(".drag-token.selected");
           if (selected) placeTokenInSlot(selected.dataset.value, slot, topic.id);
         });
+        slot.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); slot.click(); } });
         slot.addEventListener("dragover", event => { event.preventDefault(); slot.classList.add("over"); });
         slot.addEventListener("dragleave", () => slot.classList.remove("over"));
         slot.addEventListener("drop", event => { event.preventDefault(); placeTokenInSlot(event.dataTransfer.getData("text/plain"), slot, topic.id); });
@@ -3590,6 +5339,9 @@
         if (card.dataset.check === "choice") {
           wasAttempted = !!card.querySelector(".choice.correct, .choice.wrong");
           wasCorrect = !!card.querySelector(".choice.correct");
+        } else if (card.dataset.check === "errortext") {
+          wasAttempted = card.dataset.attempted === "true";
+          wasCorrect = card.dataset.solved === "true";
         } else {
           wasAttempted = card.dataset.solved === "true" || card.dataset.solved === "false";
           wasCorrect = card.dataset.solved === "true";
@@ -3610,88 +5362,54 @@
 
     function saveProgress() {
       localStorage.setItem("rechtschreibungDone", JSON.stringify([...completed]));
-      try {
-        const data = window.SprachwissenProgress?.read?.() || { version: 1, packages: {} };
-        window.SprachwissenProgress?.write?.(data);
-      } catch (e) {}
+      window.SprachwissenProgress?.saveCompletedTopics?.("rechtschreibung", [...completed]);
     }
 
     function loadAll() {
-      const done = JSON.parse(localStorage.getItem("rechtschreibungDone") || "[]");
       completed.clear();
-      (Array.isArray(done) ? done : []).forEach(id => completed.add(id));
-      try {
-        const data = JSON.parse(localStorage.getItem(SHARED_PROGRESS_KEY) || "null");
-        if (data && data.packages) window.SprachwissenProgress?.importPackage?.("rechtschreibung", data.packages["rechtschreibung"]);
-      } catch (e) {}
+      readDoneIds().forEach(id => completed.add(id));
     }
-
+    function readQuizLevels() {
+      const result = {};
+      QUIZ_LEVELS.forEach(level => { const value = quizLevelResult(level); if (value) result[level] = value; });
+      return result;
+    }
+    function validQuizLevels(value) {
+      if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+      return Object.entries(value).every(([level,result]) => QUIZ_LEVELS.includes(level) && isValidQuizResult(result));
+    }
     function exportProgress() {
-      const payload = {
-        schemaVersion: 1,
-        packageId: "rechtschreibung",
-        done: [...completed],
-        shared: JSON.parse(localStorage.getItem(SHARED_PROGRESS_KEY) || "null")
-      };
-      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "rechtschreibung-fortschritt.json";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-      if (progressFeedback) progressFeedback.textContent = "Fortschritt als Datei gespeichert.";
+      const data = window.SprachwissenProgress?.read?.() || { version: 1, packages: {} };
+      const payload = { schemaVersion: 1, packageId: "rechtschreibung", done: [...completed], shared: { version: 1, packages: { "rechtschreibung": data.packages?.["rechtschreibung"] || {} } }, quizLevels: readQuizLevels() };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" }), url = URL.createObjectURL(blob), a = document.createElement("a");
+      a.href=url; a.download="rechtschreibung-fortschritt.json"; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+      if (progressFeedback) progressFeedback.textContent="Fortschritt als Datei gespeichert.";
     }
-
-    const importFileInput = document.querySelector("#importFileInput");
-    const exportBtnTop = document.querySelector("#exportBtnTop");
-    const importBtnTop = document.querySelector("#importBtnTop");
-
-    if (exportBtnTop) exportBtnTop.addEventListener("click", exportProgress);
-
-    if (importBtnTop) importBtnTop.addEventListener("click", () => importFileInput.click());
-
-    importFileInput.addEventListener("change", () => {
-      const file = importFileInput.files && importFileInput.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = () => {
-        let parsed;
-        try { parsed = JSON.parse(reader.result); } catch (e) {
-          alert("Die Datei ist keine gültige JSON-Datei.");
-          importFileInput.value = "";
-          return;
-        }
-        if (!parsed || (parsed.packageId && parsed.packageId !== "rechtschreibung")) {
-          alert("Diese Datei gehört zu einem anderen Lernpaket.");
-          importFileInput.value = "";
-          return;
-        }
-        if (!confirm("Willst du den gespeicherten Fortschritt durch die importierte Datei ersetzen?")) {
-          importFileInput.value = "";
-          return;
-        }
-        try {
-          if (Array.isArray(parsed.done)) {
-            localStorage.setItem("rechtschreibungDone", JSON.stringify(parsed.done));
-          }
-          if (parsed.shared && parsed.shared.packages && parsed.shared.packages["rechtschreibung"]) {
-            window.SprachwissenProgress?.importPackage?.("rechtschreibung", parsed.shared.packages["rechtschreibung"]);
-          } else if (parsed.shared) {
-            window.SprachwissenProgress?.write?.(parsed.shared);
-          }
-          loadAll();
-          renderNav();
-          updateProgress();
-          if (progressFeedback) progressFeedback.textContent = "Fortschritt erfolgreich importiert.";
-        } catch (e) {
-          alert("Beim Import ist ein Fehler aufgetreten.");
-        }
-        importFileInput.value = "";
-      };
-      reader.readAsText(file);
+    const importFileInput=document.querySelector("#importFileInput"), exportBtnTop=document.querySelector("#exportBtnTop"), importBtnTop=document.querySelector("#importBtnTop");
+    if (exportBtnTop) exportBtnTop.addEventListener("click",exportProgress);
+    if (importBtnTop) importBtnTop.addEventListener("click",()=>importFileInput.click());
+    if (importFileInput) importFileInput.addEventListener("change",()=>{
+      const file=importFileInput.files?.[0]; if(!file)return; const reader=new FileReader();
+      reader.onload=()=>{
+        const parsed=safeJsonParse(reader.result,null), allowed=new Set(topics.map(topic=>topic.id));
+        if (!parsed || parsed.schemaVersion !== 1 || parsed.packageId !== "rechtschreibung" || !Array.isArray(parsed.done) || !parsed.shared?.packages?.["rechtschreibung"] || !validQuizLevels(parsed.quizLevels)) { alert("Die Importdatei ist ungültig oder gehört nicht zu diesem Lernpaket."); importFileInput.value=""; return; }
+        if (!confirm("Willst du den gespeicherten Fortschritt durch die importierte Datei ersetzen?")) { importFileInput.value=""; return; }
+        const done=[...new Set(parsed.done.filter(id=>allowed.has(id)))];
+        localStorage.setItem("rechtschreibungDone",JSON.stringify(done));
+        window.SprachwissenProgress?.importPackage?.("rechtschreibung",parsed.shared.packages["rechtschreibung"]);
+        window.SprachwissenProgress?.saveCompletedTopics?.("rechtschreibung", done);
+        window.SprachwissenProgress?.clearFinalTest?.("rechtschreibung");
+        QUIZ_LEVELS.forEach(level=>{
+          const imported=parsed.quizLevels[level];
+          if(imported){
+            const result={ correct:imported.correct, total:imported.total, pct:Math.round(imported.correct/imported.total*100), passed:(imported.correct/imported.total*100)>=QUIZ_UNLOCK_PCT, evaluatedAt:typeof imported.evaluatedAt==="string"?imported.evaluatedAt:new Date().toISOString() };
+            localStorage.setItem(QUIZ_KEYS[level],JSON.stringify(result));
+            window.SprachwissenProgress?.saveFinalTest?.("rechtschreibung",{ level, ...result });
+          } else localStorage.removeItem(QUIZ_KEYS[level]);
+        });
+        ensureActiveQuizLevel(); loadAll(); renderNav(); updateProgress(); updateQuizTabs(); if(activeView==="quiz")renderQuiz();
+        if(progressFeedback)progressFeedback.textContent="Fortschritt erfolgreich importiert."; importFileInput.value="";
+      }; reader.readAsText(file);
     });
 
     function updateProgress() {
@@ -3703,7 +5421,9 @@
         progressFeedback.dataset.step = String(feedbackStep);
         progressFeedback.innerHTML = "<strong>Lernfeedback " + feedbackStep + "%</strong>" + progressFeedbackMessages[feedbackStep];
       }
-      completeBtn.textContent = completed.has(activeTopic.id) ? "Thema verstanden" : "Ich habe das Thema verstanden";
+      const ready = activeView === "topic" && currentTopicChecksSolved();
+      completeBtn.disabled = activeView === "topic" && !ready && !completed.has(activeTopic.id);
+      completeBtn.textContent = completed.has(activeTopic.id) ? "Thema abgeschlossen" : (ready ? "Thema abschließen" : "Checks noch offen");
     }
 
     function hideQuiz() { testSection.style.display = "none"; }
@@ -3718,7 +5438,7 @@
       renderTopic(activeTopic);
       renderNav();
       updateProgress();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (window.innerWidth <= 980) topicArea.scrollIntoView({ behavior: "smooth", block: "start" }); else window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function showQuiz() {
@@ -3727,6 +5447,7 @@
       topicArea.innerHTML = "";
       testSection.style.display = "block";
       completeBtn.style.display = "none";
+      renderQuiz();
       currentPath.textContent = "Kapitel 4: Teste dein Wissen";
       renderNav();
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -3743,7 +5464,12 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
+    function currentTopicChecksSolved() {
+      const cards = [...topicArea.querySelectorAll(".check-card[data-check]")];
+      return cards.length > 0 && cards.every(card => card.dataset.check === "choice" ? !!card.querySelector(".choice.correct") : card.dataset.solved === "true");
+    }
     completeBtn.addEventListener("click", () => {
+      if (!currentTopicChecksSolved()) { if (progressFeedback) progressFeedback.textContent = "Bearbeite zuerst alle Mini-Checks dieses Themas."; return; }
       completed.add(activeTopic.id);
       saveProgress();
       renderNav();
@@ -3751,63 +5477,69 @@
     });
 
     resetProgressBtn.addEventListener("click", () => {
-      completed.clear();
-      localStorage.removeItem("rechtschreibungDone");
+      if (!confirm("Willst du wirklich den gesamten Fortschritt dieses Lernpakets löschen?")) return;
+      completed.clear(); localStorage.removeItem("rechtschreibungDone");
+      Object.values({"mindest": "rechtschreibungMs", "regel": "rechtschreibungRs", "experte": "rechtschreibungEs"}).forEach(key => localStorage.removeItem(key));
       window.SprachwissenProgress?.resetPackage("rechtschreibung");
-      renderNav();
-      updateProgress();
+      activeQuizLevel="mindest"; renderNav(); updateProgress(); renderQuiz();
     });
 
     const QUIZ_LEVELS = ["mindest", "regel", "experte"];
-    const QUIZ_KEYS = {
-      mindest: "rechtschreibungMs",
-      regel: "rechtschreibungRs",
-      experte: "rechtschreibungEs"
-    };
-    const QUIZ_LABELS = {
-      mindest: "Mindeststandard",
-      regel: "Regelstandard",
-      experte: "Expertenstandard"
-    };
+    const QUIZ_KEYS = { mindest: "rechtschreibungMs", regel: "rechtschreibungRs", experte: "rechtschreibungEs" };
+    const QUIZ_LABELS = { mindest: "Mindeststandard", regel: "Regelstandard", experte: "Expertenstandard" };
     const QUIZ_UNLOCK_PCT = 80;
     let activeQuizLevel = "mindest";
 
+    function isValidQuizResult(data) {
+      return !!data && Number.isInteger(data.correct) && data.total === 20 && data.correct >= 0 && data.correct <= data.total;
+    }
     function quizLevelResult(level) {
       let data = null;
       try { data = JSON.parse(localStorage.getItem(QUIZ_KEYS[level]) || "null"); } catch (e) {}
-      return data && typeof data.correct === "number" && typeof data.total === "number" ? data : null;
+      if (!isValidQuizResult(data)) return null;
+      const pct = Math.round((data.correct / data.total) * 100);
+      return { ...data, pct, passed: pct >= QUIZ_UNLOCK_PCT };
+    }
+    function quizLevelPassed(level) {
+      const result = quizLevelResult(level);
+      return !!result && quizPct(result) >= QUIZ_UNLOCK_PCT;
     }
     function quizIsUnlocked(level) {
       const i = QUIZ_LEVELS.indexOf(level);
-      if (i === 0) return true;
-      const prev = QUIZ_LEVELS[i - 1];
-      const res = quizLevelResult(prev);
-      if (!res || res.total === 0) return false;
-      return (res.correct / res.total) * 100 >= QUIZ_UNLOCK_PCT;
+      if (i <= 0) return i === 0;
+      return QUIZ_LEVELS.slice(0, i).every(quizLevelPassed);
     }
-    function quizPct(res) {
-      if (!res || res.total === 0) return 0;
-      return Math.round((res.correct / res.total) * 100);
+    function quizPct(res) { return !res || !res.total ? 0 : Math.round((res.correct / res.total) * 100); }
+    function allQuizLevelsPassed() { return QUIZ_LEVELS.every(quizLevelPassed); }
+    function ensureActiveQuizLevel() {
+      if (quizIsUnlocked(activeQuizLevel)) return;
+      activeQuizLevel = [...QUIZ_LEVELS].reverse().find(quizIsUnlocked) || "mindest";
     }
-
-    function renderQuiz() {
-      // Tabs
-      const tabs = document.querySelector("#quizTabs");
-      [...tabs.querySelectorAll(".quiz-tab")].forEach(tab => {
+    function questionsForLevel(level) {
+      return testQuestions.map((question, index) => ({ question, index })).filter(item => item.question.level === level);
+    }
+    function updateQuizTabs() {
+      ensureActiveQuizLevel();
+      document.querySelectorAll("#quizTabs .quiz-tab").forEach(tab => {
         const level = tab.dataset.level;
         const unlocked = quizIsUnlocked(level);
+        const active = level === activeQuizLevel;
         tab.disabled = !unlocked;
-        tab.classList.toggle("active", level === activeQuizLevel);
+        tab.classList.toggle("active", active);
         tab.classList.toggle("locked", !unlocked);
-        const prevRes = quizLevelResult(QUIZ_LEVELS[QUIZ_LEVELS.indexOf(level) - 1]);
-        tab.textContent = unlocked
-          ? QUIZ_LABELS[level]
-          : QUIZ_LABELS[level] + " 🔒";
+        tab.setAttribute("aria-selected", String(active));
+        tab.setAttribute("tabindex", active ? "0" : "-1");
+        tab.textContent = QUIZ_LABELS[level] + (unlocked ? "" : " 🔒");
       });
+      const activeTabId = { mindest: "quizTabMindest", regel: "quizTabRegel", experte: "quizTabExperte" }[activeQuizLevel];
+      document.querySelector("#quizContainer").setAttribute("aria-labelledby", activeTabId);
+    }
+    function renderQuiz() {
+      updateQuizTabs();
       const container = document.querySelector("#quizContainer");
       container.innerHTML = "";
       if (!quizIsUnlocked(activeQuizLevel)) {
-        container.innerHTML = '<div class="quiz-locked">Dieses Niveau ist noch gesperrt. Erreiche im vorherigen Niveau mindestens ' + QUIZ_UNLOCK_PCT + '% (' + QUIZ_UNLOCK_PCT + ' von 100 Punkten), um es freizuschalten.</div>';
+        container.innerHTML = '<div class="quiz-locked">Dieses Niveau ist noch gesperrt. Erreiche im vorherigen Niveau mindestens 16 von 20 Punkten (80 %), um es freizuschalten.</div>';
         document.querySelector("#quizScore").innerHTML = "";
         return;
       }
@@ -3816,202 +5548,119 @@
       sectionElement.className = "quiz-section";
       const prevRes = quizLevelResult(activeQuizLevel);
       const prevText = prevRes ? "Bisher: " + prevRes.correct + " von " + prevRes.total + " (" + quizPct(prevRes) + "%)" : "Noch nicht ausgewertet";
-      sectionElement.innerHTML = '<div class="quiz-section-header"><h3>' + escapeHtml(section.title) + '</h3><span class="quiz-section-score">' + prevText + '</span></div>';
-      for (let index = section.from; index <= section.to; index++) {
-        const q = testQuestions[index];
+      sectionElement.innerHTML = '<div class="quiz-section-header"><h3>' + escapeHtml(section.title) + '</h3><span class="quiz-section-score" aria-live="polite">' + prevText + '</span></div>';
+      questionsForLevel(activeQuizLevel).forEach((item, position) => {
+        const q = item.question, index = item.index;
         const card = document.createElement("article");
         card.className = "quiz-card";
         card.dataset.index = index;
-        let html = '<div class="question-title">' + escapeHtml((index + 1) + ". " + q.question) + '</div>';
-        if (q.type === "single") {
-          q.options.forEach((option, optionIndex) => {
-            html += '<label><input type="radio" name="q_' + index + '" value="' + optionIndex + '"> ' + escapeHtml(option) + '</label>';
-          });
-        }
-        if (q.type === "strategy") {
-          html += '<div class="strategy-badge">Erklärung mit Strategie</div>';
-          q.options.forEach((option, optionIndex) => {
-            html += '<label><input type="radio" name="q_' + index + '" value="' + optionIndex + '"> ' + escapeHtml(option) + '</label>';
-          });
+        const titleId = "quiz-question-" + index;
+        let html = '<div class="question-title" id="' + titleId + '">' + escapeHtml((position + 1) + ". " + q.question) + '</div>';
+        if (q.type === "single" || q.type === "strategy") {
+          if (q.type === "strategy") html += '<div class="strategy-badge">Erklärung mit Strategie</div>';
+          html += '<fieldset class="quiz-options" aria-labelledby="' + titleId + '"><legend class="sr-only">Eine Antwort auswählen</legend>';
+          q.options.forEach((option, optionIndex) => { html += '<label><input type="radio" name="q_' + index + '" value="' + optionIndex + '"> ' + escapeHtml(option) + '</label>'; });
+          html += '</fieldset>';
         }
         if (q.type === "multiple") {
-          q.options.forEach((option, optionIndex) => {
-            html += '<label><input type="checkbox" name="q_' + index + '" value="' + optionIndex + '"> ' + escapeHtml(option) + '</label>';
-          });
-          html += '<div class="hint">Mehrere Antworten können richtig sein.</div>';
+          html += '<fieldset class="quiz-options" aria-labelledby="' + titleId + '"><legend class="sr-only">Alle richtigen Antworten auswählen</legend>';
+          q.options.forEach((option, optionIndex) => { html += '<label><input type="checkbox" name="q_' + index + '" value="' + optionIndex + '"> ' + escapeHtml(option) + '</label>'; });
+          html += '<div class="hint">Mehrere Antworten können richtig sein.</div></fieldset>';
         }
-        if (q.type === "fill") {
-          html += '<input type="text" name="q_' + index + '" placeholder="Antwort eingeben">';
-        }
+        if (q.type === "fill") html += '<input type="text" name="q_' + index + '" aria-labelledby="' + titleId + '" placeholder="Antwort eingeben">';
         if (q.type === "contextFill") {
           html += '<div class="context-fill-line">';
-          q.parts.forEach((part, partIndex) => {
-            html += escapeHtml(part);
-            if (partIndex < q.answers.length) {
-              html += '<input type="text" name="q_' + index + '_' + partIndex + '" aria-label="Lücke ' + (partIndex + 1) + ' zu Aufgabe ' + (index + 1) + '">';
-            }
-          });
+          q.parts.forEach((part, partIndex) => { html += escapeHtml(part); if (partIndex < q.answers.length) html += '<input type="text" name="q_' + index + '_' + partIndex + '" aria-label="Lücke ' + (partIndex + 1) + ' zu Aufgabe ' + (position + 1) + '">'; });
           html += '</div>';
         }
-        if (q.type === "assign") {
-          q.items.forEach((item, itemIndex) => {
-            html += '<div class="assign-row"><div class="word">' + escapeHtml(item.left) + '</div><select name="q_' + index + '_' + itemIndex + '"><option value="">Bitte auswählen</option>' + q.options.map(option => '<option value="' + escapeHtml(option) + '">' + escapeHtml(option) + '</option>').join("") + '</select></div>';
-          });
-        }
+        if (q.type === "assign") q.items.forEach((row, rowIndex) => { html += '<div class="assign-row"><div class="word">' + escapeHtml(row.left) + '</div><select name="q_' + index + '_' + rowIndex + '" aria-label="Zuordnung für ' + escapeHtml(row.left) + '"><option value="">Bitte auswählen</option>' + q.options.map(option => '<option value="' + escapeHtml(option) + '">' + escapeHtml(option) + '</option>').join("") + '</select></div>'; });
         if (q.type === "errorfind") {
-          const marked = q.sentence.replace(q.errorWord, '<mark class="error-mark">' + escapeHtml(q.errorWord) + '</mark>');
-          html += '<div class="errorfind-sentence">' + marked + '</div>';
-          html += '<input type="text" name="q_' + index + '" placeholder="Richtige Schreibweise eingeben">';
+          const marked = escapeHtml(q.sentence).replace(escapeHtml(q.errorWord), '<mark class="error-mark">' + escapeHtml(q.errorWord) + '</mark>');
+          html += '<div class="errorfind-sentence">' + marked + '</div><input type="text" name="q_' + index + '" aria-labelledby="' + titleId + '" placeholder="Korrigiertes Wort eingeben">';
         }
-        html += '<div class="feedback"></div>';
+        if (q.type === "punctuationEdit") html += '<div class="errorfind-sentence">' + escapeHtml(q.sentence) + '</div><input type="text" name="q_' + index + '" aria-labelledby="' + titleId + '" placeholder="Vollständigen korrigierten Satz eingeben">';
+        html += '<div class="feedback" aria-live="polite"></div>';
         card.innerHTML = html;
         sectionElement.appendChild(card);
-      }
+      });
       container.appendChild(sectionElement);
       document.querySelector("#quizScore").innerHTML = "";
     }
-
+    function normalizePunctuationAnswer(value) {
+      return String(value).trim().replace(/[„“”]/g, '"').replace(/\s+([,.;:!?])/g, "$1").replace(/\s+/g, " ").toLowerCase();
+    }
     function scoreQuizQuestion(card) {
-      const index = Number(card.dataset.index);
-      const q = testQuestions[index];
-      let isCorrect = false;
-      let solution = "";
-      if (q.type === "single") {
-        const checked = card.querySelector('input[name="q_' + index + '"]:checked');
-        isCorrect = !!checked && Number(checked.value) === q.answer;
-        solution = q.options[q.answer];
-      }
-      if (q.type === "strategy") {
-        const checked = card.querySelector('input[name="q_' + index + '"]:checked');
-        isCorrect = !!checked && Number(checked.value) === q.answer;
-        solution = q.options[q.answer];
-      }
-      if (q.type === "multiple") {
-        const selected = [...card.querySelectorAll('input[name="q_' + index + '"]:checked')].map(input => Number(input.value)).sort((a,b) => a-b);
-        const answers = [...q.answers].sort((a,b) => a-b);
-        isCorrect = selected.length === answers.length && selected.every((value, i) => value === answers[i]);
-        solution = q.answers.map(i => q.options[i]).join(", ");
-      }
-      if (q.type === "fill") {
-        const input = card.querySelector('input[name="q_' + index + '"]');
-        const userAnswer = normalizeAnswer(input.value).replaceAll("ä", "ae").replaceAll("ö", "oe").replaceAll("ü", "ue").replaceAll("ß", "ss");
-        isCorrect = q.answers.some(answer => normalizeAnswer(answer).replaceAll("ä", "ae").replaceAll("ö", "oe").replaceAll("ü", "ue").replaceAll("ß", "ss") === userAnswer);
-        solution = q.answers[0];
-      }
-      if (q.type === "contextFill") {
-        isCorrect = q.answers.every((answer, answerIndex) => {
-          const input = card.querySelector('input[name="q_' + index + '_' + answerIndex + '"]');
-          const userAnswer = normalizeAnswer(input?.value || "").replaceAll("ä", "ae").replaceAll("ö", "oe").replaceAll("ü", "ue").replaceAll("ß", "ss");
-          const expected = normalizeAnswer(answer).replaceAll("ä", "ae").replaceAll("ö", "oe").replaceAll("ü", "ue").replaceAll("ß", "ss");
-          return userAnswer === expected;
-        });
-        solution = q.answers.map((answer, answerIndex) => "Lücke " + (answerIndex + 1) + ": " + answer).join("; ");
-      }
-      if (q.type === "assign") {
-        isCorrect = q.items.every((item, itemIndex) => {
-          const select = card.querySelector('select[name="q_' + index + '_' + itemIndex + '"]');
-          return select.value === item.answer;
-        });
-        solution = q.items.map(item => item.left + " = " + item.answer).join("; ");
-      }
-      if (q.type === "errorfind") {
-        const input = card.querySelector('input[name="q_' + index + '"]');
-        const userAnswer = normalizeAnswer(input.value).replaceAll("ä", "ae").replaceAll("ö", "oe").replaceAll("ü", "ue").replaceAll("ß", "ss");
-        isCorrect = q.answers.some(answer => normalizeAnswer(answer).replaceAll("ä", "ae").replaceAll("ö", "oe").replaceAll("ü", "ue").replaceAll("ß", "ss") === userAnswer);
-        solution = q.answers[0];
-      }
+      const index = Number(card.dataset.index), q = testQuestions[index];
+      let isCorrect = false, solution = "";
+      const preserveCase = q.caseSensitive === true || (["fill", "errorfind"].includes(q.type) && Array.isArray(q.answers) && q.answers.length > 0 && q.answers.every(answer => /^[A-ZÄÖÜ]/.test(String(answer).trim())));
+      if (q.type === "single" || q.type === "strategy") { const checked=card.querySelector('input[name="q_'+index+'"]:checked'); isCorrect=!!checked && Number(checked.value)===q.answer; solution=q.options[q.answer]; }
+      if (q.type === "multiple") { const selected=[...card.querySelectorAll('input[name="q_'+index+'"]:checked')].map(x=>Number(x.value)).sort((a,b)=>a-b); const answers=[...q.answers].sort((a,b)=>a-b); isCorrect=selected.length===answers.length&&selected.every((v,i)=>v===answers[i]); solution=q.answers.map(i=>q.options[i]).join(", "); }
+      if (q.type === "fill" || q.type === "errorfind") { const input=card.querySelector('input[name="q_'+index+'"]'); const user=foldAnswer(input.value, preserveCase); isCorrect=q.answers.some(answer=>foldAnswer(answer, preserveCase)===user); solution=q.answers[0]; }
+      if (q.type === "punctuationEdit") { const input=card.querySelector('input[name="q_'+index+'"]'); const user=normalizePunctuationAnswer(input.value); isCorrect=q.answers.some(answer=>normalizePunctuationAnswer(answer)===user); solution=q.answers[0]; }
+      if (q.type === "contextFill") { isCorrect=q.answers.every((answer,i)=>{ const input=card.querySelector('input[name="q_'+index+'_'+i+'"]'); return foldAnswer(input?.value||"",!!q.caseSensitive)===foldAnswer(answer,!!q.caseSensitive); }); solution=q.answers.join("; "); }
+      if (q.type === "assign") { isCorrect=q.items.every((row,i)=>card.querySelector('select[name="q_'+index+'_'+i+'"]').value===row.answer); solution=q.items.map(row=>row.left+" = "+row.answer).join("; "); }
       return { isCorrect, solution };
     }
-
+    function isQuizQuestionAnswered(card) {
+      const index=Number(card.dataset.index), q=testQuestions[index];
+      if (q.type === "single" || q.type === "strategy" || q.type === "multiple") return !!card.querySelector('input[name="q_'+index+'"]:checked');
+      if (q.type === "fill" || q.type === "errorfind" || q.type === "punctuationEdit") return !!card.querySelector('input[name="q_'+index+'"]').value.trim();
+      if (q.type === "contextFill") return q.answers.every((_,i)=>card.querySelector('input[name="q_'+index+'_'+i+'"]').value.trim());
+      if (q.type === "assign") return q.items.every((_,i)=>card.querySelector('select[name="q_'+index+'_'+i+'"]').value);
+      return false;
+    }
     function quizFeedback(pct) {
-      // Motivierende Rückmeldung in 10%-Schritten (0..100)
       if (pct >= 100) return "Perfekt! Du hast alles richtig – absolut spitze Leistung.";
-      if (pct >= 90)  return "Knapp an der Hundertprozent – das sitzt richtig fest. Prima!";
-      if (pct >= 80)  return "Top gemacht! Solide und sicher – das ist ein starkes Ergebnis.";
-      if (pct >= 70)  return "Guter Lauf! Die meisten Regeln beherrschst du schon.";
-      if (pct >= 60)  return "Schon ordentlich – mit etwas Wiederholung wird das noch sicherer.";
-      if (pct >= 50)  return "Die Hälfte stimmt – ein solider Zwischenstand, weiter so!";
-      if (pct >= 40)  return "Noch nicht ganz: übe die fraglichen Regeln gezielt weiter, dann klappt's. Setze den Test mit „Zurücksetzen“ zurück und versuche ihn erneut.";
-      if (pct >= 30)  return "Es fehlt noch das ein oder andere – mehr Übung lohnt sich jetzt richtig. Mit „Zurücksetzen“ kannst du den Test neu starten.";
-      if (pct >= 20)  return "Erste Schritte sind da, aber du solltest noch deutlich mehr üben. Setze den Test zurück und probiere ihn nach dem Üben noch einmal.";
-      if (pct >= 10)  return "Kaum was sitzt noch – nimm dir Zeit und trainiere die Regeln Schritt für Schritt. Danach den Test über „Zurücksetzen“ neu versuchen.";
-      return "Noch ganz am Anfang: keine Sorge, mit regelmäßigem Üben wird das deutlich besser. Setze den Test zurück und starte frisch.";
+      if (pct >= 90) return "Fast fehlerfrei – das sitzt richtig fest. Prima!";
+      if (pct >= 80) return "Top gemacht! Das ist ein starkes Ergebnis.";
+      if (pct >= 60) return "Schon ordentlich – mit etwas Wiederholung wird das noch sicherer.";
+      if (pct >= 40) return "Übe die unsicheren Regeln gezielt und versuche dieses Niveau danach erneut.";
+      return "Nimm dir Zeit und trainiere die Regeln Schritt für Schritt, bevor du es erneut versuchst.";
     }
-
+    function saveLevelResult(level, result) {
+      const previous = quizLevelResult(level);
+      const best = previous && previous.correct >= result.correct ? previous : result;
+      localStorage.setItem(QUIZ_KEYS[level], JSON.stringify(best));
+      window.SprachwissenProgress?.saveFinalTest("rechtschreibung", { level, ...best, section: { id:"rechtschreibung-test-"+level, title:QUIZ_LABELS[level], correct:best.correct, total:best.total } });
+      return best;
+    }
     function checkQuiz() {
-      const section = testSections[QUIZ_LEVELS.indexOf(activeQuizLevel)];
-      const sectionElement = document.querySelector("#testSection .quiz-section");
-      if (!sectionElement) return;
-      let correctCount = 0;
-      let total = 0;
-      sectionElement.querySelectorAll(".quiz-card").forEach(card => {
-        const result = scoreQuizQuestion(card);
-        const feedback = card.querySelector(".feedback");
-        card.classList.remove("correct", "wrong");
-        total++;
-        if (result.isCorrect) {
-          correctCount++;
-          card.classList.add("correct");
-          feedback.innerHTML = '<span class="correct-text">Richtig.</span>';
-        } else {
-          card.classList.add("wrong");
-          feedback.innerHTML = '<span class="wrong-text">Noch nicht richtig.</span>';
-        }
-      });
-      const pct = total ? Math.round((correctCount / total) * 100) : 0;
-      localStorage.setItem(QUIZ_KEYS[activeQuizLevel], JSON.stringify({ correct: correctCount, total: total, pct: pct, evaluatedAt: new Date().toISOString() }));
-      window.SprachwissenProgress?.saveFinalTest("rechtschreibung", {
-        correct: correctCount,
-        total: total,
-        level: activeQuizLevel,
-        pct: pct,
-        sections: [{ id: "rechtschreibung-test-" + activeQuizLevel, title: section.title, correct: correctCount, total: total }]
-      });
-      const nextLevel = QUIZ_LEVELS[QUIZ_LEVELS.indexOf(activeQuizLevel) + 1];
-      const unlockedNext = pct >= QUIZ_UNLOCK_PCT;
-      let msg = "Ergebnis " + QUIZ_LABELS[activeQuizLevel] + ": <b>" + correctCount + " von " + total + " (" + pct + "%)</b>.";
-      if (pct >= QUIZ_UNLOCK_PCT && nextLevel) {
-        msg += '<br><span class="correct-text">' + QUIZ_LABELS[nextLevel] + " ist jetzt freigeschaltet!</span>";
-      } else if (nextLevel) {
-        msg += '<br><span class="hint">Du brauchst mindestens ' + QUIZ_UNLOCK_PCT + '% im ' + QUIZ_LABELS[activeQuizLevel] + ", um " + QUIZ_LABELS[nextLevel] + " freizuschalten.</span>";
-      } else {
-        msg += '<br><span class="hint">Das war das höchste Niveau. Stark!</span>';
+      const cards=[...document.querySelectorAll("#testSection .quiz-section .quiz-card")];
+      if (!cards.length) return;
+      const unanswered=cards.filter(card=>!isQuizQuestionAnswered(card));
+      if (unanswered.length) {
+        document.querySelector("#quizScore").textContent="Bitte bearbeite noch "+unanswered.length+" Aufgabe"+(unanswered.length===1?"":"n")+".";
+        const firstControl = unanswered[0].querySelector('input, select, button, [tabindex="0"]');
+        if (firstControl) firstControl.focus();
+        return;
       }
-      msg += '<br><span class="feedback-motivation">' + escapeHtml(quizFeedback(pct)) + '</span>';
-      document.querySelector("#quizScore").innerHTML = msg;
-      // Hinweis: hier KEIN renderQuiz() – sonst würde das Ergebnis sofort
-      // wieder gelöscht und das Formular neu aufgebaut (Reset wirkte "kaputt").
+      let correctCount=0;
+      cards.forEach(card=>{ const result=scoreQuizQuestion(card), feedback=card.querySelector(".feedback"); card.classList.remove("correct","wrong"); if(result.isCorrect){correctCount++;card.classList.add("correct");feedback.innerHTML='<span class="correct-text">Richtig.</span>';}else{card.classList.add("wrong");feedback.innerHTML='<span class="wrong-text">Noch nicht richtig.</span>';} });
+      const total=cards.length, pct=Math.round(correctCount/total*100), passed=pct>=QUIZ_UNLOCK_PCT;
+      saveLevelResult(activeQuizLevel, {correct:correctCount,total,pct,passed,evaluatedAt:new Date().toISOString()});
+      const nextLevel=QUIZ_LEVELS[QUIZ_LEVELS.indexOf(activeQuizLevel)+1];
+      let msg="Ergebnis "+QUIZ_LABELS[activeQuizLevel]+": <b>"+correctCount+" von "+total+" ("+pct+"%)</b>.";
+      if (nextLevel && quizIsUnlocked(nextLevel)) msg+='<br><span class="correct-text">'+QUIZ_LABELS[nextLevel]+(passed?' ist jetzt freigeschaltet!':' bleibt aufgrund deines Bestwerts freigeschaltet.')+'</span>';
+      else if (nextLevel) msg+='<br><span class="hint">Du brauchst mindestens 16 von 20 Punkten (80 %), um '+QUIZ_LABELS[nextLevel]+' freizuschalten.</span>';
+      else if (allQuizLevelsPassed()) msg+='<br><span class="correct-text">Mit deinen Bestwerten hast du alle drei Niveaus bestanden. Du kannst jetzt den Gelingensnachweis schreiben.</span>';
+      else msg+='<br><span class="hint">Für den Gelingensnachweis brauchst du auch im Expertenstandard mindestens 16 von 20 Punkten.</span>';
+      msg+='<br><span class="feedback-motivation">'+escapeHtml(quizFeedback(pct))+'</span>';
+      document.querySelector("#quizScore").innerHTML=msg;
+      updateQuizTabs();
     }
-
-    function resetQuiz() {
-      document.querySelectorAll("#testSection input").forEach(input => {
-        if (input.type === "radio" || input.type === "checkbox") input.checked = false;
-        if (input.type === "text") input.value = "";
-      });
-      document.querySelectorAll("#testSection select").forEach(select => select.value = "");
-      document.querySelectorAll("#testSection .quiz-card").forEach(card => {
-        card.classList.remove("correct", "wrong");
-        const fb = card.querySelector(".feedback");
-        if (fb) fb.innerHTML = "";
-      });
-      if (document.querySelector("#quizScore")) document.querySelector("#quizScore").innerHTML = "";
-      // Auch die gespeicherten Testergebnisse + Freischaltung zurücksetzen
-      QUIZ_LEVELS.forEach(level => {
-        try { localStorage.removeItem(QUIZ_KEYS[level]); } catch (e) {}
-      });
+    function resetCurrentQuizInputs() { renderQuiz(); }
+    function resetAllQuizResults() {
+      if (!confirm("Willst du wirklich alle Testergebnisse und Freischaltungen dieses Pakets löschen?")) return;
+      QUIZ_LEVELS.forEach(level=>localStorage.removeItem(QUIZ_KEYS[level]));
       window.SprachwissenProgress?.clearFinalTest("rechtschreibung");
-      activeQuizLevel = QUIZ_LEVELS[0];
+      activeQuizLevel="mindest";
       renderQuiz();
     }
-
-    document.querySelector("#quizTabs").addEventListener("click", e => {
-      const tab = e.target.closest(".quiz-tab");
-      if (!tab || tab.disabled) return;
-      activeQuizLevel = tab.dataset.level;
-      renderQuiz();
-    });
-    document.querySelector("#quizCheckBtn").addEventListener("click", checkQuiz);
-    document.querySelector("#quizResetBtn").addEventListener("click", resetQuiz);
+    document.querySelector("#quizTabs").addEventListener("click",e=>{const tab=e.target.closest(".quiz-tab");if(!tab||tab.disabled)return;activeQuizLevel=tab.dataset.level;renderQuiz();});
+    document.querySelector("#quizTabs").addEventListener("keydown",e=>{if(!["ArrowLeft","ArrowRight"].includes(e.key))return;const open=QUIZ_LEVELS.filter(quizIsUnlocked),i=open.indexOf(activeQuizLevel),next=open[(i+(e.key==="ArrowRight"?1:-1)+open.length)%open.length];activeQuizLevel=next;renderQuiz();document.querySelector('.quiz-tab[data-level="'+next+'"]').focus();});
+    document.querySelector("#quizCheckBtn").addEventListener("click",checkQuiz);
+    document.querySelector("#quizResetBtn").addEventListener("click",resetCurrentQuizInputs);
+    document.querySelector("#quizClearResultsBtn").addEventListener("click",resetAllQuizResults);
 
     renderNav();
     renderQuiz();

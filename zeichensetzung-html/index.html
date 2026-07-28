@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Deutsch Rechtschreibung und Zeichensetzung · Phase 8 - 10</title>
+  <title>Deutsch Zeichensetzung · Phase 8–10</title>
   <style>
     :root {
       --ink: #232323;
@@ -15,8 +15,8 @@
       --blue: #063970;
       --blue-soft: #eef6ff;
       --green: #277a32;
-      --orange: #ef7d00;
-      --teal: #008491;
+      --orange: #a94700;
+      --teal: #006d75;
       --violet: #6b3fa0;
       --danger: #b3261e;
       --success: #226c3f;
@@ -747,6 +747,7 @@
     .discovery ul { margin: 8px 0; padding-left: 20px; }
     .discovery li { margin: 6px 0; }
 
+    .reveal-btn {
       min-height: 38px;
       margin-top: 8px;
       padding: 8px 12px;
@@ -1276,6 +1277,18 @@
       .overview-icons { grid-template-columns: repeat(2, minmax(0, 1fr)); }
       .memory-box { grid-template-columns: 1fr; }
     }
+
+    .quiz-options { border: 0; padding: 0; margin: 0; min-width: 0; }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+    button, a.action, select, input[type="text"], textarea { min-height: 42px; }
+    @media (max-width: 680px) {
+      .topbar { position: static; }
+      .controls { position: static; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; }
+    }
   </style>
 </head>
 <body>
@@ -1283,12 +1296,12 @@
     <aside class="side" aria-label="Themennavigation">
       <section class="brand">
         <p class="brand-eyebrow">Rechtschreibung &amp; Zeichensetzung</p>
-        <h1>Deutsch Rechtschreibung und Zeichensetzung · Phase 8 - 10</h1>
+        <h1>Deutsch Zeichensetzung · Phase 8–10</h1>
         <p>Zitation und die sieben Kommaregeln</p>
       </section>
       <section class="progress-box" aria-label="Fortschritt">
         <div class="progress-title">
-          <span>Mini-Checks</span>
+          <span>Themen abgeschlossen</span>
           <span id="progressText">0 von 6</span>
         </div>
         <div class="bar" aria-hidden="true"><span id="progressBar"></span></div>
@@ -1308,7 +1321,7 @@
           </a>
           <img class="grammar-icon" src="assets/rechtschreibung-icon.png" alt="Icon Rechtschreibung und Zeichensetzung">
           <a class="action" id="overviewBtn" href="../index.html">← Zurück zur Startseite</a>
-          <a class="action" id="siblingBtn" href="rechtschreibung-html/index.html">→ Rechtschreibung</a>
+          <a class="action" id="siblingBtn" href="../rechtschreibung-html/index.html">→ Rechtschreibung</a>
           <button class="action export-action" id="exportBtnTop" type="button">Export</button>
           <button class="action import-action" id="importBtnTop" type="button">Import</button>
           <button class="action primary" id="completeBtn" type="button">Ich habe das Thema verstanden</button>
@@ -1329,7 +1342,7 @@
               <div class="overview-icon-tile"><strong>„“</strong><span>Zitat direkt</span></div>
               <div class="overview-icon-tile"><strong>vgl.</strong><span>Zitat indirekt</span></div>
               <div class="overview-icon-tile"><strong>,</strong><span>Aufzählung</span></div>
-              <div class="overview-icon-tile"><strong>;</strong><span>Einschub</span></div>
+              <div class="overview-icon-tile"><strong>, … ,</strong><span>Einschub</span></div>
               <div class="overview-icon-tile"><strong>,</strong><span>Infinitiv</span></div>
               <div class="overview-icon-tile"><strong>…</strong><span>je-desto</span></div>
             </div>
@@ -1341,7 +1354,7 @@
               <li>Ich kann erklären, wann ich zitieren muss und welche Zitierweisen es gibt.</li>
               <li>Ich kann direkte Zitate mit Anführungszeichen, Begleitsatz und Beleg korrekt einbauen.</li>
               <li>Ich kann Auslassungen im Zitat mit […] kennzeichnen.</li>
-              <li>Ich kann indirekte Zitate mit Konjunktiv I und vgl.-Beleg formulieren.</li>
+              <li>Ich kann indirekte Zitate mit Konjunktiv I oder einer begründeten Konjunktiv-II-Ersatzform und vgl.-Beleg formulieren.</li>
               <li>Ich kann Kommas bei Aufzählungen, Satzreihen und Satzgefügen setzen.</li>
               <li>Ich kann Einschübe und Anreden mit Komma abtrennen.</li>
               <li>Ich kann Kommas bei Infinitivgruppen und Gegensätzen (je – desto, doch/sondern) setzen.</li>
@@ -1355,15 +1368,16 @@
           <h2>Teste dein Wissen: Zeichensetzung</h2>
           <p class="intro">Der Abschlusstest ist in drei Niveaus unterteilt. Zuerst bearbeitest du den Mindeststandard. Erst wenn du dort mindestens 80&nbsp;% erreicht hast, schaltest du den Regelstandard frei – und mit 80&nbsp;% im Regelstandard den Expertenstandard. Sobald du alle drei Niveaus erfolgreich gemeistert hast, kannst du den Gelingensnachweis (GN) schreiben.</p>
           <div class="quiz-tabs" id="quizTabs" role="tablist">
-            <button class="quiz-tab" type="button" data-level="mindest" role="tab">Mindeststandard</button>
-            <button class="quiz-tab" type="button" data-level="regel" role="tab">Regelstandard</button>
-            <button class="quiz-tab" type="button" data-level="experte" role="tab">Expertenstandard</button>
+            <button class="quiz-tab" id="quizTabMindest" type="button" data-level="mindest" role="tab" aria-selected="true" aria-controls="quizContainer">Mindeststandard</button>
+            <button class="quiz-tab" id="quizTabRegel" type="button" data-level="regel" role="tab" aria-selected="false" aria-controls="quizContainer">Regelstandard</button>
+            <button class="quiz-tab" id="quizTabExperte" type="button" data-level="experte" role="tab" aria-selected="false" aria-controls="quizContainer">Expertenstandard</button>
           </div>
-          <div id="quizContainer"></div>
+          <div id="quizContainer" role="tabpanel" aria-labelledby="quizTabMindest" tabindex="0"></div>
           <div class="controls">
             <button class="check-btn" type="button" id="quizCheckBtn">Auswerten</button>
-            <button class="reset-btn" type="button" id="quizResetBtn">Zurücksetzen</button>
-            <span id="quizScore" class="score"></span>
+            <button class="reset-btn" type="button" id="quizResetBtn">Eingaben leeren</button>
+            <button class="reset-btn" type="button" id="quizClearResultsBtn">Testergebnisse löschen</button>
+            <span id="quizScore" class="score" aria-live="polite"></span>
           </div>
         </section>
 
@@ -1439,122 +1453,1748 @@
 };
 
     const errorTexts = {
-  zitatgrundlagen: {
-    mindest: {
-      hint: "Umwelt (Thema) – gesamelt->gesammelt, Wisenschaft->Wissenschaft (Konjunktiv I)",
-      tokens: [["Unsere", false], ["Lehrerin", false], ["erklärt,", false], ["die", false], ["Natur", false], ["brauche", false], ["Schutz", false], ["vor", false], ["dem", false], ["Menschen.", false], ["Die", false], ["Wälder", false], ["speichern", false], ["CO2", false], ["und", false], ["kühlen", false], ["das", false], ["Klima", false], ["auf", false], ["der", false], ["ganzen", false], ["Erde.", false], ["Viele", false], ["Flüsse", false], ["sind", false], ["sauber", false], ["geworden,", false], ["seit", false], ["es", false], ["strenge", false], ["Gesetze", false], ["gibt.", false], ["Die", false], ["Autorin", false], ["schreibt,", false], ["die", false], ["Artenvielfalt", false], ["nehme", false], ["jedes", false], ["Jahr", false], ["spürbar", false], ["ab.", false], ["Wir", false], ["sollten", false], ["weniger", false], ["Fleisch", false], ["essen,", false], ["um", false], ["Wasser", false], ["zu", false], ["sparen", false], ["im", false], ["Alltag.", false], ["Die", false], ["Schüler", false], ["pflanzen", false], ["Bäume", false], ["und", false], ["messen", false], ["deren", false], ["Wachstum", false], ["im", false], ["Garten.", false], ["Ein", false], ["Bericht", false], ["zeigt,", false], ["dass", false], ["Recycling", false], ["den", false], ["Müllberg", false], ["deutlich", false], ["verkleinert.", false], ["Die", false], ["Sonne", false], ["liefert", false], ["genug", false], ["Energie", false], ["für", false], ["alle", false], ["Häuser", false], ["auf", false], ["dem", false], ["Kontinent.", false], ["Klimawandel", false], ["bedeutet", false], ["mehr", false], ["Hitze,", false], ["Dürre", false], ["und", false], ["steigende", false], ["Meeresspiegel.", false], ["Jeder", false], ["kann", false], ["mit", false], ["dem", false], ["Fahrrad", false], ["fahren", false], ["statt", false], ["mit", false], ["dem", false], ["schweren", false], ["Auto.", false], ["Unsere", false], ["Klasse", false], ["hat", false], ["schon", false], ["hundert", false], ["Kilo", false], ["Plastik", false], ["aus", false], ["dem", false], ["Park", false], ["gesamelt.", true], ["Die", false], ["Wisenschaft", true], ["warnt,", false], ["dass", false], ["die", false], ["Zeit", false], ["für", false], ["Veränderung", false], ["knapp", false], ["wird.", false], ["Wer", false], ["hinhört,", false], ["versteht,", false], ["dass", false], ["die", false], ["Erde", false], ["ein", false], ["lebendiges", false], ["System", false], ["ist.", false]],
-      solution: "gesamelt->gesammelt, Wisenschaft->Wissenschaft (Konjunktiv I)"
+  "zitatgrundlagen": {
+    "mindest": {
+      "hint": "Prüfe Kennzeichnung und Beleg.",
+      "tokens": [
+        [
+          "Mia",
+          false
+        ],
+        [
+          "schreibt:",
+          false
+        ],
+        [
+          "„Lesen",
+          false
+        ],
+        [
+          "bildet.“",
+          true
+        ],
+        [
+          "Z.",
+          false
+        ],
+        [
+          "4.",
+          false
+        ],
+        [
+          "Ben",
+          false
+        ],
+        [
+          "gibt",
+          false
+        ],
+        [
+          "den",
+          false
+        ],
+        [
+          "Gedanken",
+          false
+        ],
+        [
+          "in",
+          false
+        ],
+        [
+          "eigenen",
+          false
+        ],
+        [
+          "Worten",
+          false
+        ],
+        [
+          "wieder",
+          false
+        ],
+        [
+          "vgl.",
+          true
+        ],
+        [
+          "Z.",
+          false
+        ],
+        [
+          "7.",
+          false
+        ],
+        [
+          "Beide",
+          false
+        ],
+        [
+          "prüfen",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Zitatform.",
+          false
+        ]
+      ],
+      "solution": "„Lesen bildet.“ (Z. 4). | (vgl. Z. 7)."
     },
-    regel: {
-      hint: "Schule (Thema) – Zusamenarbeit->Zusammenarbeit, Aufmerksamkeitt->Aufmerksamkeit (Konjunktiv I)",
-      tokens: [["Die", false], ["Studie", false], ["behauptet,", false], ["gutes", false], ["Lernen", false], ["brauche", false], ["feste", false], ["Routinen", false], ["und", false], ["Geduld.", false], ["Lehrer", false], ["betonen,", false], ["die", false], ["Verlängerung", false], ["helfe", false], ["bei", false], ["fast", false], ["jedem", false], ["schwierigen", false], ["Wort.", false], ["Ein", false], ["Buch", false], ["erklärt,", false], ["die", false], ["Silbentrennung", false], ["zeige,", false], ["wo", false], ["ein", false], ["h", false], ["tatsächlich", false], ["stehe.", false], ["Forscher", false], ["sagen,", false], ["das", false], ["Gedächtnis", false], ["stärke", false], ["sich", false], ["durch", false], ["regelmäßiges", false], ["Abrufen.", false], ["Die", false], ["Schüler", false], ["merken,", false], ["Zusamenarbeit", true], ["mache", false], ["den", false], ["Unterricht", false], ["viel", false], ["lebendiger.", false], ["Ein", false], ["Artikel", false], ["nennt", false], ["lesen", false], ["die", false], ["wichtigste", false], ["aller", false], ["Kulturtechniken", false], ["überhaupt.", false], ["Den.", false], ["Die", false], ["Lehrerin", false], ["schreibt,", false], ["Neugier", false], ["öffne", false], ["Türen,", false], ["die", false], ["sonst", false], ["verschlossen", false], ["blieben.", false], ["Eltern", false], ["berichten,", false], ["vorlesen", false], ["fördere", false], ["die", false], ["Sprache", false], ["des", false], ["Kindes", false], ["früh.", false], ["Die", false], ["Statistik", false], ["zeigt,", false], ["mehr", false], ["Bewegung", false], ["verbessere", false], ["die", false], ["Noten", false], ["der", false], ["Klassen.", false], ["Wir", false], ["lesen,", false], ["dass", false], ["Aufmerksamkeitt", true], ["wie", false], ["ein", false], ["Muskel", false], ["langsam", false], ["wachse.", false], ["Ein", false], ["Experte", false], ["rät,", false], ["das", false], ["Handy", false], ["am", false], ["Abend", false], ["aus", false], ["dem", false], ["Schlafzimmer", false], ["zu", false], ["verbannen.", false], ["Die", false], ["Schule", false], ["betont,", false], ["Fehler", false], ["seien", false], ["Fenster", false], ["zum", false], ["eigenen", false], ["Lernen", false], ["und", false], ["Wachstum.", false], ["Gute", false], ["Bildung", false], ["gelte", false], ["als", false], ["Schlüssel", false], ["für", false], ["ein", false], ["selbstbestimmtes,", false], ["freies", false], ["Leben.", false]],
-      solution: "Zusamenarbeit->Zusammenarbeit, Aufmerksamkeitt->Aufmerksamkeit (Konjunktiv I)"
+    "regel": {
+      "hint": "Unterscheide wörtliche und sinngemäße Übernahme.",
+      "tokens": [
+        [
+          "Der",
+          false
+        ],
+        [
+          "Text",
+          false
+        ],
+        [
+          "sagt",
+          false
+        ],
+        [
+          "„Sport",
+          false
+        ],
+        [
+          "verbindet“",
+          true
+        ],
+        [
+          "(Z.",
+          false
+        ],
+        [
+          "8).",
+          false
+        ],
+        [
+          "Lea",
+          false
+        ],
+        [
+          "erklärt,",
+          false
+        ],
+        [
+          "Sport",
+          false
+        ],
+        [
+          "verbinde",
+          false
+        ],
+        [
+          "Menschen",
+          false
+        ],
+        [
+          "(Z.",
+          false
+        ],
+        [
+          "8).",
+          true
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "vergleichen",
+          false
+        ],
+        [
+          "beide",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Belege.",
+          false
+        ]
+      ],
+      "solution": "„Sport verbindet.“ | (vgl. Z. 8)."
     },
-    experte: {
-      hint: "Technik (Thema) – Algoritmen->Algorithmen, Wisenschaftlerin->Wissenschaftlerin (Konjunktiv I)",
-      tokens: [["Der", false], ["Bericht", false], ["stellt", false], ["fest,", false], ["künstliche", false], ["Intelligenz", false], ["verändere", false], ["die", false], ["Arbeitswelt", false], ["grundlegend.", false], ["Forscher", false], ["schreiben,", false], ["Algoritmen", true], ["träfen", false], ["Entscheidungen,", false], ["die", false], ["früher", false], ["Menschen", false], ["vorbehalten", false], ["waren.", false], ["Eine", false], ["Studie", false], ["warnt,", false], ["wer", false], ["Machine", false], ["Learning", false], ["nicht", false], ["verstehe,", false], ["verliere", false], ["Gestaltungsmacht.", false], ["Die", false], ["Autorin", false], ["erklärt,", false], ["Code", false], ["sei", false], ["eine", false], ["Sprache,", false], ["die", false], ["Maschinen", false], ["präzise", false], ["verstünden.", false], ["Experten", false], ["betonen,", false], ["Datenschutz", false], ["müsse", false], ["technisch", false], ["von", false], ["Beginn", false], ["an", false], ["mitgedacht", false], ["werden.", false], ["Ein", false], ["Artikel", false], ["zeigt,", false], ["Roboter", false], ["übernähmen", false], ["Aufgaben,", false], ["die", false], ["monoton", false], ["und", false], ["gefährlich", false], ["seien.", false], ["Die", false], ["Industrie", false], ["behauptet,", false], ["Automatisierung", false], ["steigere", false], ["die", false], ["Produktivität", false], ["der", false], ["Fabriken", false], ["weltweit.", false], ["Wir", false], ["lesen,", false], ["dass", false], ["smarte", false], ["Sensoren", false], ["Energie", false], ["in", false], ["Gebäuden", false], ["intelligent", false], ["sparten.", false], ["Ein", false], ["Labor", false], ["berichtet,", false], ["Quantencomputer", false], ["könnten", false], ["Verschlüsselung", false], ["eines", false], ["Tages", false], ["brechen.", false], ["Die", false], ["Wisenschaftlerin", true], ["mahnt,", false], ["Ethik", false], ["dürfe", false], ["der", false], ["Geschwindigkeit", false], ["nicht", false], ["hinterherhinken.", false], ["Kritiker", false], ["sagen,", false], ["wer", false], ["die", false], ["Werkzeuge", false], ["besitze,", false], ["bestimme", false], ["über", false], ["die", false], ["Zukunft", false], ["der", false], ["Gesellschaft.", false], ["Ein", false], ["Manifest", false], ["fordert,", false], ["Technik", false], ["müsse", false], ["dem", false], ["Menschen", false], ["dienen", false], ["und", false], ["nicht", false], ["umgekehrt.", false], ["Kluges", false], ["Nutzen", false], ["setze", false], ["voraus,", false], ["dass", false], ["wir", false], ["die", false], ["Folgen", false], ["unserer", false], ["eigenen", false], ["Werkzeuge", false], ["begriffen", false], ["hätten.", false]],
-      solution: "Algoritmen->Algorithmen, Wisenschaftlerin->Wissenschaftlerin (Konjunktiv I)"
-    },
+    "experte": {
+      "hint": "Achte auf Wortlaut, Verbform und Quellenangabe.",
+      "tokens": [
+        [
+          "Im",
+          false
+        ],
+        [
+          "Aufsatz",
+          false
+        ],
+        [
+          "steht",
+          false
+        ],
+        [
+          "Bildung",
+          false
+        ],
+        [
+          "sei",
+          false
+        ],
+        [
+          "wichtig",
+          false
+        ],
+        [
+          "vgl.",
+          false
+        ],
+        [
+          "Z.",
+          false
+        ],
+        [
+          "3.",
+          true
+        ],
+        [
+          "Daneben",
+          false
+        ],
+        [
+          "steht",
+          false
+        ],
+        [
+          "„Bildung",
+          false
+        ],
+        [
+          "ist",
+          false
+        ],
+        [
+          "wichtig“",
+          false
+        ],
+        [
+          "vgl.",
+          false
+        ],
+        [
+          "Z.",
+          false
+        ],
+        [
+          "3.",
+          true
+        ],
+        [
+          "Die",
+          false
+        ],
+        [
+          "Klasse",
+          false
+        ],
+        [
+          "korrigiert",
+          false
+        ],
+        [
+          "beide",
+          false
+        ],
+        [
+          "Formen.",
+          false
+        ]
+      ],
+      "solution": "Bildung sei wichtig (vgl. Z. 3). | „Bildung ist wichtig.“ (Z. 3)."
+    }
   },
-  direktezitate: {
-    mindest: {
-      hint: "Musik (Thema) – Liebblingslieder->Lieblingslieder, errinnert->erinnert (Doppelpunkt, Anführungszeichen, Beleg)",
-      tokens: [["Der", false], ["Sänger", false], ["ruft:", false], ["„Wir", false], ["spielen", false], ["heute", false], ["Abend", false], ["eure", false], ["Liebblingslieder!“", true], ["(V.", false], ["4).", false], ["Die", false], ["Trommlerin", false], ["sagt:", false], ["„Das", false], ["Schlagzeug", false], ["gibt", false], ["dem", false], ["Beat", false], ["die", false], ["nötige", false], ["Kraft.“", false], ["(Z.", false], ["12).", false], ["Mein", false], ["Bruder", false], ["flüstert:", false], ["„Dieser", false], ["Song", false], ["errinnert", true], ["mich", false], ["an", false], ["den", false], ["letzten", false], ["Sommer.“", false], ["(V.", false], ["9).", false], ["Die", false], ["Lehrerin", false], ["verkündet:", false], ["„Bitte", false], ["stimmt", false], ["eure", false], ["Instrumente", false], ["vor", false], ["dem", false], ["Auftritt.“", false], ["(Z.", false], ["3).", false], ["Der", false], ["Gitarrist", false], ["lacht:", false], ["„Wir", false], ["haben", false], ["die", false], ["Strophe", false], ["zum", false], ["dritten", false], ["Mal", false], ["falsch", false], ["begonnen.“", false], ["(V.", false], ["21).", false], ["Das", false], ["Publikum", false], ["jubelt:", false], ["„Noch", false], ["eine", false], ["Zugabe", false], ["wollen", false], ["wir", false], ["laut", false], ["hören!“", false], ["(Z.", false], ["30).", false], ["Meine", false], ["Freundin", false], ["flüstert:", false], ["„Die", false], ["Basslinie", false], ["klingt", false], ["heute", false], ["viel", false], ["tiefer", false], ["als", false], ["gestern.“", false], ["(V.", false], ["15).", false], ["Der", false], ["Bassist", false], ["sagt:", false], ["„Wir", false], ["üben", false], ["den", false], ["Übergang,", false], ["bis", false], ["er", false], ["ganz", false], ["weich", false], ["fließt.“", false], ["(Z.", false], ["8).", false], ["Der", false], ["Moderator", false], ["ruft:", false], ["„Willkommen", false], ["in", false], ["der", false], ["ausverkauften", false], ["Konzerthalle", false], ["der", false], ["Stadt!“", false], ["(V.", false], ["1).", false], ["Die", false], ["Sängerin", false], ["verkündet:", false], ["„Dieses", false], ["Lied", false], ["widme", false], ["ich", false], ["meiner", false], ["großen", false], ["Familie", false], ["zu", false], ["Hause.“", false], ["(Z.", false], ["18).", false], ["Der", false], ["Schlagzeuger", false], ["ruft:", false], ["„Achtung,", false], ["bei", false], ["drei", false], ["zählen", false], ["wir", false], ["den", false], ["Takt", false], ["gemeinsam", false], ["an!“", false], ["(V.", false], ["25).", false], ["Mein", false], ["Nachbar", false], ["flüstert:", false], ["„Die", false], ["Lichter", false], ["wechseln", false], ["genau", false], ["im", false], ["Rhythmus", false], ["der", false], ["Melodie", false], ["mit.“", false], ["(Z.", false], ["22).", false], ["Die", false], ["Band", false], ["schreit:", false], ["„Danke,", false], ["dass", false], ["ihr", false], ["alle", false], ["heute", false], ["Nacht", false], ["gekommen", false], ["seid!“", false], ["(V.", false], ["33).", false]],
-      solution: "Liebblingslieder->Lieblingslieder, errinnert->erinnert (Doppelpunkt, Anführungszeichen, Beleg)"
+  "direktezitate": {
+    "mindest": {
+      "hint": "Setze Doppelpunkt, Anführungszeichen und Beleg.",
+      "tokens": [
+        [
+          "Tom",
+          false
+        ],
+        [
+          "sagt",
+          true
+        ],
+        [
+          "„Wir",
+          false
+        ],
+        [
+          "starten",
+          false
+        ],
+        [
+          "jetzt.“",
+          false
+        ],
+        [
+          "(Z.",
+          false
+        ],
+        [
+          "2).",
+          false
+        ],
+        [
+          "Später",
+          false
+        ],
+        [
+          "liest",
+          false
+        ],
+        [
+          "er",
+          false
+        ],
+        [
+          "„Das",
+          false
+        ],
+        [
+          "Ziel",
+          false
+        ],
+        [
+          "ist",
+          false
+        ],
+        [
+          "nah.",
+          true
+        ],
+        [
+          "(Z.",
+          false
+        ],
+        [
+          "5).",
+          false
+        ],
+        [
+          "Beide",
+          false
+        ],
+        [
+          "Zitate",
+          false
+        ],
+        [
+          "werden",
+          false
+        ],
+        [
+          "geprüft.",
+          false
+        ]
+      ],
+      "solution": "sagt: | nah.“"
     },
-    regel: {
-      hint: "Sport (Thema) – Rasen, glatt, Schweiß (Punkt im Anführungszeichen, Beleg)",
-      tokens: [["Der", false], ["Trainer", false], ["ruft:", false], ["„Lauft", false], ["in", false], ["der", false], ["Pause", false], ["drei", false], ["Runden", false], ["um", false], ["das", false], ["ganze", false], ["Feld!“", false], ["(Z.", false], ["5).", false], ["Die", false], ["Spielerin", false], ["sagt:", false], ["„Wir", false], ["haben", false], ["das", false], ["Tor", false], ["in", false], ["der", false], ["letzten", false], ["Sekunde", false], ["noch", false], ["geschossen.“", false], ["(V.", false], ["14).", false], ["Mein", false], ["Bruder", false], ["keucht:", false], ["„Ich", false], ["glaube,", false], ["meine", false], ["Schuhe", false], ["sind", false], ["für", false], ["den", false], ["Rasen", true], ["zu", false], ["glatt.“", true], ["(Z.", false], ["19).", false], ["Die", false], ["Schiedsrichterin", false], ["pfeift:", false], ["„Das", false], ["Foul", false], ["war", false], ["eindeutig,", false], ["also", false], ["gibt", false], ["es", false], ["einen", false], ["Freistoß.“", false], ["(V.", false], ["27).", false], ["Der", false], ["Kapitän", false], ["ruft:", false], ["„Gebt", false], ["alles,", false], ["denn", false], ["wir", false], ["wollen", false], ["diesen", false], ["Pokal", false], ["wirklich", false], ["holen!“", false], ["(Z.", false], ["31).", false], ["Die", false], ["Zuschauer", false], ["brüllen:", false], ["„Noch", false], ["fünf", false], ["Minuten,", false], ["dann", false], ["ist", false], ["es", false], ["endgültig", false], ["vorbei!“", false], ["(V.", false], ["38).", false], ["Meine", false], ["Freundin", false], ["flüstert:", false], ["„Die", false], ["Gegner", false], ["sind", false], ["schnell,", false], ["aber", false], ["wir", false], ["sind", false], ["im", false], ["Kopf", false], ["stärker.“", false], ["(Z.", false], ["22).", false], ["Der", false], ["Torwart", false], ["schreit:", false], ["„Bleibt", false], ["in", false], ["der", false], ["Deckung,", false], ["sonst", false], ["kommt", false], ["der", false], ["Ball", false], ["unten", false], ["rein!“", false], ["(V.", false], ["9).", false], ["Die", false], ["Lehrerin", false], ["sagt:", false], ["„Sport", false], ["fördert", false], ["den", false], ["Zusammenhalt", false], ["der", false], ["gesamten", false], ["Klassengemeinschaft.“", false], ["(Z.", false], ["2).", false], ["Der", false], ["Arzt", false], ["erklärt:", false], ["„Trinkt", false], ["genug,", false], ["weil", false], ["ihr", false], ["viel", false], ["Schweiß", true], ["verliert", false], ["beim", false], ["Spiel.“", false], ["(V.", false], ["41).", false], ["Der", false], ["Coach", false], ["ruft:", false], ["„Wechselt", false], ["den", false], ["Stürmer,", false], ["er", false], ["sieht", false], ["sichtlich", false], ["müde", false], ["aus", false], ["heute.“", false], ["(Z.", false], ["17).", false], ["Mein", false], ["Vater", false], ["lacht:", false], ["„Früher", false], ["haben", false], ["wir", false], ["auf", false], ["genau", false], ["diesem", false], ["Platz", false], ["gekickt", false], ["als", false], ["Jungen.“", false], ["(V.", false], ["45).", false], ["Die", false], ["Mannschaft", false], ["schreit:", false], ["„Wir", false], ["sind", false], ["stolz", false], ["auf", false], ["jeden", false], ["einzelnen", false], ["von", false], ["uns", false], ["da", false], ["draußen!“", false], ["(Z.", false], ["33).", false]],
-      solution: "Rasen, glatt, Schweiß (Punkt im Anführungszeichen, Beleg)"
+    "regel": {
+      "hint": "Der Wortlaut muss vollständig gekennzeichnet sein.",
+      "tokens": [
+        [
+          "Im",
+          false
+        ],
+        [
+          "Text",
+          false
+        ],
+        [
+          "steht",
+          false
+        ],
+        [
+          "„Lernen",
+          false
+        ],
+        [
+          "braucht",
+          false
+        ],
+        [
+          "Zeit.",
+          true
+        ],
+        [
+          "(Z.",
+          false
+        ],
+        [
+          "6).",
+          false
+        ],
+        [
+          "Mia",
+          false
+        ],
+        [
+          "schreibt:",
+          false
+        ],
+        [
+          "Lernen",
+          false
+        ],
+        [
+          "braucht",
+          false
+        ],
+        [
+          "Zeit.“",
+          true
+        ],
+        [
+          "(Z.",
+          false
+        ],
+        [
+          "6).",
+          false
+        ],
+        [
+          "Sie",
+          false
+        ],
+        [
+          "verbessert",
+          false
+        ],
+        [
+          "beide",
+          false
+        ],
+        [
+          "Zitate.",
+          false
+        ]
+      ],
+      "solution": "Zeit.“ | „Lernen"
     },
-    experte: {
-      hint: "Freundschaft (Thema) – Wunden, einzige (Punkt im Anführungszeichen, Beleg, Auslassung)",
-      tokens: [["Meine", false], ["Freundin", false], ["schreibt:", false], ["„Echte", false], ["Freundschaft", false], ["heilt", false], ["Wunden", true], ["die", false], ["keiner", false], ["sieht.“", false], ["(V.", false], ["7).", false], ["Der", false], ["Brief", false], ["sagt:", false], ["„Ich", false], ["denke", false], ["jeden", false], ["Abend", false], ["an", false], ["unsere", false], ["gemeinsame", false], ["Zeit", false], ["im", false], ["Park.“", false], ["(Z.", false], ["14).", false], ["Mein", false], ["Bruder", false], ["flüstert:", false], ["„Du", false], ["warst", false], ["in", false], ["der", false], ["schwersten", false], ["Stunde", false], ["der", false], ["einzige,", true], ["der", false], ["blieb.“", false], ["(V.", false], ["19).", false], ["Die", false], ["Lehrerin", false], ["verkündet:", false], ["„Vertrauen", false], ["ist", false], ["das", false], ["Fundament,", false], ["auf", false], ["dem", false], ["wir", false], ["hier", false], ["lernen.“", false], ["(Z.", false], ["3).", false], ["Das", false], ["Tagebuch", false], ["notiert:", false], ["„Wir", false], ["lachten,", false], ["bis", false], ["die", false], ["Bänke", false], ["im", false], ["Garten", false], ["vor", false], ["Erschöpfung", false], ["wackelten.“", false], ["(V.", false], ["24).", false], ["Die", false], ["Nachricht", false], ["lautet:", false], ["„Komm", false], ["schnell,", false], ["wir", false], ["treffen", false], ["uns", false], ["am", false], ["See", false], ["wie", false], ["in", false], ["alten", false], ["Tagen.“", false], ["(Z.", false], ["28).", false], ["Meine", false], ["Schwester", false], ["sagt:", false], ["„Du", false], ["hast", false], ["mich", false], ["verstanden,", false], ["ohne", false], ["dass", false], ["ich", false], ["ein", false], ["einziges", false], ["Wort", false], ["sprach.“", false], ["(V.", false], ["31).", false], ["Der", false], ["Freund", false], ["ruft:", false], ["„Versprich", false], ["mir,", false], ["dass", false], ["wir", false], ["uns", false], ["nie", false], ["wegen", false], ["Kleinigkeiten", false], ["entfremden.“", false], ["(Z.", false], ["36).", false], ["Die", false], ["Oma", false], ["flüstert:", false], ["„Die", false], ["besten", false], ["Freunde", false], ["sind", false], ["die,", false], ["mit", false], ["denen", false], ["man", false], ["schweigen", false], ["kann", false], ["zusammen.“", false], ["(V.", false], ["41).", false], ["Das", false], ["Lied", false], ["textet:", false], ["„Wir", false], ["halten", false], ["zusammen,", false], ["wenn", false], ["der", false], ["Sturm", false], ["an", false], ["den", false], ["Fenstern", false], ["zerrt.“", false], ["(Z.", false], ["44).", false], ["Mein", false], ["Nachbar", false], ["schreibt:", false], ["„Dein", false], ["Wort", false], ["war", false], ["ehrlich,", false], ["und", false], ["genau", false], ["das", false], ["hat", false], ["mir", false], ["damals", false], ["geholfen.“", false], ["(V.", false], ["47).", false], ["Die", false], ["Karte", false], ["sagt:", false], ["„Für", false], ["immer", false], ["dein,", false], ["wer", false], ["auch", false], ["immer", false], ["die", false], ["Jahre", false], ["zwischen", false], ["uns", false], ["legt.“", false], ["(Z.", false], ["50).", false], ["Die", false], ["Geschichte", false], ["endet:", false], ["„Und", false], ["sie", false], ["wussten,", false], ["dass", false], ["Freundschaft", false], ["stärker", false], ["ist", false], ["als", false], ["jede", false], ["Entfernung.“", false], ["(V.", false], ["53).", false]],
-      solution: "Wunden, einzige (Punkt im Anführungszeichen, Beleg, Auslassung)"
-    },
+    "experte": {
+      "hint": "Prüfe Auslassung und Satzschluss.",
+      "tokens": [
+        [
+          "Das",
+          false
+        ],
+        [
+          "Zitat",
+          false
+        ],
+        [
+          "lautet:",
+          false
+        ],
+        [
+          "„Wir",
+          false
+        ],
+        [
+          "lernen",
+          false
+        ],
+        [
+          "jeden",
+          false
+        ],
+        [
+          "Tag“",
+          true
+        ],
+        [
+          "(Z.",
+          false
+        ],
+        [
+          "9).",
+          false
+        ],
+        [
+          "Eine",
+          false
+        ],
+        [
+          "Auslassung",
+          false
+        ],
+        [
+          "schreibt",
+          false
+        ],
+        [
+          "man",
+          false
+        ],
+        [
+          "mit",
+          false
+        ],
+        [
+          "runden",
+          false
+        ],
+        [
+          "Klammern",
+          true
+        ],
+        [
+          "im",
+          false
+        ],
+        [
+          "Zitat.",
+          false
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "folgt",
+          false
+        ],
+        [
+          "der",
+          false
+        ],
+        [
+          "Beleg.",
+          false
+        ]
+      ],
+      "solution": "Tag.“ | eckigen Klammern"
+    }
   },
-  indirektezitate: {
-    mindest: {
-      hint: "Mode (Thema) – Näherinnen, kleider->Kleider (Konjunktiv I)",
-      tokens: [["Die", false], ["Autorin", false], ["schreibt,", false], ["die", false], ["Mode", false], ["fördere", false], ["die", false], ["Kreativität", false], ["der", false], ["jungen", false], ["Menschen", false], ["(vgl.", false], ["Z.", false], ["28).", false], ["Der", false], ["Bericht", false], ["sagt,", false], ["nachhaltige", false], ["Kleidung", false], ["werde", false], ["immer", false], ["beliebter", false], ["bei", false], ["den", false], ["Käufern", false], ["(Z.", false], ["12).", false], ["Die", false], ["Studie", false], ["zeigt,", false], ["Secondhand", false], ["rette", false], ["jedes", false], ["Jahr", false], ["Tonnen", false], ["von", false], ["Stoff", false], ["vor", false], ["dem", false], ["Müll", false], ["(vgl.", false], ["Z.", false], ["40).", false], ["Die", false], ["Lehrerin", false], ["erklärt,", false], ["ein", false], ["fairer", false], ["Preis", false], ["schütze", false], ["die", false], ["Näherinnen", true], ["in", false], ["fernen", false], ["Ländern", false], ["(Z.", false], ["7).", false], ["Der", false], ["Artikel", false], ["nennt,", false], ["Baumwolle", false], ["brauche", false], ["viel", false], ["Wasser", false], ["beim", false], ["Anbau", false], ["im", false], ["Feld", false], ["(vgl.", false], ["Z.", false], ["22).", false], ["Die", false], ["Schüler", false], ["merken,", false], ["eigener", false], ["Stil", false], ["stärke", false], ["das", false], ["Selbstbewusstsein", false], ["der", false], ["Jugend", false], ["(Z.", false], ["33).", false], ["Die", false], ["Expertin", false], ["betont,", false], ["Reparatur", false], ["verlängere", false], ["das", false], ["Leben", false], ["eines", false], ["einzelnen", false], ["Kleidungsstücks", false], ["(vgl.", false], ["Z.", false], ["15).", false], ["Der", false], ["Designer", false], ["sagt,", false], ["Farben", false], ["wirkten", false], ["je", false], ["nach", false], ["Licht", false], ["ganz", false], ["unterschiedlich", false], ["auf", false], ["uns", false], ["(Z.", false], ["48).", false], ["Die", false], ["Umfrage", false], ["findet,", false], ["viele", false], ["Jugendliche", false], ["kauften", false], ["seltener,", false], ["dafür", false], ["aber", false], ["bewusster", false], ["ein", false], ["(vgl.", false], ["Z.", false], ["51).", false], ["Die", false], ["Dokumentation", false], ["zeigt,", false], ["schnelle", false], ["Mode", false], ["zerstöre", false], ["die", false], ["Umwelt", false], ["in", false], ["großem", false], ["Maß", false], ["(Z.", false], ["9).", false], ["Die", false], ["Bloggerin", false], ["schreibt,", false], ["ein", false], ["kleider", true], ["Schrank", false], ["voller", false], ["Lieblinge", false], ["mache", false], ["glücklicher", false], ["als", false], ["viel", false], ["(vgl.", false], ["Z.", false], ["37).", false], ["Die", false], ["Verkäuferin", false], ["erklärt,", false], ["gute", false], ["Schnitte", false], ["schmeichelten", false], ["jeder", false], ["Figur", false], ["auf", false], ["ihre", false], ["Weise", false], ["(Z.", false], ["19).", false], ["Die", false], ["Wissenschaftlerin", false], ["warnt,", false], ["Mikroplastik", false], ["gelange", false], ["aus", false], ["den", false], ["Waschungen", false], ["in", false], ["die", false], ["Flüsse", false], ["(vgl.", false], ["Z.", false], ["44).", false]],
-      solution: "Näherinnen, kleider->Kleider (Konjunktiv I)"
+  "indirektezitate": {
+    "mindest": {
+      "hint": "Nutze eigene Worte, passende Verbform und vgl.-Beleg.",
+      "tokens": [
+        [
+          "Mia",
+          false
+        ],
+        [
+          "erklärt,",
+          false
+        ],
+        [
+          "Lesen",
+          false
+        ],
+        [
+          "fördert",
+          true
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Fantasie",
+          false
+        ],
+        [
+          "(vgl.",
+          false
+        ],
+        [
+          "Z.",
+          false
+        ],
+        [
+          "4).",
+          false
+        ],
+        [
+          "Ben",
+          false
+        ],
+        [
+          "schreibt,",
+          false
+        ],
+        [
+          "Sport",
+          false
+        ],
+        [
+          "verbinde",
+          false
+        ],
+        [
+          "Menschen",
+          false
+        ],
+        [
+          "(Z.",
+          false
+        ],
+        [
+          "8).",
+          true
+        ],
+        [
+          "Beide",
+          false
+        ],
+        [
+          "prüfen",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Form.",
+          false
+        ]
+      ],
+      "solution": "fördere | (vgl. Z. 8)."
     },
-    regel: {
-      hint: "Technik (Thema) – Automatisierung, Geschwindigkeit (Konjunktiv I)",
-      tokens: [["Ein", false], ["Bericht", false], ["bedeute", false], ["nicht,", false], ["dass", false], ["die", false], ["Industrie", false], ["automatisch", false], ["gestärkt", false], ["werde", false], ["(vgl.", false], ["Z.", false], ["55).", false], ["Die", false], ["Studie", false], ["erklärt,", false], ["smarte", false], ["Sensoren", false], ["sparten", false], ["Energie,", false], ["wo", false], ["es", false], ["früher", false], ["unmöglich", false], ["schien", false], ["(Z.", false], ["22).", false], ["Die", false], ["Autorin", false], ["meint,", false], ["Algorithmen", false], ["träfen", false], ["Entscheidungen,", false], ["die", false], ["nie", false], ["transparent", false], ["blieben", false], ["(vgl.", false], ["Z.", false], ["41).", false], ["Der", false], ["Experte", false], ["sagt,", false], ["Datenschutz", false], ["müsse", false], ["technisch", false], ["von", false], ["Beginn", false], ["an", false], ["mitgedacht", false], ["werden", false], ["(Z.", false], ["8).", false], ["Die", false], ["Schüler", false], ["merken,", false], ["Code", false], ["verstünde", false], ["eine", false], ["Maschine", false], ["besser", false], ["als", false], ["mancher", false], ["Mensch", false], ["heute", false], ["(vgl.", false], ["Z.", false], ["30).", false], ["Ein", false], ["Artikel", false], ["nennt,", false], ["Roboter", false], ["übernähmen", false], ["Aufgaben,", false], ["die", false], ["monoton", false], ["und", false], ["gefährlich", false], ["seien", false], ["(Z.", false], ["17).", false], ["Die", false], ["Lehrerin", false], ["betont,", false], ["künstliche", false], ["Intelligenz", false], ["verändere", false], ["die", false], ["Schule", false], ["grundlegend", false], ["in", false], ["kurzer", false], ["Zeit", false], ["(vgl.", false], ["Z.", false], ["49).", false], ["Die", false], ["Firma", false], ["behauptet,", false], ["Automatisierung", true], ["steigere", false], ["die", false], ["Produktivität", false], ["der", false], ["Hallen", false], ["weltweit", false], ["(Z.", false], ["3).", false], ["Die", false], ["Wissenschaftlerin", false], ["warnt,", false], ["wer", false], ["die", false], ["Werkzeuge", false], ["besitze,", false], ["bestimme", false], ["über", false], ["die", false], ["Zukunft", false], ["der", false], ["Gesellschaft", false], ["(vgl.", false], ["Z.", false], ["62).", false], ["Ein", false], ["Labor", false], ["berichtet,", false], ["Quantencomputer", false], ["könnten", false], ["Verschlüsselung", false], ["eines", false], ["Tages", false], ["brechen", false], ["(Z.", false], ["25).", false], ["Die", false], ["Kritiker", false], ["sagen,", false], ["Ethik", false], ["dürfe", false], ["der", false], ["Geschwindigkeit", true], ["nicht", false], ["hinterherhinken", false], ["im", false], ["Wettlauf", false], ["(vgl.", false], ["Z.", false], ["38).", false], ["Die", false], ["Dokumentation", false], ["zeigt,", false], ["smarte", false], ["Städte", false], ["leiteten", false], ["den", false], ["Verkehr", false], ["selbstständig", false], ["und", false], ["ruhig", false], ["(Z.", false], ["14).", false], ["Der", false], ["Entwickler", false], ["schreibt,", false], ["gute", false], ["Software", false], ["helfe", false], ["Menschen,", false], ["mehr", false], ["Zeit", false], ["für", false], ["einander", false], ["zu", false], ["haben", false], ["(vgl.", false], ["Z.", false], ["57).", false]],
-      solution: "Automatisierung, Geschwindigkeit (Konjunktiv I)"
+    "regel": {
+      "hint": "Bei Formgleichheit kann Konjunktiv II als Ersatz dienen.",
+      "tokens": [
+        [
+          "Der",
+          false
+        ],
+        [
+          "Autor",
+          false
+        ],
+        [
+          "meint,",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Regeln",
+          false
+        ],
+        [
+          "sind",
+          true
+        ],
+        [
+          "hilfreich",
+          false
+        ],
+        [
+          "(vgl.",
+          false
+        ],
+        [
+          "Z.",
+          false
+        ],
+        [
+          "3).",
+          false
+        ],
+        [
+          "Die",
+          false
+        ],
+        [
+          "Studie",
+          false
+        ],
+        [
+          "sagt,",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Werte",
+          false
+        ],
+        [
+          "würden",
+          false
+        ],
+        [
+          "steigen",
+          false
+        ],
+        [
+          "(Z.",
+          false
+        ],
+        [
+          "9).",
+          true
+        ],
+        [
+          "Wir",
+          false
+        ],
+        [
+          "prüfen",
+          false
+        ],
+        [
+          "beide",
+          false
+        ],
+        [
+          "Belege.",
+          false
+        ]
+      ],
+      "solution": "seien | (vgl. Z. 9)."
     },
-    experte: {
-      hint: "Umwelt (Thema) – Inseln, Erde (Konjunktiv I)",
-      tokens: [["Die", false], ["Autorin", false], ["meint,", false], ["der", false], ["Markt", false], ["werde", false], ["geschwemmt", false], ["von", false], ["billiger", false], ["Kleidung", false], ["aus", false], ["fernen", false], ["Ländern", false], ["(vgl.", false], ["Z.", false], ["55).", false], ["Die", false], ["Studie", false], ["erklärt,", false], ["ein", false], ["Verbot", false], ["bedeute", false], ["nicht,", false], ["dass", false], ["die", false], ["Industrie", false], ["gestärkt", false], ["werde", false], ["über", false], ["Nacht", false], ["(Z.", false], ["28).", false], ["Die", false], ["Lehrerin", false], ["betont,", false], ["das", false], ["Klima", false], ["erwärme", false], ["sich", false], ["schneller,", false], ["als", false], ["viele", false], ["Politiker", false], ["ahnen", false], ["(vgl.", false], ["Z.", false], ["12).", false], ["Der", false], ["Bericht", false], ["nennt,", false], ["Wälder", false], ["speicherten", false], ["CO2", false], ["und", false], ["kühlten", false], ["das", false], ["System", false], ["der", false], ["Erde", false], ["(Z.", false], ["41).", false], ["Die", false], ["Wissenschaftlerin", false], ["warnt,", false], ["das", false], ["Meer", false], ["stiege", false], ["bereits,", false], ["wo", false], ["Inseln", true], ["versänken", false], ["im", false], ["Wasser", false], ["(vgl.", false], ["Z.", false], ["33).", false], ["Ein", false], ["Artikel", false], ["schreibt,", false], ["Recycling", false], ["verkleinere", false], ["den", false], ["Müllberg,", false], ["den", false], ["wir", false], ["täglich", false], ["erzeugten", false], ["(Z.", false], ["19).", false], ["Die", false], ["Schüler", false], ["merken,", false], ["weniger", false], ["Fleisch", false], ["spare", false], ["Wasser,", false], ["das", false], ["sonst", false], ["verschwendet", false], ["würde", false], ["(vgl.", false], ["Z.", false], ["47).", false], ["Die", false], ["Expertin", false], ["sagt,", false], ["die", false], ["Artenvielfalt", false], ["nähme", false], ["ab,", false], ["seit", false], ["die", false], ["Felder", false], ["monoton", false], ["wüchsen", false], ["(Z.", false], ["8).", false], ["Der", false], ["Film", false], ["zeigt,", false], ["die", false], ["Sonne", false], ["liefere", false], ["genug", false], ["Kraft,", false], ["die", false], ["Häuser", false], ["sauber", false], ["zu", false], ["versorgen", false], ["(vgl.", false], ["Z.", false], ["52).", false], ["Die", false], ["Bürgerinitiative", false], ["fordert,", false], ["Kommunen", false], ["pflanzten", false], ["Bäume,", false], ["wo", false], ["zuvor", false], ["Beton", false], ["herrschte", false], ["(Z.", false], ["24).", false], ["Die", false], ["Autorin", false], ["betont,", false], ["wer", false], ["hinhöre,", false], ["verstehe,", false], ["dass", false], ["die", false], ["Erde", true], ["ein", false], ["lebendiges", false], ["System", false], ["bleibe", false], ["(vgl.", false], ["Z.", false], ["60).", false], ["Ein", false], ["Manifest", false], ["ruft,", false], ["wir", false], ["retteten", false], ["die", false], ["Zukunft,", false], ["wenn", false], ["wir", false], ["heute", false], ["handelten", false], ["mutig", false], ["(Z.", false], ["36).", false], ["Die", false], ["Wissenschaft", false], ["mahnt,", false], ["die", false], ["Zeit", false], ["werde", false], ["knapp,", false], ["falls", false], ["wir", false], ["zögerten", false], ["mit", false], ["dem", false], ["notwendigen", false], ["Wandel", false], ["(vgl.", false], ["Z.", false], ["64).", false]],
-      solution: "Inseln, Erde (Konjunktiv I)"
-    },
+    "experte": {
+      "hint": "Trenne Konjunktiv I und Ersatzform sauber.",
+      "tokens": [
+        [
+          "Die",
+          false
+        ],
+        [
+          "Autorin",
+          false
+        ],
+        [
+          "erklärt,",
+          false
+        ],
+        [
+          "das",
+          false
+        ],
+        [
+          "Projekt",
+          false
+        ],
+        [
+          "habe",
+          false
+        ],
+        [
+          "Erfolg",
+          false
+        ],
+        [
+          "(Z.",
+          false
+        ],
+        [
+          "6).",
+          true
+        ],
+        [
+          "Die",
+          false
+        ],
+        [
+          "Forschenden",
+          false
+        ],
+        [
+          "sagen,",
+          false
+        ],
+        [
+          "sie",
+          false
+        ],
+        [
+          "könnten",
+          false
+        ],
+        [
+          "helfen",
+          false
+        ],
+        [
+          "(vgl.",
+          false
+        ],
+        [
+          "Z.",
+          false
+        ],
+        [
+          "8).",
+          true
+        ],
+        [
+          "Nur",
+          false
+        ],
+        [
+          "ein",
+          false
+        ],
+        [
+          "Beleg",
+          false
+        ],
+        [
+          "ist",
+          false
+        ],
+        [
+          "vollständig.",
+          false
+        ]
+      ],
+      "solution": "(vgl. Z. 6). | sie könnten helfen (vgl. Z. 8)."
+    }
   },
-  kommaregeln1: {
-    mindest: {
-      hint: "Freizeit (Thema) – kein Komma vor 'und' (Satzreihe)",
-      tokens: [["Am", false], ["Nachmittag", false], ["treffen", false], ["wir", false], ["uns", false], ["auf", false], ["dem", false], ["Platz", true], ["und", false], ["wir", false], ["spielen", false], ["Fußball", false], ["bis", false], ["es", false], ["dunkel", false], ["wird.", false], ["Meine", false], ["Schwester", false], ["backt", false], ["Kekse", true], ["und", false], ["sie", false], ["dekoriert", false], ["sie", false], ["bunt", false], ["mit", false], ["Zuckerguss", false], ["und", false], ["Streuseln.", false], ["Die", false], ["Kinder", false], ["lachen", false], ["laut", true], ["und", false], ["sie", false], ["rennen", false], ["lachend", false], ["durch", false], ["den", false], ["Garten", false], ["voller", false], ["bunter", false], ["Blumen.", false], ["Wir", false], ["lesen", false], ["ein", false], ["Buch", true], ["und", false], ["wir", false], ["tauschen", false], ["uns", false], ["über", false], ["die", false], ["spannende", false], ["Geschichte", false], ["aus.", false], ["Der", false], ["Hund", false], ["bellt", false], ["fröhlich", true], ["und", false], ["er", false], ["holt", false], ["den", false], ["Stock", false], ["aus", false], ["dem", false], ["hohen", false], ["Gras", false], ["zurück.", false], ["Ich", false], ["höre", false], ["Musik", true], ["und", false], ["ich", false], ["summe", false], ["leise", false], ["den", false], ["Refrain", false], ["aus", false], ["dem", false], ["Radio", false], ["mit.", false], ["Die", false], ["Sonne", false], ["scheint", false], ["warm", true], ["und", false], ["sie", false], ["taucht", false], ["den", false], ["Hof", false], ["in", false], ["ein", false], ["goldenes,", false], ["weiches", false], ["Licht.", false], ["Wir", false], ["basteln", false], ["Schiffe", true], ["und", false], ["wir", false], ["lassen", false], ["sie", false], ["auf", false], ["dem", false], ["Teich", false], ["langsam", false], ["kreiseln", false], ["im", false], ["Wind.", false], ["Die", false], ["Nachbarn", false], ["grüßen", false], ["freundlich", true], ["und", false], ["sie", false], ["laden", false], ["uns", false], ["auf", false], ["einen", false], ["Kaffee", false], ["ein.", false], ["Er", false], ["malt", false], ["Bilder", true], ["und", false], ["er", false], ["hängt", false], ["sie", false], ["stolz", false], ["an", false], ["die", false], ["Wand", false], ["seines", false], ["Zimmers.", false], ["Wir", false], ["fahren", false], ["Rad", true], ["und", false], ["wir", false], ["halten", false], ["an", false], ["der", false], ["Wiese", false], ["voller", false], ["Mohnblumen", false], ["an.", false], ["Die", false], ["Katze", false], ["schläft", false], ["tief", true], ["und", false], ["sie", false], ["schnurrt", false], ["dabei", false], ["ein", false], ["leises,", false], ["zufriedenes", false], ["Lied.", false], ["So", false], ["vergeht", false], ["der", false], ["Nachmittag", false], ["schnell", true], ["und", false], ["er", false], ["endet", false], ["mit", false], ["einem", false], ["gemeinsamen,", false], ["warmen", false], ["Abendessen.", false]],
-      solution: "kein Komma vor 'und' (Satzreihe)"
+  "kommaregeln1": {
+    "mindest": {
+      "hint": "Suche Aufzählungen und Satzgrenzen.",
+      "tokens": [
+        [
+          "Wir",
+          false
+        ],
+        [
+          "kaufen",
+          false
+        ],
+        [
+          "Brot",
+          true
+        ],
+        [
+          "Milch",
+          false
+        ],
+        [
+          "und",
+          false
+        ],
+        [
+          "Äpfel.",
+          false
+        ],
+        [
+          "Mia",
+          false
+        ],
+        [
+          "liest",
+          true
+        ],
+        [
+          "Tom",
+          false
+        ],
+        [
+          "schreibt.",
+          false
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "kontrollieren",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "beide",
+          false
+        ],
+        [
+          "Kommas.",
+          false
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "erklären",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Regel",
+          false
+        ],
+        [
+          "in",
+          false
+        ],
+        [
+          "einem",
+          false
+        ],
+        [
+          "kurzen",
+          false
+        ],
+        [
+          "Satz.",
+          false
+        ]
+      ],
+      "solution": "Brot, | liest,"
     },
-    regel: {
-      hint: "Schule (Thema) – Komma vor Nebensatz; kein Komma bei 'und'-Satzreihe",
-      tokens: [["Ein", false], ["neuer", false], ["Trend", false], ["entsteht", true], ["die", false], ["Menschen", false], ["tragen", false], ["immer", false], ["kürzere", false], ["Hosen", false], ["im", false], ["Sommer.", false], ["Wir", false], ["lernen", false], ["fleißig", true], ["weil", false], ["die", false], ["Prüfung", false], ["am", false], ["Ende", false], ["des", false], ["Jahres", false], ["näher", false], ["rückt.", false], ["Die", false], ["Lehrerin", false], ["erklärt", true], ["und", false], ["sie", false], ["zeigt", false], ["dabei", false], ["die", false], ["Regeln", false], ["an", false], ["der", false], ["weißen", false], ["Tafel.", false], ["Er", false], ["übt", false], ["täglich", true], ["und", false], ["er", false], ["wird", false], ["dabei", false], ["mit", false], ["jedem", false], ["Tag", false], ["ein", false], ["kleines", false], ["Stück", false], ["besser.", false], ["Die", false], ["Schüler", false], ["helfen", false], ["einander", true], ["weil", false], ["niemand", false], ["die", false], ["Aufgabe", false], ["alleine", false], ["verstehen", false], ["will.", false], ["Mein", false], ["Freund", false], ["liest", false], ["laut", true], ["und", false], ["er", false], ["betont", false], ["dabei", false], ["jede", false], ["einzelne,", false], ["wichtige", false], ["Silbe.", false], ["Die", false], ["Pause", false], ["beginnt", true], ["und", false], ["sie", false], ["füllt", false], ["den", false], ["Hof", false], ["mit", false], ["fröhlichem,", false], ["lautem", false], ["Kinderlärm.", false], ["Wir", false], ["schreiben", false], ["einen", false], ["Text", true], ["weil", false], ["die", false], ["Lehrerin", false], ["unsere", false], ["Gedanken", false], ["lesen", false], ["möchte.", false], ["Die", false], ["Klasse", false], ["jubelt", false], ["laut", true], ["und", false], ["sie", false], ["feiert", false], ["den", false], ["gewonnenen", false], ["Wettbewerb", false], ["gemeinsam.", false], ["Ich", false], ["packe", false], ["den", false], ["Ranzen", true], ["und", false], ["ich", false], ["prüfe", false], ["noch", false], ["einmal,", false], ["ob", false], ["alle", false], ["Bücher", false], ["drin", false], ["sind.", false], ["Der", false], ["Sturm", false], ["zieht", false], ["auf", true], ["und", false], ["er", false], ["wirft", false], ["draußen", false], ["die", false], ["Äste", false], ["der", false], ["Bäume", false], ["wild", false], ["hin", false], ["und", false], ["her.", false], ["Unsere", false], ["Gruppe", false], ["probt", true], ["und", false], ["sie", false], ["tritt", false], ["am", false], ["Abend", false], ["vor", false], ["den", false], ["Eltern", false], ["mutig", false], ["auf.", false], ["Guter", false], ["Unterricht", false], ["gelingt", true], ["weil", false], ["Neugier", false], ["stärker", false], ["ist", false], ["als", false], ["jede", false], ["Müdigkeit.", false]],
-      solution: "Komma vor Nebensatz; kein Komma bei 'und'-Satzreihe"
+    "regel": {
+      "hint": "Zwischen Hauptsätzen ohne Konjunktion steht ein Komma.",
+      "tokens": [
+        [
+          "Der",
+          false
+        ],
+        [
+          "Bus",
+          false
+        ],
+        [
+          "kommt",
+          true
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "steigen",
+          false
+        ],
+        [
+          "ein.",
+          false
+        ],
+        [
+          "Lea",
+          false
+        ],
+        [
+          "malt",
+          false
+        ],
+        [
+          "mit",
+          false
+        ],
+        [
+          "Rot",
+          true
+        ],
+        [
+          "Blau",
+          false
+        ],
+        [
+          "und",
+          false
+        ],
+        [
+          "Grün.",
+          false
+        ],
+        [
+          "Beide",
+          false
+        ],
+        [
+          "Sätze",
+          false
+        ],
+        [
+          "brauchen",
+          false
+        ],
+        [
+          "Kommas.",
+          false
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "erklären",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Regel",
+          false
+        ],
+        [
+          "in",
+          false
+        ],
+        [
+          "einem",
+          false
+        ],
+        [
+          "kurzen",
+          false
+        ],
+        [
+          "Satz.",
+          false
+        ]
+      ],
+      "solution": "kommt, | Rot,"
     },
-    experte: {
-      hint: "Essen (Thema) – Komma bei Aufzählung; Komma vor Nebensatz; kein Komma bei 'und'",
-      tokens: [["Ich", false], ["kaufe", false], ["Eier", true], ["Bananen", true], ["Nüsse", true], ["und", false], ["Katzenfutter", false], ["für", false], ["die", false], ["kommende", false], ["Woche", false], ["ein.", false], ["Ein", false], ["gesunder", false], ["Trend", false], ["entsteht", true], ["die", false], ["Menschen", false], ["achten", false], ["plötzlich", false], ["auf", false], ["das,", false], ["was", false], ["sie", false], ["essen.", false], ["Wir", false], ["kochen", false], ["zusammen", true], ["und", false], ["wir", false], ["probieren", false], ["dabei", false], ["Rezepte", false], ["aus", false], ["fernen,", false], ["fremden", false], ["Ländern.", false], ["Der", false], ["Käse", false], ["reift", false], ["lange", true], ["weil", false], ["er", false], ["sonst", false], ["nicht", false], ["seine", false], ["würzige", false], ["Note", false], ["entwickeln", false], ["kann.", false], ["Sie", false], ["backt", false], ["ein", false], ["Brot", true], ["und", false], ["sie", false], ["bestreut", false], ["die", false], ["Kruste", false], ["mit", false], ["Saaten", false], ["und", false], ["grobem", false], ["Salz.", false], ["Frisches", false], ["Obst", false], ["schmeckt", false], ["süß", true], ["und", false], ["es", false], ["gibt", false], ["dem", false], ["Körper", false], ["neue,", false], ["schnelle", false], ["Kraft.", false], ["Wir", false], ["trinken", false], ["Wasser", true], ["Saft", true], ["Tee", true], ["und", false], ["manchmal", false], ["ein", false], ["Glas", false], ["kalte", false], ["Milch", false], ["zum", false], ["Keks.", false], ["Der", false], ["Markt", false], ["bietet", false], ["viel", true], ["weil", false], ["die", false], ["Bauern", false], ["ihre", false], ["Stände", false], ["früh", false], ["am", false], ["Morgen", false], ["aufbauen.", false], ["Er", false], ["rührt", false], ["die", false], ["Suppe", true], ["und", false], ["er", false], ["würzt", false], ["sie", false], ["mit", false], ["Kräutern", false], ["aus", false], ["dem", false], ["eigenen", false], ["Garten.", false], ["Die", false], ["Kinder", false], ["essen", false], ["gern", true], ["und", false], ["sie", false], ["probieren", false], ["dabei", false], ["fast", false], ["alles", false], ["Neue", false], ["ohne", false], ["Murren.", false], ["Ein", false], ["gedeckter", false], ["Tisch", false], ["lädt", true], ["und", false], ["er", false], ["verbindet", false], ["die", false], ["Familie", false], ["mitten", false], ["in", false], ["der", false], ["Woche.", false], ["Gutes", false], ["Essen", false], ["gelingt", true], ["weil", false], ["man", false], ["ihm", false], ["mit", false], ["Ruhe", false], ["und", false], ["Aufmerksamkeit", false], ["begegnet.", false]],
-      solution: "Komma bei Aufzählung; Komma vor Nebensatz; kein Komma bei 'und'"
-    },
+    "experte": {
+      "hint": "Prüfe Aufzählung, Satzreihe und verbindende Wörter.",
+      "tokens": [
+        [
+          "Die",
+          false
+        ],
+        [
+          "Sonne",
+          false
+        ],
+        [
+          "scheint",
+          true
+        ],
+        [
+          "der",
+          false
+        ],
+        [
+          "Wind",
+          false
+        ],
+        [
+          "bleibt",
+          false
+        ],
+        [
+          "kalt.",
+          false
+        ],
+        [
+          "Wir",
+          false
+        ],
+        [
+          "laufen",
+          false
+        ],
+        [
+          "schnell",
+          true
+        ],
+        [
+          "ruhig",
+          false
+        ],
+        [
+          "und",
+          false
+        ],
+        [
+          "konzentriert.",
+          false
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "begründen",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Zeichen.",
+          false
+        ]
+      ],
+      "solution": "scheint, | schnell,"
+    }
   },
-  kommaregeln2: {
-    mindest: {
-      hint: "Familie (Thema) – Einschub braucht zwei Kommas",
-      tokens: [["Ein", false], ["Großteil", false], ["der", false], ["Kleidung", true], ["oft", false], ["kaum", false], ["getragen", false], ["landet", false], ["leider", false], ["irgendwann", false], ["im", false], ["Müll.", false], ["Meine", false], ["Tante", true], ["eigentlich", false], ["eine", false], ["sehr", false], ["geduldige", false], ["Frau", false], ["näht", false], ["die", false], ["Röcke", false], ["selbst.", false], ["Das", false], ["alte", false], ["Haus", true], ["früher", false], ["bewohnt", false], ["von", false], ["meinen", false], ["Großeltern", false], ["steht", false], ["noch", false], ["immer.", false], ["Der", false], ["Opa", true], ["meistens", false], ["schweigsam", false], ["und", false], ["müde", false], ["erzählt", false], ["abends", false], ["alte", false], ["Geschichten.", false], ["Ein", false], ["gutes", false], ["Essen", true], ["meistens", false], ["warm", false], ["und", false], ["selbst", false], ["gekocht", false], ["verbindet", false], ["uns", false], ["am", false], ["Tisch.", false], ["Die", false], ["Kusine", true], ["eigentlich", false], ["erst", false], ["zehn", false], ["Jahre", false], ["alt", false], ["liest", false], ["already", false], ["ganze", false], ["Romane.", false], ["Mein", false], ["Bruder", true], ["zurzeit", false], ["voller", false], ["Energie", false], ["rennt", false], ["den", false], ["ganzen", false], ["Tag", false], ["durch", false], ["den", false], ["Garten.", false], ["Die", false], ["Tante", true], ["sonst", false], ["eher", false], ["sparsam", false], ["kauft", false], ["für", false], ["das", false], ["Fest", false], ["extra", false], ["viele", false], ["Kerzen.", false], ["Ein", false], ["altes", false], ["Foto", true], ["wohl", false], ["aus", false], ["den", false], ["Siebzigern", false], ["zeigt", false], ["die", false], ["ganze", false], ["laute", false], ["Versammlung.", false], ["Die", false], ["Oma", true], ["sonst", false], ["sehr", false], ["streng", false], ["backt", false], ["an", false], ["Feiertagen", false], ["immer", false], ["einen", false], ["großen", false], ["Kuchen.", false], ["Ein", false], ["Geschenk", true], ["meistens", false], ["liebevoll", false], ["verpackt", false], ["wartet", false], ["unter", false], ["dem", false], ["Baum", false], ["auf", false], ["uns.", false], ["Der", false], ["Onkel", true], ["eigentlich", false], ["kein", false], ["Freund", false], ["von", false], ["Reden", false], ["hält", false], ["eine", false], ["kurze,", false], ["warme", false], ["Rede.", false], ["Die", false], ["Familie", true], ["in", false], ["ihren", false], ["verschiedenen", false], ["Rollen", false], ["umarmt", false], ["sich", false], ["zum", false], ["Abschied", false], ["lange.", false]],
-      solution: "Einschub braucht zwei Kommas"
+  "kommaregeln2": {
+    "mindest": {
+      "hint": "Achte auf Anrede und eingeschobene Zusätze.",
+      "tokens": [
+        [
+          "Lena",
+          true
+        ],
+        [
+          "komm",
+          false
+        ],
+        [
+          "bitte",
+          false
+        ],
+        [
+          "her.",
+          false
+        ],
+        [
+          "Der",
+          false
+        ],
+        [
+          "Hund",
+          true
+        ],
+        [
+          "ein",
+          false
+        ],
+        [
+          "junger",
+          false
+        ],
+        [
+          "Beagle",
+          true
+        ],
+        [
+          "schläft.",
+          false
+        ],
+        [
+          "Wir",
+          false
+        ],
+        [
+          "setzen",
+          false
+        ],
+        [
+          "alle",
+          false
+        ],
+        [
+          "nötigen",
+          false
+        ],
+        [
+          "Kommas.",
+          false
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "erklären",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Regel",
+          false
+        ],
+        [
+          "in",
+          false
+        ],
+        [
+          "einem",
+          false
+        ],
+        [
+          "kurzen",
+          false
+        ],
+        [
+          "Satz.",
+          false
+        ]
+      ],
+      "solution": "Lena, | Hund, | Beagle,"
     },
-    regel: {
-      hint: "Tiere (Thema) – Anrede; Apposition mit zwei Kommas; Einschub",
-      tokens: [["Leute", true], ["kauft", false], ["nicht", false], ["so", false], ["viel", false], ["und", false], ["achtet", false], ["mehr", false], ["auf", false], ["die", false], ["Tiere", false], ["in", false], ["unserer", false], ["Nähe.", false], ["Der", false], ["Hund", true], ["ein", false], ["treuer,", false], ["brauner", false], ["Mischling", false], ["bewacht", false], ["das", false], ["Haus", false], ["mit", false], ["wachem", false], ["Blick.", false], ["Die", false], ["Katze", true], ["meistens", false], ["auf", false], ["dem", false], ["Sofa", false], ["liegend", false], ["beobachtet", false], ["die", false], ["Vögel", false], ["am", false], ["Fenster.", false], ["Ein", false], ["Pferd", true], ["stark", false], ["und", false], ["doch", false], ["sanft", false], ["trägt", false], ["die", false], ["Kinder", false], ["über", false], ["die", false], ["weite", false], ["Wiese.", false], ["Die", false], ["Ente", true], ["eigentlich", false], ["recht", false], ["scheu", false], ["schwimmt", false], ["allein", false], ["auf", false], ["dem", false], ["stillen", false], ["Teich.", false], ["Der", false], ["Fuchs", true], ["nachts", false], ["leise", false], ["unterwegs", false], ["sucht", false], ["den", false], ["Hof", false], ["nach", false], ["Futter", false], ["ab.", false], ["Ein", false], ["Vogel", true], ["bunt", false], ["und", false], ["frech", false], ["pickt", false], ["die", false], ["Krumen", false], ["vom", false], ["Rande", false], ["des", false], ["Tellers.", false], ["Die", false], ["Biene", true], ["fleißig", false], ["und", false], ["summend", false], ["fliegt", false], ["von", false], ["Blüte", false], ["zu", false], ["Blüte", false], ["im", false], ["Garten.", false], ["Der", false], ["Hase", true], ["schnell", false], ["und", false], ["vorsichtig", false], ["hoppelt", false], ["durch", false], ["das", false], ["feuchte,", false], ["grüne", false], ["Gras.", false], ["Die", false], ["Eidechse", true], ["gern", false], ["in", false], ["der", false], ["Sonne", false], ["liegend", false], ["sonnt", false], ["sich", false], ["auf", false], ["dem", false], ["warmen", false], ["Stein.", false], ["Ein", false], ["Schaf", true], ["weiß", false], ["und", false], ["wollig", false], ["grast", false], ["friedlich", false], ["am", false], ["Rande", false], ["des", false], ["Hügels.", false], ["Der", false], ["Igel", true], ["nachts", false], ["unterwegs", false], ["rollt", false], ["sich", false], ["bei", false], ["Gefahr", false], ["schnell", false], ["zu", false], ["einer", false], ["Kugel.", false], ["Tiere", true], ["in", false], ["ihrer", false], ["leisen", false], ["Art", false], ["lehren", false], ["uns", false], ["Geduld", false], ["und", false], ["ein", false], ["achtsames", false], ["Sehen.", false]],
-      solution: "Anrede; Apposition mit zwei Kommas; Einschub"
+    "regel": {
+      "hint": "Ein Einschub in der Satzmitte braucht zwei Kommas.",
+      "tokens": [
+        [
+          "Das",
+          false
+        ],
+        [
+          "Fahrrad",
+          true
+        ],
+        [
+          "gestern",
+          false
+        ],
+        [
+          "repariert",
+          true
+        ],
+        [
+          "fährt",
+          false
+        ],
+        [
+          "wieder.",
+          false
+        ],
+        [
+          "Tom",
+          true
+        ],
+        [
+          "kannst",
+          false
+        ],
+        [
+          "du",
+          false
+        ],
+        [
+          "es",
+          false
+        ],
+        [
+          "testen?",
+          false
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "vergleichen",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Regeln.",
+          false
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "erklären",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Regel",
+          false
+        ],
+        [
+          "in",
+          false
+        ],
+        [
+          "einem",
+          false
+        ],
+        [
+          "kurzen",
+          false
+        ],
+        [
+          "Satz.",
+          false
+        ]
+      ],
+      "solution": "Fahrrad, | repariert, | Tom,"
     },
-    experte: {
-      hint: "Sport (Thema) – Nebensatz mit Kommas; Apposition; Einschub; Anrede",
-      tokens: [["Der", false], ["Spieler", true], ["ein", false], ["echter", false], ["Profi", false], ["schießt", false], ["das", false], ["entscheidende", false], ["Tor", false], ["in", false], ["der", false], ["Nachspielzeit.", false], ["Das", false], ["Buch", true], ["das", false], ["ich", false], ["gerade", false], ["lese", false], ["handelt", false], ["von", false], ["einem", false], ["Jungen", false], ["und", false], ["seinem", false], ["großen", false], ["Traum.", false], ["Die", false], ["Leute", true], ["die", false], ["laut", false], ["applaudierten", false], ["gingen", false], ["langsam", false], ["und", false], ["zufrieden", false], ["nach", false], ["Hause.", false], ["Ein", false], ["Tor", true], ["mit", false], ["viel", false], ["Glück", false], ["erzielt", false], ["wurde", false], ["vom", false], ["Schiedsrichter", false], ["nachträglich", false], ["aberkannt.", false], ["Die", false], ["Mannschaft", true], ["seit", false], ["Wochen", false], ["ungeschlagen", false], ["verlor", false], ["zum", false], ["ersten", false], ["Mal", false], ["in", false], ["dieser", false], ["Saison.", false], ["Der", false], ["Trainer", true], ["ein", false], ["ehemaliger", false], ["Nationalspieler", false], ["motiviert", false], ["die", false], ["Gruppe", false], ["mit", false], ["ruhigen", false], ["Worten.", false], ["Die", false], ["Fans", true], ["die", false], ["aus", false], ["dem", false], ["ganzen", false], ["Land", false], ["kamen", false], ["sangen", false], ["den", false], ["ganzen", false], ["Abend", false], ["hindurch.", false], ["Ein", false], ["Spiel", true], ["wie", false], ["es", false], ["nur", false], ["im", false], ["Finale", false], ["vorkommt", false], ["bleibt", false], ["im", false], ["Kopf", false], ["für", false], ["immer", false], ["haften.", false], ["Der", false], ["Stürmer", true], ["trotz", false], ["der", false], ["Verletzung", false], ["laufend", false], ["traf", false], ["mit", false], ["einer", false], ["wunderbaren", false], ["Ferne.", false], ["Die", false], ["Kinder", true], ["die", false], ["am", false], ["Rand", false], ["jubelten", false], ["lernten", false], ["das", false], ["Spiel", false], ["erst", false], ["in", false], ["der", false], ["Schule", false], ["kennen.", false], ["Ein", false], ["Rekord", true], ["von", false], ["allen", false], ["für", false], ["unmöglich", false], ["gehalten", false], ["wurde", false], ["am", false], ["Ende", false], ["doch", false], ["noch", false], ["geknackt.", false], ["Der", false], ["Schiedsrichter", true], ["sonst", false], ["sehr", false], ["streng", false], ["gab", false], ["in", false], ["dieser", false], ["Partie", false], ["mehrere", false], ["Elfmeter.", false], ["Sport", true], ["in", false], ["seiner", false], ["reinsten", false], ["Form", false], ["zeigt,", false], ["wozu", false], ["der", false], ["menschliche", false], ["Körper", false], ["fähig", false], ["ist.", false]],
-      solution: "Nebensatz mit Kommas; Apposition; Einschub; Anrede"
-    },
+    "experte": {
+      "hint": "Grenze Relativsatz, Apposition und Anrede ab.",
+      "tokens": [
+        [
+          "Mia",
+          true
+        ],
+        [
+          "unsere",
+          false
+        ],
+        [
+          "Klassensprecherin",
+          true
+        ],
+        [
+          "eröffnet",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Runde.",
+          false
+        ],
+        [
+          "Das",
+          false
+        ],
+        [
+          "Buch",
+          true
+        ],
+        [
+          "das",
+          false
+        ],
+        [
+          "hier",
+          false
+        ],
+        [
+          "liegt",
+          true
+        ],
+        [
+          "gehört",
+          false
+        ],
+        [
+          "Ben.",
+          false
+        ],
+        [
+          "Wir",
+          false
+        ],
+        [
+          "begründen",
+          false
+        ],
+        [
+          "vier",
+          false
+        ],
+        [
+          "Kommas.",
+          false
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "erklären",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Regel",
+          false
+        ],
+        [
+          "in",
+          false
+        ],
+        [
+          "einem",
+          false
+        ],
+        [
+          "kurzen",
+          false
+        ],
+        [
+          "Satz.",
+          false
+        ]
+      ],
+      "solution": "Mia, | Klassensprecherin, | Buch, | liegt,"
+    }
   },
-  kommaregeln3: {
-    mindest: {
-      hint: "Essen (Thema) – Komma bei je-desto",
-      tokens: [["Je", false], ["mehr", false], ["wir", false], ["kaufen", true], ["desto", false], ["mehr", false], ["Müll", false], ["entsteht", false], ["am", false], ["Ende", false], ["in", false], ["unseren", false], ["Küchen.", false], ["Je", false], ["länger", false], ["das", false], ["Brot", false], ["backt", true], ["desto", false], ["dunkler", false], ["und", false], ["knuspriger", false], ["wird", false], ["seine", false], ["Kruste.", false], ["Je", false], ["früher", false], ["wir", false], ["aufstehen", true], ["desto", false], ["mehr", false], ["Zeit", false], ["haben", false], ["wir", false], ["für", false], ["ein", false], ["ruhiges", false], ["Frühstück.", false], ["Je", false], ["mehr", false], ["Wasser", false], ["wir", false], ["sparen", true], ["desto", false], ["besser", false], ["geht", false], ["es", false], ["dem", false], ["trockenen", false], ["Boden", false], ["im", false], ["Garten.", false], ["Je", false], ["weniger", false], ["Zucker", false], ["wir", false], ["essen", true], ["desto", false], ["gesünder", false], ["fühlt", false], ["sich", false], ["unser", false], ["Körper", false], ["den", false], ["Tag", false], ["über.", false], ["Je", false], ["schneller", false], ["der", false], ["Topf", false], ["kocht", true], ["desto", false], ["eher", false], ["ist", false], ["die", false], ["Suppe", false], ["endlich", false], ["fertig", false], ["zum", false], ["Servieren.", false], ["Je", false], ["öfter", false], ["wir", false], ["kochen", true], ["desto", false], ["sicherer", false], ["werden", false], ["unsere", false], ["Hände", false], ["bei", false], ["den", false], ["Messern", false], ["und", false], ["Pfannen.", false], ["Je", false], ["frischer", false], ["die", false], ["Äpfel", false], ["sind", true], ["desto", false], ["knackiger", false], ["schmecken", false], ["sie", false], ["aus", false], ["der", false], ["Hand", false], ["des", false], ["Kindes.", false], ["Je", false], ["mehr", false], ["Gäste", false], ["kommen", true], ["desto", false], ["größer", false], ["muss", false], ["der", false], ["Tisch", false], ["in", false], ["der", false], ["Mitte", false], ["gedeckt", false], ["werden.", false], ["Je", false], ["länger", false], ["der", false], ["Käse", false], ["reift", true], ["desto", false], ["stärker", false], ["entfaltet", false], ["sich", false], ["sein", false], ["würziges,", false], ["tiefes", false], ["Aroma.", false], ["Je", false], ["weniger", false], ["wir", false], ["wegwerfen", true], ["desto", false], ["stolzer", false], ["sind", false], ["wir", false], ["auf", false], ["unseren", false], ["vollen,", false], ["bunten", false], ["Teller.", false], ["Je", false], ["besser", false], ["das", false], ["Essen", false], ["schmeckt", true], ["desto", false], ["schneller", false], ["leeren", false], ["sich", false], ["die", false], ["Teller", false], ["der", false], ["hungrigen", false], ["Familie.", false], ["Je", false], ["bewusster", false], ["wir", false], ["genießen", true], ["desto", false], ["länger", false], ["bleibt", false], ["der", false], ["Geschmack", false], ["als", false], ["gute", false], ["Erinnerung.", false]],
-      solution: "Komma bei je-desto"
+  "kommaregeln3": {
+    "mindest": {
+      "hint": "Suche Einleitewörter von Nebensätzen.",
+      "tokens": [
+        [
+          "Wir",
+          false
+        ],
+        [
+          "bleiben",
+          false
+        ],
+        [
+          "zu",
+          false
+        ],
+        [
+          "Hause",
+          true
+        ],
+        [
+          "weil",
+          false
+        ],
+        [
+          "es",
+          false
+        ],
+        [
+          "regnet.",
+          false
+        ],
+        [
+          "Wenn",
+          false
+        ],
+        [
+          "du",
+          false
+        ],
+        [
+          "möchtest",
+          true
+        ],
+        [
+          "starten",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "später.",
+          false
+        ],
+        [
+          "Beide",
+          false
+        ],
+        [
+          "Nebensätze",
+          false
+        ],
+        [
+          "werden",
+          false
+        ],
+        [
+          "abgetrennt.",
+          false
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "erklären",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Regel",
+          false
+        ],
+        [
+          "in",
+          false
+        ],
+        [
+          "einem",
+          false
+        ],
+        [
+          "kurzen",
+          false
+        ],
+        [
+          "Satz.",
+          false
+        ]
+      ],
+      "solution": "Hause, | möchtest,"
     },
-    regel: {
-      hint: "Reisen (Thema) – Komma vor Infinitivgruppe (um/ohne/zu/bis); einfacher Infinitiv ohne Komma",
-      tokens: [["Er", false], ["begann", true], ["zu", false], ["laufen", false], ["als", false], ["die", false], ["Sonne", false], ["gerade", false], ["über", false], ["die", false], ["Hügel", false], ["stieg", false], ["am", false], ["Morgen.", false], ["Viele", false], ["spenden", true], ["um", false], ["zu", false], ["helfen", false], ["den", false], ["Obdachlosen", false], ["in", false], ["der", false], ["kalten,", false], ["grauen", false], ["Winterzeit.", false], ["Sie", false], ["hörte", true], ["auf", false], ["zu", false], ["singen", false], ["als", false], ["der", false], ["Zug", false], ["langsam", false], ["in", false], ["den", false], ["dunklen", false], ["Tunnel", false], ["einfuhr.", false], ["Wir", false], ["fahren", true], ["um", false], ["zu", false], ["sehen", false], ["wie", false], ["fremde", false], ["Städte", false], ["im", false], ["Licht", false], ["der", false], ["Abendsonne", false], ["liegen.", false], ["Er", false], ["lernte", true], ["zu", false], ["schwimmen", false], ["bevor", false], ["wir", false], ["an", false], ["den", false], ["tiefen", false], ["See", false], ["überhaupt", false], ["herangingen.", false], ["Sie", false], ["reiste", true], ["um", false], ["zu", false], ["verstehen", false], ["wie", false], ["anders", false], ["Menschen", false], ["an", false], ["fernen", false], ["Orten", false], ["leben.", false], ["Wir", false], ["warteten", true], ["bis", false], ["zu", false], ["atmen", false], ["die", false], ["Luft", false], ["am", false], ["Meer", false], ["wieder", false], ["ruhig", false], ["und", false], ["salzig", false], ["wurde.", false], ["Er", false], ["bat", true], ["zu", false], ["bleiben", false], ["als", false], ["der", false], ["Sturm", false], ["die", false], ["Zweige", false], ["der", false], ["alten", false], ["Kastanie", false], ["peitschte.", false], ["Sie", false], ["übte", true], ["zu", false], ["sprechen", false], ["bis", false], ["die", false], ["fremde", false], ["Sprache", false], ["vertraut", false], ["auf", false], ["der", false], ["Zunge", false], ["klang.", false], ["Wir", false], ["packten", true], ["um", false], ["zu", false], ["reisen", false], ["leichter", false], ["als", false], ["je", false], ["zuvor", false], ["in", false], ["den", false], ["kleinen,", false], ["festen", false], ["Koffer.", false], ["Er", false], ["las", true], ["zu", false], ["verstehen", false], ["warum", false], ["das", false], ["alte", false], ["Buch", false], ["noch", false], ["immer", false], ["so", false], ["viele", false], ["Menschen", false], ["fasst.", false], ["Sie", false], ["lachte", true], ["auf", false], ["zu", false], ["sehen", false], ["wie", false], ["das", false], ["Kind", false], ["zum", false], ["ersten", false], ["Mal", false], ["Wellen", false], ["berührte.", false], ["Gute", false], ["Reisen", false], ["lehren", true], ["zu", false], ["staunen", false], ["über", false], ["das,", false], ["was", false], ["uns", false], ["eigentlich", false], ["allen", false], ["gehört.", false]],
-      solution: "Komma vor Infinitivgruppe (um/ohne/zu/bis); einfacher Infinitiv ohne Komma"
+    "regel": {
+      "hint": "Prüfe Pflichtfälle bei Infinitivgruppen.",
+      "tokens": [
+        [
+          "Er",
+          false
+        ],
+        [
+          "trainiert",
+          true
+        ],
+        [
+          "um",
+          false
+        ],
+        [
+          "fit",
+          false
+        ],
+        [
+          "zu",
+          false
+        ],
+        [
+          "bleiben.",
+          false
+        ],
+        [
+          "Sie",
+          false
+        ],
+        [
+          "ging",
+          true
+        ],
+        [
+          "ohne",
+          false
+        ],
+        [
+          "sich",
+          false
+        ],
+        [
+          "umzudrehen.",
+          false
+        ],
+        [
+          "Die",
+          false
+        ],
+        [
+          "Einleitewörter",
+          false
+        ],
+        [
+          "zeigen",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Kommas.",
+          false
+        ],
+        [
+          "Danach",
+          false
+        ],
+        [
+          "erklären",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "die",
+          false
+        ],
+        [
+          "Regel",
+          false
+        ],
+        [
+          "in",
+          false
+        ],
+        [
+          "einem",
+          false
+        ],
+        [
+          "kurzen",
+          false
+        ],
+        [
+          "Satz.",
+          false
+        ]
+      ],
+      "solution": "trainiert, | ging,"
     },
-    experte: {
-      hint: "Technik (Thema) – Infinitivgruppe mit Komma; Gegensatz mit doch/sondern; einfacher Infinitiv ohne Komma",
-      tokens: [["Er", false], ["ging", true], ["ohne", false], ["sich", false], ["zu", false], ["verabschieden", false], ["aus", false], ["dem", false], ["Raum,", false], ["in", false], ["dem", false], ["die", false], ["Server", false], ["summten.", false], ["Spenden", false], ["ist", false], ["gut", true], ["doch", false], ["löst", false], ["es", false], ["nicht", false], ["das", false], ["Problem", false], ["der", false], ["kalten,", false], ["leeren", false], ["Wohnungen.", false], ["Nicht", false], ["nur", false], ["er", true], ["sondern", false], ["auch", false], ["sie", false], ["kommt", false], ["zu", false], ["der", false], ["Demo", false], ["für", false], ["saubere", false], ["Energie.", false], ["Wir", false], ["bauten", true], ["um", false], ["etwas", false], ["Neues", false], ["zu", false], ["schaffen", false], ["aus", false], ["den", false], ["alten,", false], ["verstaubten", false], ["Computern.", false], ["Sie", false], ["lernte", true], ["statt", false], ["zu", false], ["zögern", false], ["die", false], ["Sprache", false], ["der", false], ["Maschinen", false], ["mit", false], ["Geduld", false], ["und", false], ["mit", false], ["Mut.", false], ["Er", false], ["half", true], ["ohne", false], ["zu", false], ["klagen", false], ["als", false], ["der", false], ["Code", false], ["in", false], ["der", false], ["Nacht", false], ["noch", false], ["einmal", false], ["abstürzte.", false], ["Lesen", false], ["fördert", true], ["doch", false], ["ersetzt", false], ["es", false], ["nicht", false], ["das", false], ["wirkliche,", false], ["tiefe", false], ["Erleben", false], ["der", false], ["Welt.", false], ["Nicht", false], ["nur", false], ["wir", true], ["sondern", false], ["auch", false], ["die", false], ["Schule", false], ["nutzt", false], ["die", false], ["neuen", false], ["Tablets", false], ["im", false], ["Unterricht.", false], ["Wir", false], ["testeten", true], ["um", false], ["herauszufinden,", false], ["ob", false], ["die", false], ["App", false], ["auf", false], ["allen", false], ["Geräten", false], ["stabil", false], ["lief.", false], ["Sie", false], ["programmierte", true], ["anstatt", false], ["zu", false], ["warten", false], ["ihr", false], ["eigenes", false], ["kleines", false], ["Spiel", false], ["mit", false], ["bunten", false], ["Figuren.", false], ["Er", false], ["dachte", true], ["ohne", false], ["zu", false], ["urteilen", false], ["über", false], ["die", false], ["Folgen", false], ["seiner", false], ["Erfindung", false], ["lange", false], ["nach.", false], ["Wir", false], ["teilten", true], ["statt", false], ["zu", false], ["schweigen", false], ["unsere", false], ["Sorgen", false], ["offen", false], ["in", false], ["der", false], ["großen", false], ["Gruppe.", false], ["Wer", false], ["baut", true], ["der", false], ["muss", false], ["auch", false], ["verantworten,", false], ["was", false], ["seine", false], ["Maschine", false], ["eines", false], ["Tages", false], ["tut.", false]],
-      solution: "Infinitivgruppe mit Komma; Gegensatz mit doch/sondern; einfacher Infinitiv ohne Komma"
-    },
-  },
+    "experte": {
+      "hint": "Achte auf Relativsatz, Infinitivgruppe und Gegensatz.",
+      "tokens": [
+        [
+          "Der",
+          false
+        ],
+        [
+          "Plan",
+          true
+        ],
+        [
+          "den",
+          false
+        ],
+        [
+          "wir",
+          false
+        ],
+        [
+          "besprachen",
+          true
+        ],
+        [
+          "ist",
+          false
+        ],
+        [
+          "sinnvoll.",
+          false
+        ],
+        [
+          "Sie",
+          false
+        ],
+        [
+          "hatte",
+          false
+        ],
+        [
+          "den",
+          false
+        ],
+        [
+          "Wunsch",
+          true
+        ],
+        [
+          "bald",
+          false
+        ],
+        [
+          "aufzubrechen.",
+          false
+        ],
+        [
+          "Er",
+          false
+        ],
+        [
+          "zögerte",
+          true
+        ],
+        [
+          "doch",
+          false
+        ],
+        [
+          "er",
+          false
+        ],
+        [
+          "stimmte",
+          false
+        ],
+        [
+          "zu.",
+          false
+        ]
+      ],
+      "solution": "Plan, | besprachen, | Wunsch, | zögerte,"
+    }
+  }
 };
     const topicIntroTexts = {
   zitatgrundlagen: "Ob im Sachtext, in der Erörterung oder in der Gedichtanalyse: Sobald du Gedanken aus einem Text übernimmst, musst du das kennzeichnen. Sonst machst du fremde Ideen zu deinen – und das ist Plagiat. In diesem Thema lernst du, wann du zitieren musst und welche zwei Zitierweisen es gibt.",
   direktezitate: "Das direkte Zitat übernimmt den Wortlaut exakt – mit Anführungszeichen, Beleg in Klammern und korrektem Begleitsatz. In diesem Thema lernst du die Regeln der direkten Zitation, inklusive Auslassungen mit […] und Zeilen- oder Versangaben.",
-  indirektezitate: "Beim indirekten Zitat gibst du den Inhalt in eigenen Worten wieder. Trotzdem brauchst du einen Beleg: mit „vgl.“ vor der Zeilenangabe. Außerdem steht das indirekte Zitat im Konjunktiv I. In diesem Thema übst du, direkte und indirekte Zitate sicher zu unterscheiden und richtig zu belegen.",
-  kommaregeln1: "Das Komma trennt Aufzählungen, Hauptsätze in Satzreihen und Haupt- von Nebensätzen. Diese drei Regeln decken die meisten Komma-Fälle im Alltag ab. In diesem Thema lernst du die Regeln 1 bis 3 mit Beispielen und typischen Fallen – etwa: kein Komma vor „und“ in Satzreihen.",
+  indirektezitate: "Beim indirekten Zitat gibst du den Inhalt in eigenen Worten wieder. Trotzdem brauchst du einen Beleg: mit „vgl.“ vor der Zeilenangabe. Normalerweise nutzt du den Konjunktiv I; ist er nicht vom Indikativ zu unterscheiden, kann der Konjunktiv II als Ersatzform dienen. In diesem Thema übst du, direkte und indirekte Zitate sicher zu unterscheiden und richtig zu belegen.",
+  kommaregeln1: "Das Komma trennt Aufzählungen, Hauptsätze in Satzreihen und Haupt- von Nebensätzen. Diese drei Regeln decken die meisten Komma-Fälle im Alltag ab. In diesem Thema lernst du die Regeln 1 bis 3 mit Beispielen und typischen Fällen – etwa: vor einem verbindenden „und“ steht meist kein Komma; zur besseren Gliederung kann es aber gesetzt werden.",
   kommaregeln2: "Einschübe und Anreden werden durch Kommas abgetrennt: „Ein Großteil der Kleidung, oft kaum getragen, landet im Müll.“ oder „Leute, kauft nicht so viel.“ In diesem Thema lernst du Appositionen, Anreden, Betonungen und Interjektionen sicher zu erkennen und abzutrennen.",
   kommaregeln3: "Die letzten beiden Kommaregeln betreffen Infinitivgruppen und Gegensätze: „Viele spenden Kleider, um etwas Gutes zu tun.“ und „Je mehr wir kaufen, desto mehr Müll entsteht.“ In diesem Thema lernst du, wann Infinitivgruppen ein Komma brauchen und wie Aneinanderreihungen wie je-desto und nicht nur-sondern auch abgetrennt werden."
 };
     const topicDiscoveries = {
   zitatgrundlagen: { text: "Vergleiche die beiden Sätze. Welcher ist korrekt gekennzeichnet?", items: ["Die Autorin schreibt, dass Fast Fashion die Umwelt belastet. (ohne Beleg)", "Die Autorin schreibt, Fast Fashion belaste die Umwelt (vgl. Z. 12).", "„Fast Fashion belastet die Umwelt.“ (Z. 12)"], question: "Welche zwei Zitierweisen erkennst du?" },
   direktezitate: { text: "Achte auf Anführungszeichen, Begleitsatz und Beleg.", items: ["So heißt es im Gedicht: „Es war nicht nötig, wie es schien.“ (V. 4)", "Levitte erklärt: „Eine musische Ausbildung […] fördert die Intelligenz.“ (Z. 28)", "Der Begleitsatz endet mit einem Doppelpunkt."], question: "Wofür stehen die eckigen Klammern mit Punkten?" },
-  indirektezitate: { text: "Vergleiche Original und indirektes Zitat.", items: ["Original: „…könnten den Markt schwemmen.“", "Indirekt: … massenhaft Kleidungsstücke aus China verkauft würden (vgl. Z. 55–57).", "Das Verb steht im Konjunktiv I: würden, könnten, sei."], question: "Welche zwei Merkmale hat ein indirektes Zitat?" },
-  kommaregeln1: { text: "Finde heraus, warum hier Kommas stehen – oder nicht.", items: ["Ich kaufe Eier<strong>,</strong> Bananen<strong>,</strong> Nüsse und Katzenfutter.", "Ein neuer Trend entsteht<strong>,</strong> die Menschen tragen die Mode kurz.", "Die Kleidung landet im Müll<strong>,</strong> weil die Qualität zu schlecht ist.", "Mia liest und Tom schreibt. (kein Komma vor und!)"], question: "Wann steht zwischen zwei Hauptsätzen KEIN Komma?" },
+  indirektezitate: { text: "Vergleiche Original und indirektes Zitat.", items: ["Original: „…könnten den Markt schwemmen.“", "Indirekt: … massenhaft Kleidungsstücke aus China verkauft würden (vgl. Z. 55–57).", "Bei eindeutiger Form nutzt du Konjunktiv I (sei); bei Formgleichheit kann Konjunktiv II als Ersatzform stehen (würden, könnten)."], question: "Welche zwei Merkmale hat ein indirektes Zitat?" },
+  kommaregeln1: { text: "Finde heraus, warum hier Kommas stehen – oder nicht.", items: ["Ich kaufe Eier<strong>,</strong> Bananen<strong>,</strong> Nüsse und Katzenfutter.", "Ein neuer Trend entsteht<strong>,</strong> die Menschen tragen die Mode kurz.", "Die Kleidung landet im Müll<strong>,</strong> weil die Qualität zu schlecht ist.", "Mia liest und Tom schreibt. (vor dem verbindenden und meist ohne Komma)"], question: "Wann kann zwischen zwei Hauptsätzen ein Komma entfallen?" },
   kommaregeln2: { text: "Achte auf Einschübe und Anreden.", items: ["Ein Großteil der Kleidung<strong>,</strong> oft kaum getragen<strong>,</strong> landet im Müll.", "Leute<strong>,</strong> kauft nicht so viel.", "Ach<strong>,</strong> wäre doch schon Wochenende."], question: "Wie viele Kommas braucht ein Einschub mitten im Satz?" },
   kommaregeln3: { text: "Untersuche die Kommas vor den Infinitivgruppen und Gegensätzen.", items: ["Viele Menschen spenden ihre alten Kleider<strong>,</strong> um etwas Gutes zu tun.", "Je verantwortungsbewusster wir kaufen<strong>,</strong> desto weniger Müll entsteht.", "Spenden ist gut<strong>,</strong> doch löst es nicht das Problem."], question: "Welche Wörter leiten Infinitivgruppen mit Komma ein?" }
 };
@@ -1563,13 +3203,13 @@
     "id": "zitatgrundlagen",
     "chapter": "zitation",
     "title": "Zitate: Grundlagen und Überblick",
-    "definition": "Ein Zitat ist die gekennzeichnete Übernahme fremder Gedanken oder Formulierungen. Direkte Zitate übernehmen den Wortlaut wörtlich (Anführungszeichen), indirekte Zitate geben den Inhalt in eigenen Worten wieder (Konjunktiv I, vgl.-Beleg).",
-    "easy": "Fremde Gedanken = kennzeichnen! Wörtlich: Anführungszeichen. In eigenen Worten: vgl. + Konjunktiv I.",
+    "definition": "Ein Zitat ist die gekennzeichnete Übernahme fremder Gedanken oder Formulierungen. Direkte Zitate übernehmen den Wortlaut wörtlich (Anführungszeichen), indirekte Zitate geben den Inhalt in eigenen Worten wieder (meist Konjunktiv I, bei Bedarf Konjunktiv-II-Ersatzform, vgl.-Beleg).",
+    "easy": "Fremde Gedanken = kennzeichnen! Wörtlich: Anführungszeichen. In eigenen Worten: vgl. + meist Konjunktiv I, bei Formgleichheit mögliche Ersatzform.",
     "deep": [
       "Jede Übernahme aus einem Text muss als Zitat erkennbar sein – egal ob wörtlich oder sinngemäß.",
       "Ohne Kennzeichnung gelten fremde Ideen als deine eigenen: Das ist ein Plagiat.",
       "Direktes Zitat: wörtliche Übernahme in Anführungszeichen mit Beleg (Z. … / V. …).",
-      "Indirektes Zitat: Inhalt in eigenen Worten, Konjunktiv I, Beleg mit vgl. (vgl. Z. …)."
+      "Indirektes Zitat: Inhalt in eigenen Worten, meist Konjunktiv I, bei Formgleichheit mögliche Konjunktiv-II-Ersatzform, Beleg mit vgl. (vgl. Z. …)."
     ],
     "examples": [
       "Direkt: „Es war nicht nötig, wie es schien.“ (V. 4)",
@@ -1652,20 +3292,20 @@
     "id": "indirektezitate",
     "chapter": "zitation",
     "title": "Indirekte Zitation",
-    "definition": "Das indirekte Zitat gibt den Inhalt in eigenen Worten wieder. Es steht ohne Anführungszeichen, wird im Konjunktiv I formuliert und mit „vgl.“ vor der Zeilenangabe belegt.",
-    "easy": "Eigene Worte + Konjunktiv I + (vgl. Z. …) = indirektes Zitat.",
+    "definition": "Das indirekte Zitat gibt den Inhalt in eigenen Worten wieder. Es steht ohne Anführungszeichen, wird normalerweise im Konjunktiv I formuliert und mit „vgl.“ vor der Zeilenangabe belegt. Ist der Konjunktiv I mit dem Indikativ formgleich, kann der Konjunktiv II als Ersatzform dienen.",
+    "easy": "Eigene Worte + meist Konjunktiv I (bei Formgleichheit Ersatzform) + (vgl. Z. …) = indirektes Zitat.",
     "deep": [
       "Auch Inhalte in eigenen Worten müssen als Zitat gekennzeichnet werden.",
       "Indirekte Zitate verwenden keine Anführungszeichen.",
       "Am Ende des Satzes – vor dem Punkt – steht in Klammern die Textstelle mit vorangestelltem „vgl.“ (vergleiche).",
-      "Indirekte Zitate werden im Konjunktiv I formuliert: „… könnten den Markt schwemmen“, „… fördere die Intelligenz“."
+      "Indirekte Zitate stehen grundsätzlich im Konjunktiv I, zum Beispiel „… fördere die Intelligenz“. Bei Formgleichheit kann Konjunktiv II als Ersatzform dienen, zum Beispiel „… könnten den Markt schwemmen“."
     ],
     "examples": [
       "Ein Verbot bedeutet nicht zwingend, dass die lokale Textilindustrie gestärkt wird. Stattdessen könnten auch massenhaft Kleidungsstücke aus China verkauft werden (vgl. Z. 55–57).",
       "Die Autorin erklärt, eine musische Ausbildung fördere die Intelligenz (vgl. Z. 28)."
     ],
-    "mistake": "Konjunktiv I nicht mit Konjunktiv II verwechseln: „er fördere“ (K I, indirekte Rede) statt „er förderte“ (K II).",
-    "memory": "Indirekt zitieren: eigene Worte, Konjunktiv I, vgl.-Beleg vor dem Punkt.",
+    "mistake": "Nutze nicht automatisch „würde“: Zuerst prüfst du den Konjunktiv I. Nur wenn er mit dem Indikativ formgleich und dadurch uneindeutig ist, verwendest du eine Konjunktiv-II-Ersatzform.",
+    "memory": "Indirekt zitieren: eigene Worte, meist Konjunktiv I, bei Formgleichheit mögliche Ersatzform, vgl.-Beleg vor dem Punkt.",
     "check": {
       "choice": [
         "Welche Formulierung ist ein korrektes indirektes Zitat?",
@@ -1679,7 +3319,7 @@
       ],
       "match": [
         ["(vgl. Z. 55–57)", "Beleg eines indirekten Zitats"],
-        ["„… könnten den Markt schwemmen“", "Konjunktiv I"],
+        ["„… könnten den Markt schwemmen“", "Konjunktiv-II-Ersatzform"],
         ["vergleiche", "Bedeutung von vgl."]
       ],
       "extra": {
@@ -1695,10 +3335,10 @@
     "chapter": "komma",
     "title": "Kommaregeln 1–3: Aufzählung, Satzreihe, Satzgefüge",
     "definition": "Kommas trennen Aufzählungen (Eier, Bananen, Nüsse), Hauptsätze in Satzreihen ohne und/oder (Ein Trend entsteht, die Menschen tragen kurz) und Haupt- von Nebensätzen (…, weil die Qualität schlecht ist).",
-    "easy": "Aufzählung → Komma. Zwei Hauptsätze ohne und/oder → Komma. Nebensatz → Komma. Aber: vor „und“ und „oder“ meist KEIN Komma!",
+    "easy": "Aufzählung → Komma. Zwei Hauptsätze ohne und/oder → Komma. Nebensatz → Komma. Vor einem verbindenden „und“ oder „oder“ steht meist kein Komma; zur besseren Gliederung ist es möglich.",
     "deep": [
       "Regel 1 – Aufzählungen: Das Komma steht zwischen den aufgezählten Wortteilen: „Ich kaufe Eier, Bananen, Nüsse und Katzenfutter.“ Vor dem abschließenden „und“ steht kein Komma.",
-      "Regel 2 – Satzreihen (Parataxen): Hauptsätze werden durch Komma getrennt, außer sie werden mit „und“, „oder“ oder „sowie“ verbunden: „Ein neuer Trend entsteht, die Menschen tragen die Mode kurz.“",
+      "Regel 2 – Satzreihen (Parataxen): Hauptsätze ohne verbindende Konjunktion werden durch Komma getrennt: „Ein neuer Trend entsteht, die Menschen tragen die Mode kurz.“ Vor „und“, „oder“ oder „sowie“ steht meist kein Komma; zur Gliederung darf eines gesetzt werden.",
       "Regel 3 – Satzgefüge (Hypotaxen): Haupt- und Nebensätze trennt man durch Komma: „Die gespendete Kleidung kann häufig nicht verwertet werden, weil die Qualität zu schlecht ist.“",
       "Typische Einleiter von Nebensätzen: weil, dass, obwohl, wenn, als, während."
     ],
@@ -1707,8 +3347,8 @@
       "Ein neuer Trend entsteht, die Menschen tragen die Mode kurz.",
       "Die Kleidung kann nicht verwertet werden, weil die Qualität zu schlecht ist."
     ],
-    "mistake": "Der häufigste Fehler: Komma vor „und“. In Satzreihen mit „und/oder/sowie“ steht KEIN Komma: „Mia liest und Tom schreibt.“",
-    "memory": "Aufzählen, reihen, fügen – aber vor „und“ bleibt das Komma weg.",
+    "mistake": "Vor „und“ steht nicht automatisch ein Komma. In Satzreihen mit „und/oder/sowie“ entfällt es meist: „Mia liest und Tom schreibt.“ Zur besseren Gliederung darf jedoch ein Komma gesetzt werden.",
+    "memory": "Aufzählen, reihen, fügen – vor verbindendem „und“ meist ohne Komma, bei Bedarf zur Gliederung mit Komma.",
     "check": {
       "choice": [
         "In welchem Satz steht das Komma richtig?",
@@ -1716,7 +3356,7 @@
         "Ich kaufe Eier, Bananen, Nüsse und Katzenfutter."
       ],
       "cloze": [
-        "Hauptsätze werden durch Komma getrennt, außer sie werden mit ___ verbunden.",
+        "Zwischen Hauptsätzen steht meist kein Komma, wenn sie mit ___ verbunden sind.",
         ["weil", "und/oder/sowie", "dass", "obwohl"],
         "und/oder/sowie"
       ],
@@ -1784,11 +3424,11 @@
     "id": "kommaregeln3",
     "chapter": "komma",
     "title": "Kommaregeln 6–7: Infinitivgruppen und Gegensätze",
-    "definition": "Infinitivgruppen werden durch Komma abgetrennt, wenn sie mit als, außer, ohne, (an)statt, um eingeleitet werden oder erweitert sind. Aneinanderreihungen (je – desto, nicht nur – sondern auch) und Gegensätze (doch, sondern) fordern ebenfalls ein Komma.",
+    "definition": "Infinitivgruppen werden durch Komma abgetrennt, wenn sie mit als, außer, ohne, (an)statt oder um eingeleitet werden, von einem Nomen abhängen oder durch ein Hinweiswort angekündigt werden. In anderen Fällen kann ein Komma zur Gliederung stehen. Mehrteilige Fügungen und Gegensätze verlangen ebenfalls ein Komma.",
     "easy": "um/ohne/statt + zu → Komma. je – desto, nicht nur – sondern auch, doch/sondern → Komma.",
     "deep": [
       "Regel 6 – Infinitivgruppen: Komma, wenn die Gruppe durch bestimmte Konjunktionen eingeleitet wird: als, außer, ohne, (an)statt, um: „Viele Menschen spenden ihre alten Kleider, um etwas Gutes zu tun.“",
-      "Erweiterte Infinitivgruppen ohne Konjunktion werden ebenfalls durch Komma abgetrennt: „Es ist erschreckend, diese Masse an Altkleidern zu sehen.“",
+      "Von einem Nomen abhängige oder durch ein Hinweiswort angekündigte Infinitivgruppen werden ebenfalls abgetrennt: „Es ist erschreckend, diese Masse an Altkleidern zu sehen.“",
       "Regel 7 – Aneinanderreihungen und Gegensätze: „Je verantwortungsbewusster wir kaufen, desto weniger Müll entsteht. Spenden ist gut, doch löst es nicht das Problem.“",
       "Weitere Fälle: nicht nur – sondern auch, einerseits – andererseits."
     ],
@@ -1797,7 +3437,7 @@
       "Je verantwortungsbewusster wir kaufen, desto weniger Müll entsteht.",
       "Spenden ist gut, doch löst es nicht das Problem."
     ],
-    "mistake": "Ein einfacher Infinitiv ohne Erweiterung bekommt kein Komma: „Er begann zu laufen.“ – aber: „Er begann, schnell zu laufen.“",
+    "mistake": "Nicht jede längere Infinitivgruppe verlangt automatisch ein Komma. Ohne Pflichtgrund kann ein Komma aber die Gliederung verdeutlichen: „Er begann, schnell zu laufen.“",
     "memory": "um, ohne, statt + zu: Komma dazu. je-desto und doch/sondern: Komma sowieso.",
     "check": {
       "choice": [
@@ -1842,8 +3482,8 @@
       indirektezitate: {
         title: "Indirekt zitieren üben",
         prompt: "Wandle direkte Zitate in indirekte um.",
-        steps: ["Nimm drei direkte Zitate aus einem Text.", "Formuliere sie in eigenen Worten um.", "Setze die Verben in den Konjunktiv I.", "Ergänze den vgl.-Beleg vor dem Satzpunkt."],
-        product: "Drei indirekte Zitate mit Konjunktiv I und vgl.-Beleg."
+        steps: ["Nimm drei direkte Zitate aus einem Text.", "Formuliere sie in eigenen Worten um.", "Setze die Verben in den Konjunktiv I; nutze nur bei Formgleichheit eine begründete Ersatzform.", "Ergänze den vgl.-Beleg vor dem Satzpunkt."],
+        product: "Drei indirekte Zitate mit Konjunktiv I oder begründeter Ersatzform und vgl.-Beleg."
       },
       kommaregeln1: {
         title: "Kommas in Aufzählungen und Satzverbindungen",
@@ -1938,7 +3578,7 @@
     "type": "single",
     "level": "mindest",
     "topic": "Zitation",
-    "question": "Indirekte Zitate stehen im …",
+    "question": "Welche Verbform verwendest du in indirekten Zitaten normalerweise zuerst?",
     "options": [
       "Indikativ",
       "Imperativ",
@@ -1989,7 +3629,7 @@
     "type": "single",
     "level": "mindest",
     "topic": "Komma 1-3",
-    "question": "Hauptsätze werden durch Komma getrennt, außer sie werden verbunden mit …",
+    "question": "Bei welchen verbindenden Wörtern steht zwischen zwei Hauptsätzen meist kein Komma?",
     "options": [
       "weil",
       "und/oder/sowie",
@@ -2029,7 +3669,7 @@
     "options": [
       "Mia liest und Tom schreibt.",
       "Ich kaufe Eier, Bananen und Nüsse.",
-      "Mia liest, und Tom schreibt.",
+      "Mia liest und, Tom schreibt.",
       "Er bleibt, weil er krank ist."
     ],
     "answer": 2
@@ -2061,38 +3701,69 @@
     "answer": 1
   },
   {
-    "type": "errorfind",
+    "type": "punctuationEdit",
     "level": "mindest",
     "topic": "Komma 1-3",
-    "question": "Setze die fehlenden Kommas im Satz.",
-    "sentence": "Ich lese ein Buch und du schreibst einen Brief.",
-    "errorWord": "und",
+    "question": "Setze das fehlende Komma in der Aufzählung.",
+    "sentence": "Ich kaufe Brot Milch und Äpfel.",
     "answers": [
-      "und"
+      "Ich kaufe Brot, Milch und Äpfel."
     ]
   },
   {
-    "type": "errorfind",
+    "type": "punctuationEdit",
     "level": "mindest",
     "topic": "Komma 4-7",
-    "question": "Setze das fehlende Komma im Satz.",
-    "sentence": "Viele Menschen kaufen zu viel weil sie Trends folgen.",
-    "errorWord": "viel",
+    "question": "Kennzeichne die direkte Rede vollständig.",
+    "sentence": "Lea sagt Ich komme später.",
     "answers": [
-      "viel,"
+      "Lea sagt: „Ich komme später.“"
     ]
   },
   {
-    "type": "errorfind",
+    "type": "punctuationEdit",
     "level": "mindest",
     "topic": "Zitation",
-    "question": "Ergänze die fehlenden Satzzeichen (Anführungszeichen und Beleg).",
-    "sentence": "Es war nicht nötig wie es schien V. 4",
-    "errorWord": "nötig",
+    "question": "Setze das Komma bei der Anrede.",
+    "sentence": "Tom komm bitte her.",
     "answers": [
-      "nötig,",
-      "nötig, „",
-      "„Es war nicht nötig“ (V. 4)"
+      "Tom, komm bitte her."
+    ]
+  },
+  {
+    "type": "strategy",
+    "level": "mindest",
+    "topic": "Zitation",
+    "question": "Erkläre mit der Zitat-Strategie: Woran erkennst du ein direktes Zitat?",
+    "options": [
+      "An Anführungszeichen und wörtlicher Wiedergabe",
+      "Am Konjunktiv I allein",
+      "An der vgl.-Angabe",
+      "Daran, dass es lang ist"
+    ],
+    "answer": 0
+  },
+  {
+    "type": "strategy",
+    "level": "mindest",
+    "topic": "Komma 1-3",
+    "question": "Erkläre mit der Satzbau-Strategie: Warum steht in „Mia liest, Tom schreibt.“ ein Komma?",
+    "options": [
+      "Weil zwei selbstständige Hauptsätze ohne verbindende Konjunktion aufeinanderfolgen",
+      "Weil beide Sätze dasselbe Subjekt haben",
+      "Weil der zweite ein Nebensatz ist",
+      "Weil „und“ immer ein Komma verlangt"
+    ],
+    "answer": 0
+  },
+  {
+    "type": "punctuationEdit",
+    "level": "mindest",
+    "topic": "Komma 4-7",
+    "question": "Trenne den Nebensatz ab.",
+    "sentence": "Wir bleiben zu Hause weil es regnet.",
+    "answers": [
+      "Wir bleiben zu Hause, weil es regnet."
     ]
   },
   {
@@ -2123,7 +3794,7 @@
         "answer": "direktes Zitat"
       },
       {
-        "left": "… förddere die Intelligenz (vgl. Z. 28)",
+        "left": "… fördere die Intelligenz (vgl. Z. 28)",
         "answer": "indirektes Zitat"
       },
       {
@@ -2157,7 +3828,7 @@
     "type": "fill",
     "level": "regel",
     "topic": "Zitation",
-    "question": "Ergänze: „So heißt es im Gedicht dazu___ „Es war nicht nötig.“ (V. 4)“ (Satzzeichen)",
+    "question": "Welches Satzzeichen fehlt? So heißt es im Gedicht dazu___ „Es war nicht nötig.“ (V. 4)",
     "answers": [
       ":",
       "doppelpunkt",
@@ -2178,15 +3849,13 @@
     "answer": 1
   },
   {
-    "type": "errorfind",
+    "type": "punctuationEdit",
     "level": "regel",
     "topic": "Zitation",
-    "question": "Korrigiere die Zitation (fehlende Anführungszeichen/Beleg).",
-    "sentence": "Der Text sagt Es bleibt unklar was gemeint ist V. 12",
-    "errorWord": "Es",
+    "question": "Setze alle notwendigen Kommas.",
+    "sentence": "Wenn du möchtest können wir sofort beginnen.",
     "answers": [
-      "„Es bleibt unklar, was gemeint ist.“ (V. 12)",
-      "„Es bleibt unklar, was gemeint ist“ (V. 12)"
+      "Wenn du möchtest, können wir sofort beginnen."
     ]
   },
   {
@@ -2237,22 +3906,20 @@
     ]
   },
   {
-    "type": "errorfind",
+    "type": "punctuationEdit",
     "level": "regel",
     "topic": "Komma 1-3",
-    "question": "Setze die fehlenden Kommas.",
-    "sentence": "Der Hund bellt und die Katze miaut laut.",
-    "errorWord": "miaut",
+    "question": "Grenze den Relativsatz ab.",
+    "sentence": "Der Hund der laut bellt gehört unserer Nachbarin.",
     "answers": [
-      ",",
-      "miaut,"
+      "Der Hund, der laut bellt, gehört unserer Nachbarin."
     ]
   },
   {
     "type": "multiple",
     "level": "regel",
     "topic": "Komma 4-7",
-    "question": "Bei welchen Fällen steht ein Komma?",
+    "question": "Bei welchen Fällen ist ein Komma verpflichtend?",
     "options": [
       "Infinitivgruppe mit um",
       "je – desto",
@@ -2291,39 +3958,33 @@
     ]
   },
   {
-    "type": "errorfind",
-    "level": "regel",
-    "topic": "Komma 4-7",
-    "question": "Setze das fehlende Komma (Einschub).",
-    "sentence": "Ein Großteil der Kleidung oft kaum getragen landet im Müll.",
-    "errorWord": "getragen",
-    "answers": [
-      ",",
-      "getragen,"
-    ]
-  },
-  {
-    "type": "errorfind",
+    "type": "punctuationEdit",
     "level": "regel",
     "topic": "Komma 4-7",
     "question": "Setze das Komma bei der Infinitivgruppe.",
-    "sentence": "Viele spenden Kleider um etwas Gutes zu tun.",
-    "errorWord": "um",
+    "sentence": "Er trainiert um den Wettkampf zu gewinnen.",
     "answers": [
-      ",",
-      "um,"
+      "Er trainiert, um den Wettkampf zu gewinnen."
     ]
   },
   {
-    "type": "errorfind",
+    "type": "punctuationEdit",
+    "level": "regel",
+    "topic": "Komma 4-7",
+    "question": "Setze das Komma vor dem Nebensatz.",
+    "sentence": "Sie hofft dass die Prüfung gut läuft.",
+    "answers": [
+      "Sie hofft, dass die Prüfung gut läuft."
+    ]
+  },
+  {
+    "type": "punctuationEdit",
     "level": "regel",
     "topic": "Komma 1-3",
-    "question": "Setze das Komma vor dem Nebensatz.",
-    "sentence": "Er bleibt zu Hause weil er krank ist.",
-    "errorWord": "weil",
+    "question": "Setze die Kommas bei der mehrteiligen Fügung.",
+    "sentence": "Einerseits ist der Weg lang andererseits lohnt er sich.",
     "answers": [
-      ",",
-      "weil,"
+      "Einerseits ist der Weg lang, andererseits lohnt er sich."
     ]
   },
   {
@@ -2353,25 +4014,60 @@
     "answer": 1
   },
   {
+    "type": "strategy",
+    "level": "regel",
+    "topic": "Komma 4-7",
+    "question": "Erkläre mit der Einschub-Strategie: Warum wird „, oft kaum getragen,“ von Kommas eingeschlossen?",
+    "options": [
+      "Weil es ein Einschub mitten im Satz ist",
+      "Weil es ein Nebensatz ist",
+      "Weil es eine Anrede ist",
+      "Weil es eine Aufzählung ist"
+    ],
+    "answer": 0
+  },
+  {
+    "type": "strategy",
+    "level": "regel",
+    "topic": "Komma 1-3",
+    "question": "Erkläre mit der Konnektor-Strategie: Woran erkennst du einen Nebensatz, der ein Komma braucht?",
+    "options": [
+      "An Einleitewörtern wie weil, dass, obwohl",
+      "Am großen Anfangsbuchstaben",
+      "An der Aufzählung",
+      "An der Frage",
+      "An der Länge"
+    ],
+    "answer": 0
+  },
+  {
+    "type": "punctuationEdit",
+    "level": "regel",
+    "topic": "Komma 1-3",
+    "question": "Setze das Komma beim Gegensatz.",
+    "sentence": "Er wollte helfen doch er kam zu spät.",
+    "answers": [
+      "Er wollte helfen, doch er kam zu spät."
+    ]
+  },
+  {
     "type": "fill",
     "level": "experte",
     "topic": "Zitation",
-    "question": "Ergänze: Bei wörtlichen Zitaten stehen Auslassungen in eckigen Klammern, z. B. „Ausbildung [___“.",
+    "question": "Ergänze die Auslassungspunkte: „Ausbildung [___] fördert …“",
     "answers": [
       "...",
       "…"
     ]
   },
   {
-    "type": "errorfind",
+    "type": "punctuationEdit",
     "level": "experte",
     "topic": "Zitation",
-    "question": "Korrigiere Beleg und Satzzeichen.",
-    "sentence": "Wie es im Text heißt fördere Bildung das Land vgl Z. 30",
-    "errorWord": "vgl",
+    "question": "Setze alle notwendigen Kommas.",
+    "sentence": "Obwohl es spät war blieb die Gruppe bis das Ergebnis feststand.",
     "answers": [
-      "„… fördere Bildung das Land.“ (vgl. Z. 30)",
-      "„… fördere Bildung das Land“ (vgl. Z. 30)"
+      "Obwohl es spät war, blieb die Gruppe, bis das Ergebnis feststand."
     ]
   },
   {
@@ -2416,15 +4112,13 @@
     ]
   },
   {
-    "type": "errorfind",
+    "type": "punctuationEdit",
     "level": "experte",
     "topic": "Komma 1-3",
-    "question": "Setze alle Kommas bei Aufzählung und Hauptsätzen.",
-    "sentence": "Max malt Bilder Paul spielt Gitarre und Lina tanzt.",
-    "errorWord": "tanzt",
+    "question": "Grenze Relativsatz und Nebensatz ab.",
+    "sentence": "Der Plan den wir gestern besprochen haben scheitert weil Geld fehlt.",
     "answers": [
-      "Bilder,",
-      "Bilder, Paul spielt Gitarre,"
+      "Der Plan, den wir gestern besprochen haben, scheitert, weil Geld fehlt."
     ]
   },
   {
@@ -2441,15 +4135,13 @@
     "answer": 1
   },
   {
-    "type": "errorfind",
+    "type": "punctuationEdit",
     "level": "experte",
     "topic": "Komma 4-7",
-    "question": "Setze die Kommas bei Einschub und Nebensatz.",
-    "sentence": "Der Trend der laut Experten gefährlich ist wächst schnell.",
-    "errorWord": "ist",
+    "question": "Setze das Komma bei der Infinitivgruppe.",
+    "sentence": "Sie hatte den Wunsch bald aufzubrechen.",
     "answers": [
-      ",",
-      "ist,"
+      "Sie hatte den Wunsch, bald aufzubrechen."
     ]
   },
   {
@@ -2459,22 +4151,20 @@
     "question": "Bei „um … zu“ steht ein Komma, weil …",
     "options": [
       "es eine Aufzählung ist",
-      "es eine erweiterte Infinitivgruppe ist",
+      "sie mit „um“ eingeleitet wird",
       "es eine Anrede ist",
       "es ein Gegensatz ist"
     ],
     "answer": 1
   },
   {
-    "type": "errorfind",
+    "type": "punctuationEdit",
     "level": "experte",
     "topic": "Komma 4-7",
-    "question": "Setze das Komma bei „je – desto“.",
-    "sentence": "Je länger wir warten desto schwieriger wird es.",
-    "errorWord": "desto",
+    "question": "Kennzeichne Begleitsatz und direkte Rede.",
+    "sentence": "Wir schaffen das sagte Mia.",
     "answers": [
-      ",",
-      "desto,"
+      "„Wir schaffen das“, sagte Mia."
     ]
   },
   {
@@ -2484,22 +4174,22 @@
     "question": "Ordne die Sätze der richtigen Kommaregel zu.",
     "options": [
       "Aufzählung",
-      "Einschub",
+      "Relativsatz",
       "Infinitivgruppe",
-      "Nebensatz"
+      "Satzreihe"
     ],
     "items": [
       {
         "left": "Lina, die fleißig ist, lernt.",
-        "answer": "Einschub"
+        "answer": "Relativsatz"
       },
       {
         "left": "Er läuft, um fit zu bleiben.",
         "answer": "Infinitivgruppe"
       },
       {
-        "left": "Max malt, und Paul schreibt.",
-        "answer": "Nebensatz"
+        "left": "Max malt, Paul schreibt.",
+        "answer": "Satzreihe"
       },
       {
         "left": "Äpfel, Birnen und Kirschen.",
@@ -2508,15 +4198,13 @@
     ]
   },
   {
-    "type": "errorfind",
+    "type": "punctuationEdit",
     "level": "experte",
     "topic": "Komma 4-7",
-    "question": "Setze das Komma vor dem Gegensatz.",
-    "sentence": "Spenden hilft doch löst es nicht das Problem.",
-    "errorWord": "löst",
+    "question": "Setze das Komma bei je – desto.",
+    "sentence": "Je länger wir warten desto schwieriger wird die Entscheidung.",
     "answers": [
-      ",",
-      "löst,"
+      "Je länger wir warten, desto schwieriger wird die Entscheidung."
     ]
   },
   {
@@ -2533,15 +4221,13 @@
     "answer": 2
   },
   {
-    "type": "errorfind",
+    "type": "punctuationEdit",
     "level": "experte",
     "topic": "Komma 1-3",
-    "question": "Setze das Komma zwischen den Hauptsätzen.",
-    "sentence": "Der Lehrer erklärt und die Schüler verstehen.",
-    "errorWord": "verstehen",
+    "question": "Setze das Komma bei nicht nur – sondern auch.",
+    "sentence": "Sie ist nicht nur schnell sondern auch sehr ausdauernd.",
     "answers": [
-      ",",
-      "verstehen,"
+      "Sie ist nicht nur schnell, sondern auch sehr ausdauernd."
     ]
   },
   {
@@ -2551,22 +4237,20 @@
     "question": "Worin unterscheiden sich direktes und indirektes Zitat im Beleg?",
     "options": [
       "beide ohne Beleg",
-      "direkt mit (V.Z.), indirekt mit (vgl. Z.)",
+      "direkt zum Beispiel mit (V. 4), indirekt mit (vgl. Z. 4)",
       "beide mit vgl.",
       "nur indirekt mit Anführungszeichen"
     ],
     "answer": 1
   },
   {
-    "type": "errorfind",
+    "type": "punctuationEdit",
     "level": "experte",
     "topic": "Komma 4-7",
-    "question": "Setze alle Kommas (Anrede + Nebensatz).",
-    "sentence": "Hör mal Kinder wenn ihr spielt seid vorsichtig.",
-    "errorWord": "vorsichtig",
+    "question": "Setze alle Kommas beim Einschub.",
+    "sentence": "Das Fahrrad gestern erst repariert steht wieder in der Werkstatt.",
     "answers": [
-      "Kinder,",
-      "Kinder, wenn ihr spielt,"
+      "Das Fahrrad, gestern erst repariert, steht wieder in der Werkstatt."
     ]
   },
   {
@@ -2586,64 +4270,11 @@
     "question": "Welche Form ist ein korrektes indirektes Zitat?",
     "options": [
       "„Bildung fördert.“ (Z. 7)",
-      "… fördere Bildung (vgl. Z. 7)",
-      "Bildung fördere (Z. 7)",
+      "Die Autorin erklärt, Bildung fördere die Gesellschaft (vgl. Z. 7).",
+      "Die Autorin erklärt, Bildung fördere die Gesellschaft (Z. 7).",
       "„Bildung“ fördere"
     ],
     "answer": 1
-  },
-  {
-    "type": "strategy",
-    "level": "mindest",
-    "topic": "Zitation",
-    "question": "Erkläre mit der Zitat-Strategie: Woran erkennst du ein direktes Zitat?",
-    "options": [
-      "An Anführungszeichen und wörtlicher Wiedergabe",
-      "Am Konjunktiv I allein",
-      "An der vgl.-Angabe",
-      "Daran, dass es lang ist"
-    ],
-    "answer": 0
-  },
-  {
-    "type": "strategy",
-    "level": "mindest",
-    "topic": "Komma 1-3",
-    "question": "Erkläre mit der Satzglied-Strategie: Warum steht ein Komma zwischen zwei Hauptsätzen?",
-    "options": [
-      "Weil beide gleichrangig sind und durch ein Konjunktivwort verbunden werden",
-      "Weil beide Hauptsätze gleichrangig sind",
-      "Weil der zweite ein Nebensatz ist",
-      "Weil „und“ immer ein Komma verlangt"
-    ],
-    "answer": 1
-  },
-  {
-    "type": "strategy",
-    "level": "regel",
-    "topic": "Komma 4-7",
-    "question": "Erkläre mit der Einschub-Strategie: Warum wird „, oft kaum getragen,“ von Kommas eingeschlossen?",
-    "options": [
-      "Weil es ein Einschub mitten im Satz ist",
-      "Weil es ein Nebensatz ist",
-      "Weil es eine Anrede ist",
-      "Weil es eine Aufzählung ist"
-    ],
-    "answer": 0
-  },
-  {
-    "type": "strategy",
-    "level": "regel",
-    "topic": "Komma 1-3",
-    "question": "Erkläre mit der Konnektor-Strategie: Woran erkennst du einen Nebensatz, der ein Komma braucht?",
-    "options": [
-      "An Einleitewörtern wie weil, dass, obwohl",
-      "Am großen Anfangsbuchstaben",
-      "An der Aufzählung",
-      "An der Frage",
-      "An der Länge"
-    ],
-    "answer": 0
   },
   {
     "type": "strategy",
@@ -2664,7 +4295,7 @@
     "topic": "Komma 4-7",
     "question": "Erkläre mit der Infinitiv-Strategie: Warum steht bei „um … zu“ ein Komma?",
     "options": [
-      "Weil es eine erweiterte Infinitivgruppe ist",
+      "Weil die Infinitivgruppe mit „um“ eingeleitet wird",
       "Weil es eine Aufzählung ist",
       "Weil es eine Anrede ist",
       "Weil der Satz lang ist"
@@ -2672,39 +4303,13 @@
     "answer": 0
   },
   {
-    "type": "errorfind",
-    "level": "mindest",
-    "topic": "Komma 4-7",
-    "question": "Setze das fehlende Komma bei der Anrede.",
-    "sentence": "Hör mal Kinder wenn ihr spielt seid vorsichtig.",
-    "errorWord": "vorsichtig",
-    "answers": [
-      "Kinder,",
-      "Kinder, wenn ihr spielt,"
-    ]
-  },
-  {
-    "type": "errorfind",
-    "level": "regel",
-    "topic": "Komma 1-3",
-    "question": "Setze das Komma vor dem Nebensatz.",
-    "sentence": "Sie lernt weil die Prüfung naht.",
-    "errorWord": "weil",
-    "answers": [
-      ",",
-      "weil,"
-    ]
-  },
-  {
-    "type": "errorfind",
+    "type": "punctuationEdit",
     "level": "experte",
     "topic": "Komma 4-7",
-    "question": "Setze alle Kommas (Einschub + Gegensatz).",
-    "sentence": "Der Plan der laut Experten gefährlich ist scheitert doch bleibt die Hoffnung.",
-    "errorWord": "Hoffnung",
+    "question": "Setze alle Kommas bei Anrede und Nebensatz.",
+    "sentence": "Leute wenn ihr fertig seid kommt bitte nach vorn.",
     "answers": [
-      "ist,",
-      "ist, scheitert,"
+      "Leute, wenn ihr fertig seid, kommt bitte nach vorn."
     ]
   }
 ];
@@ -2766,16 +4371,18 @@
             return { ...current, exercises: { byTopic, totals } };
           });
         },
+        saveCompletedTopics(packageId, ids) {
+          const unique = [...new Set(Array.isArray(ids) ? ids : [])];
+          updatePackage(packageId, current => ({ ...current, completedTopics: unique }));
+        },
         saveFinalTest(packageId, result) {
-          updatePackage(packageId, current => ({
-            ...current,
-            finalTest: {
-              correct: result.correct,
-              total: result.total,
-              sections: result.sections || [],
-              evaluatedAt: new Date().toISOString()
-            }
-          }));
+          updatePackage(packageId, current => {
+            const previous = current.finalTest && typeof current.finalTest === "object" ? current.finalTest : {};
+            const levels = { ...(previous.levels || {}) };
+            if (result.level) levels[result.level] = { correct: result.correct, total: result.total, pct: result.pct, passed: !!result.passed, evaluatedAt: result.evaluatedAt || new Date().toISOString() };
+            const totals = Object.values(levels).reduce((sum, item) => ({ correct: sum.correct + (Number(item.correct) || 0), total: sum.total + (Number(item.total) || 0) }), { correct: 0, total: 0 });
+            return { ...current, finalTest: { ...previous, ...totals, levels, sections: Object.entries(levels).map(([id,item]) => ({ id, title: id, correct: item.correct, total: item.total })), evaluatedAt: new Date().toISOString() } };
+          });
         },
         clearFinalTest(packageId) {
           updatePackage(packageId, current => {
@@ -2793,7 +4400,15 @@
     }
 
     window.SprachwissenProgress = createSharedProgressStore(progressStorage);
-    const completed = new Set(JSON.parse(localStorage.getItem("zeichensetzungDone") || "[]"));
+    function safeJsonParse(value, fallback) { try { const parsed = JSON.parse(value); return parsed ?? fallback; } catch (e) { return fallback; } }
+    function readDoneIds() {
+      const allowed = new Set(topics.map(topic => topic.id));
+      const local = safeJsonParse(localStorage.getItem("zeichensetzungDone"), null);
+      const shared = window.SprachwissenProgress?.read?.()?.packages?.zeichensetzung?.completedTopics;
+      const raw = Array.isArray(local) ? local : (Array.isArray(shared) ? shared : []);
+      return [...new Set(raw.filter(id => allowed.has(id)))];
+    }
+    const completed = new Set(readDoneIds());
     let activeTopic = topics[0];
     let activeView = "overview";
 
@@ -2831,8 +4446,12 @@
         .replaceAll('"', "&quot;");
     }
 
-    function normalizeAnswer(value) {
-      return String(value).trim().replace(/\s+/g, " ").replace(/[.!?]+$/g, "").toLowerCase();
+    function normalizeAnswer(value, caseSensitive = false) {
+      const normalized = String(value).trim().replace(/\s+/g, " ").replace(/[.!?]+$/g, "");
+      return caseSensitive ? normalized : normalized.toLowerCase();
+    }
+    function foldAnswer(value, caseSensitive = false) {
+      return normalizeAnswer(value, caseSensitive).replaceAll("ä", "ae").replaceAll("ö", "oe").replaceAll("ü", "ue").replaceAll("ß", "ss");
     }
 
     function renderNav() {
@@ -2932,9 +4551,9 @@
 
     function renderCloze(topic) {
       const [start, options, answer] = topic.check.cloze;
-      return '<section class="check-card" data-check="cloze"><h3>Mini-Check 2: Lückentext</h3><div class="cloze-row"><span>' + escapeHtml(start) + '</span><select data-correct="' + escapeHtml(answer) + '"><option value="">auswählen</option>' +
+      return '<section class="check-card" data-check="cloze"><h3>Mini-Check 2: Lückentext</h3><label class="cloze-row"><span>' + escapeHtml(start) + '</span><select data-correct="' + escapeHtml(answer) + '"><option value="">auswählen</option>' +
         options.map(option => '<option value="' + escapeHtml(option) + '">' + escapeHtml(option) + '</option>').join("") +
-        '</select></div><div class="feedback"></div></section>';
+        '</select></label><div class="feedback"></div></section>';
     }
 
     function renderMatch(topic) {
@@ -2942,9 +4561,9 @@
       const tokens = pairs.map(pair => pair[1]).sort(() => Math.random() - .5);
       const prompt = topic.check.matchPrompt ? '<p>' + escapeHtml(topic.check.matchPrompt) + '</p>' : "";
       return '<section class="check-card" data-check="match"><h3>Mini-Check 3: Zuordnen</h3>' + prompt + '<div class="match-wrap"><div class="match-bank" aria-label="Antworten">' +
-        tokens.map(token => '<div class="drag-token" draggable="true" data-value="' + escapeHtml(token) + '">' + escapeHtml(token) + '</div>').join("") +
+        tokens.map(token => '<div class="drag-token" role="button" tabindex="0" draggable="true" data-value="' + escapeHtml(token) + '">' + escapeHtml(token) + '</div>').join("") +
         '</div><div class="match-targets" aria-label="Zuordnungen">' +
-        pairs.map(pair => '<div class="drop-slot" data-correct="' + escapeHtml(pair[1]) + '"><strong>' + escapeHtml(pair[0]) + '</strong></div>').join("") +
+        pairs.map(pair => '<div class="drop-slot" role="button" tabindex="0" data-correct="' + escapeHtml(pair[1]) + '"><strong>' + escapeHtml(pair[0]) + '</strong></div>').join("") +
         '</div></div><div class="feedback"></div></section>';
     }
 
@@ -3055,7 +4674,8 @@
         textBox.innerHTML = data.tokens.map(([token, isError], index) =>
           '<button class="error-token" type="button" data-error="' + isError + '" data-index="' + index + '">' + escapeHtml(token) + '</button>'
         ).join("");
-        card.dataset.solved = "false";
+        delete card.dataset.solved;
+        delete card.dataset.attempted;
         card.querySelector(".feedback").textContent = "";
       }
 
@@ -3074,6 +4694,7 @@
       });
 
       card.querySelector(".error-check-btn").addEventListener("click", () => {
+        card.dataset.attempted = "true";
         const data = task[activeLevel];
         const levelLabel = { mindest: "Mindeststandard", regel: "Regelstandard", experte: "Expertenstandard" }[activeLevel] || activeLevel;
         let allFound = true;
@@ -3125,7 +4746,7 @@
           '</div><div class="feedback"></div></section>';
       }
       if (check.type === "correct") {
-        return '<section class="check-card" data-check="extra" data-type="correct" data-answers="' + encodeData(check.answers) + '"><h3>Mini-Check 4: ' + escapeHtml(check.title) + '</h3><p>' + escapeHtml(check.prompt) + '</p><p><strong>Fehler:</strong> ' + escapeHtml(check.wrong) + '</p><input class="extra-input" type="text" placeholder="Antwort eingeben"><div class="extra-actions"><button class="extra-check-btn" type="button">Prüfen</button></div><div class="feedback" data-solution="' + escapeHtml(check.solution) + '"></div></section>';
+        return '<section class="check-card" data-check="extra" data-type="correct" data-answers="' + encodeData(check.answers) + '"><h3>Mini-Check 4: ' + escapeHtml(check.title) + '</h3><p>' + escapeHtml(check.prompt) + '</p><p><strong>Fehler:</strong> ' + escapeHtml(check.wrong) + '</p><input class="extra-input" type="text" aria-label="Korrigierte Antwort" placeholder="Antwort eingeben"><div class="extra-actions"><button class="extra-check-btn" type="button">Prüfen</button></div><div class="feedback" data-solution="' + escapeHtml(check.solution) + '"></div></section>';
       }
       if (check.type === "multi") {
         return '<section class="check-card" data-check="extra" data-type="multi"><h3>Mini-Check 4: ' + escapeHtml(check.title) + '</h3><p>' + escapeHtml(check.prompt) + '</p><div class="choice-grid">' +
@@ -3133,7 +4754,7 @@
           '</div><div class="extra-actions"><button class="extra-check-btn" type="button">Prüfen</button></div><div class="feedback"></div></section>';
       }
       if (check.type === "explain") {
-        return '<section class="check-card" data-check="extra" data-type="explain"><h3>Mini-Check 4: ' + escapeHtml(check.title) + '</h3><p>' + escapeHtml(check.prompt) + '</p><textarea class="extra-textarea" placeholder="Schreibe deine Erklärung in 1-2 Sätzen."></textarea><div class="extra-actions"><button class="extra-check-btn" type="button">Beispielantwort anzeigen</button></div><div class="feedback" data-solution="' + escapeHtml(check.sample) + '"></div></section>';
+        return '<section class="check-card" data-check="extra" data-type="explain"><h3>Mini-Check 4: ' + escapeHtml(check.title) + '</h3><p>' + escapeHtml(check.prompt) + '</p><textarea class="extra-textarea" aria-label="Eigene Erklärung" placeholder="Schreibe deine Erklärung in 1-2 Sätzen."></textarea><div class="extra-actions"><button class="extra-check-btn" type="button">Beispielantwort anzeigen</button></div><div class="feedback" data-solution="' + escapeHtml(check.sample) + '"></div></section>';
       }
       return "";
     }
@@ -3164,12 +4785,14 @@
           topicArea.querySelectorAll(".drag-token").forEach(item => item.classList.remove("selected"));
           token.classList.add("selected");
         });
+        token.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); token.click(); } });
       });
       topicArea.querySelectorAll(".drop-slot").forEach(slot => {
         slot.addEventListener("click", () => {
           const selected = topicArea.querySelector(".drag-token.selected");
           if (selected) placeTokenInSlot(selected.dataset.value, slot, topic.id);
         });
+        slot.addEventListener("keydown", event => { if (event.key === "Enter" || event.key === " ") { event.preventDefault(); slot.click(); } });
         slot.addEventListener("dragover", event => { event.preventDefault(); slot.classList.add("over"); });
         slot.addEventListener("dragleave", () => slot.classList.remove("over"));
         slot.addEventListener("drop", event => { event.preventDefault(); placeTokenInSlot(event.dataTransfer.getData("text/plain"), slot, topic.id); });
@@ -3301,6 +4924,9 @@
         if (card.dataset.check === "choice") {
           wasAttempted = !!card.querySelector(".choice.correct, .choice.wrong");
           wasCorrect = !!card.querySelector(".choice.correct");
+        } else if (card.dataset.check === "errortext") {
+          wasAttempted = card.dataset.attempted === "true";
+          wasCorrect = card.dataset.solved === "true";
         } else {
           wasAttempted = card.dataset.solved === "true" || card.dataset.solved === "false";
           wasCorrect = card.dataset.solved === "true";
@@ -3321,88 +4947,54 @@
 
     function saveProgress() {
       localStorage.setItem("zeichensetzungDone", JSON.stringify([...completed]));
-      try {
-        const data = window.SprachwissenProgress?.read?.() || { version: 1, packages: {} };
-        window.SprachwissenProgress?.write?.(data);
-      } catch (e) {}
+      window.SprachwissenProgress?.saveCompletedTopics?.("zeichensetzung", [...completed]);
     }
 
     function loadAll() {
-      const done = JSON.parse(localStorage.getItem("zeichensetzungDone") || "[]");
       completed.clear();
-      (Array.isArray(done) ? done : []).forEach(id => completed.add(id));
-      try {
-        const data = JSON.parse(localStorage.getItem(SHARED_PROGRESS_KEY) || "null");
-        if (data && data.packages) window.SprachwissenProgress?.importPackage?.("zeichensetzung", data.packages["zeichensetzung"]);
-      } catch (e) {}
+      readDoneIds().forEach(id => completed.add(id));
     }
-
+    function readQuizLevels() {
+      const result = {};
+      QUIZ_LEVELS.forEach(level => { const value = quizLevelResult(level); if (value) result[level] = value; });
+      return result;
+    }
+    function validQuizLevels(value) {
+      if (!value || typeof value !== "object" || Array.isArray(value)) return false;
+      return Object.entries(value).every(([level,result]) => QUIZ_LEVELS.includes(level) && isValidQuizResult(result));
+    }
     function exportProgress() {
-      const payload = {
-        schemaVersion: 1,
-        packageId: "zeichensetzung",
-        done: [...completed],
-        shared: JSON.parse(localStorage.getItem(SHARED_PROGRESS_KEY) || "null")
-      };
-      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "zeichensetzung-fortschritt.json";
-      document.body.appendChild(a);
-      a.click();
-      a.remove();
-      URL.revokeObjectURL(url);
-      if (progressFeedback) progressFeedback.textContent = "Fortschritt als Datei gespeichert.";
+      const data = window.SprachwissenProgress?.read?.() || { version: 1, packages: {} };
+      const payload = { schemaVersion: 1, packageId: "zeichensetzung", done: [...completed], shared: { version: 1, packages: { "zeichensetzung": data.packages?.["zeichensetzung"] || {} } }, quizLevels: readQuizLevels() };
+      const blob = new Blob([JSON.stringify(payload, null, 2)], { type: "application/json" }), url = URL.createObjectURL(blob), a = document.createElement("a");
+      a.href=url; a.download="zeichensetzung-fortschritt.json"; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
+      if (progressFeedback) progressFeedback.textContent="Fortschritt als Datei gespeichert.";
     }
-
-    const importFileInput = document.querySelector("#importFileInput");
-    const exportBtnTop = document.querySelector("#exportBtnTop");
-    const importBtnTop = document.querySelector("#importBtnTop");
-
-    if (exportBtnTop) exportBtnTop.addEventListener("click", exportProgress);
-
-    if (importBtnTop) importBtnTop.addEventListener("click", () => importFileInput.click());
-
-    importFileInput.addEventListener("change", () => {
-      const file = importFileInput.files && importFileInput.files[0];
-      if (!file) return;
-      const reader = new FileReader();
-      reader.onload = () => {
-        let parsed;
-        try { parsed = JSON.parse(reader.result); } catch (e) {
-          alert("Die Datei ist keine gültige JSON-Datei.");
-          importFileInput.value = "";
-          return;
-        }
-        if (!parsed || (parsed.packageId && parsed.packageId !== "zeichensetzung")) {
-          alert("Diese Datei gehört zu einem anderen Lernpaket.");
-          importFileInput.value = "";
-          return;
-        }
-        if (!confirm("Willst du den gespeicherten Fortschritt durch die importierte Datei ersetzen?")) {
-          importFileInput.value = "";
-          return;
-        }
-        try {
-          if (Array.isArray(parsed.done)) {
-            localStorage.setItem("zeichensetzungDone", JSON.stringify(parsed.done));
-          }
-          if (parsed.shared && parsed.shared.packages && parsed.shared.packages["zeichensetzung"]) {
-            window.SprachwissenProgress?.importPackage?.("zeichensetzung", parsed.shared.packages["zeichensetzung"]);
-          } else if (parsed.shared) {
-            window.SprachwissenProgress?.write?.(parsed.shared);
-          }
-          loadAll();
-          renderNav();
-          updateProgress();
-          if (progressFeedback) progressFeedback.textContent = "Fortschritt erfolgreich importiert.";
-        } catch (e) {
-          alert("Beim Import ist ein Fehler aufgetreten.");
-        }
-        importFileInput.value = "";
-      };
-      reader.readAsText(file);
+    const importFileInput=document.querySelector("#importFileInput"), exportBtnTop=document.querySelector("#exportBtnTop"), importBtnTop=document.querySelector("#importBtnTop");
+    if (exportBtnTop) exportBtnTop.addEventListener("click",exportProgress);
+    if (importBtnTop) importBtnTop.addEventListener("click",()=>importFileInput.click());
+    if (importFileInput) importFileInput.addEventListener("change",()=>{
+      const file=importFileInput.files?.[0]; if(!file)return; const reader=new FileReader();
+      reader.onload=()=>{
+        const parsed=safeJsonParse(reader.result,null), allowed=new Set(topics.map(topic=>topic.id));
+        if (!parsed || parsed.schemaVersion !== 1 || parsed.packageId !== "zeichensetzung" || !Array.isArray(parsed.done) || !parsed.shared?.packages?.["zeichensetzung"] || !validQuizLevels(parsed.quizLevels)) { alert("Die Importdatei ist ungültig oder gehört nicht zu diesem Lernpaket."); importFileInput.value=""; return; }
+        if (!confirm("Willst du den gespeicherten Fortschritt durch die importierte Datei ersetzen?")) { importFileInput.value=""; return; }
+        const done=[...new Set(parsed.done.filter(id=>allowed.has(id)))];
+        localStorage.setItem("zeichensetzungDone",JSON.stringify(done));
+        window.SprachwissenProgress?.importPackage?.("zeichensetzung",parsed.shared.packages["zeichensetzung"]);
+        window.SprachwissenProgress?.saveCompletedTopics?.("zeichensetzung", done);
+        window.SprachwissenProgress?.clearFinalTest?.("zeichensetzung");
+        QUIZ_LEVELS.forEach(level=>{
+          const imported=parsed.quizLevels[level];
+          if(imported){
+            const result={ correct:imported.correct, total:imported.total, pct:Math.round(imported.correct/imported.total*100), passed:(imported.correct/imported.total*100)>=QUIZ_UNLOCK_PCT, evaluatedAt:typeof imported.evaluatedAt==="string"?imported.evaluatedAt:new Date().toISOString() };
+            localStorage.setItem(QUIZ_KEYS[level],JSON.stringify(result));
+            window.SprachwissenProgress?.saveFinalTest?.("zeichensetzung",{ level, ...result });
+          } else localStorage.removeItem(QUIZ_KEYS[level]);
+        });
+        ensureActiveQuizLevel(); loadAll(); renderNav(); updateProgress(); updateQuizTabs(); if(activeView==="quiz")renderQuiz();
+        if(progressFeedback)progressFeedback.textContent="Fortschritt erfolgreich importiert."; importFileInput.value="";
+      }; reader.readAsText(file);
     });
 
     function updateProgress() {
@@ -3414,7 +5006,9 @@
         progressFeedback.dataset.step = String(feedbackStep);
         progressFeedback.innerHTML = "<strong>Lernfeedback " + feedbackStep + "%</strong>" + progressFeedbackMessages[feedbackStep];
       }
-      completeBtn.textContent = completed.has(activeTopic.id) ? "Thema verstanden" : "Ich habe das Thema verstanden";
+      const ready = activeView === "topic" && currentTopicChecksSolved();
+      completeBtn.disabled = activeView === "topic" && !ready && !completed.has(activeTopic.id);
+      completeBtn.textContent = completed.has(activeTopic.id) ? "Thema abgeschlossen" : (ready ? "Thema abschließen" : "Checks noch offen");
     }
 
     function hideQuiz() { testSection.style.display = "none"; }
@@ -3429,7 +5023,7 @@
       renderTopic(activeTopic);
       renderNav();
       updateProgress();
-      window.scrollTo({ top: 0, behavior: "smooth" });
+      if (window.innerWidth <= 980) topicArea.scrollIntoView({ behavior: "smooth", block: "start" }); else window.scrollTo({ top: 0, behavior: "smooth" });
     }
 
     function showQuiz() {
@@ -3438,6 +5032,7 @@
       topicArea.innerHTML = "";
       testSection.style.display = "block";
       completeBtn.style.display = "none";
+      renderQuiz();
       currentPath.textContent = "Kapitel 3: Teste dein Wissen";
       renderNav();
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -3454,7 +5049,12 @@
       window.scrollTo({ top: 0, behavior: "smooth" });
     });
 
+    function currentTopicChecksSolved() {
+      const cards = [...topicArea.querySelectorAll(".check-card[data-check]")];
+      return cards.length > 0 && cards.every(card => card.dataset.check === "choice" ? !!card.querySelector(".choice.correct") : card.dataset.solved === "true");
+    }
     completeBtn.addEventListener("click", () => {
+      if (!currentTopicChecksSolved()) { if (progressFeedback) progressFeedback.textContent = "Bearbeite zuerst alle Mini-Checks dieses Themas."; return; }
       completed.add(activeTopic.id);
       saveProgress();
       renderNav();
@@ -3462,61 +5062,69 @@
     });
 
     resetProgressBtn.addEventListener("click", () => {
-      completed.clear();
-      localStorage.removeItem("zeichensetzungDone");
+      if (!confirm("Willst du wirklich den gesamten Fortschritt dieses Lernpakets löschen?")) return;
+      completed.clear(); localStorage.removeItem("zeichensetzungDone");
+      Object.values({"mindest": "zeichensetzungMs", "regel": "zeichensetzungRs", "experte": "zeichensetzungEs"}).forEach(key => localStorage.removeItem(key));
       window.SprachwissenProgress?.resetPackage("zeichensetzung");
-      renderNav();
-      updateProgress();
+      activeQuizLevel="mindest"; renderNav(); updateProgress(); renderQuiz();
     });
 
     const QUIZ_LEVELS = ["mindest", "regel", "experte"];
-    const QUIZ_KEYS = {
-      mindest: "zeichensetzungMs",
-      regel: "zeichensetzungRs",
-      experte: "zeichensetzungEs"
-    };
-    const QUIZ_LABELS = {
-      mindest: "Mindeststandard",
-      regel: "Regelstandard",
-      experte: "Expertenstandard"
-    };
+    const QUIZ_KEYS = { mindest: "zeichensetzungMs", regel: "zeichensetzungRs", experte: "zeichensetzungEs" };
+    const QUIZ_LABELS = { mindest: "Mindeststandard", regel: "Regelstandard", experte: "Expertenstandard" };
     const QUIZ_UNLOCK_PCT = 80;
     let activeQuizLevel = "mindest";
 
+    function isValidQuizResult(data) {
+      return !!data && Number.isInteger(data.correct) && data.total === 20 && data.correct >= 0 && data.correct <= data.total;
+    }
     function quizLevelResult(level) {
       let data = null;
       try { data = JSON.parse(localStorage.getItem(QUIZ_KEYS[level]) || "null"); } catch (e) {}
-      return data && typeof data.correct === "number" && typeof data.total === "number" ? data : null;
+      if (!isValidQuizResult(data)) return null;
+      const pct = Math.round((data.correct / data.total) * 100);
+      return { ...data, pct, passed: pct >= QUIZ_UNLOCK_PCT };
+    }
+    function quizLevelPassed(level) {
+      const result = quizLevelResult(level);
+      return !!result && quizPct(result) >= QUIZ_UNLOCK_PCT;
     }
     function quizIsUnlocked(level) {
       const i = QUIZ_LEVELS.indexOf(level);
-      if (i === 0) return true;
-      const prev = QUIZ_LEVELS[i - 1];
-      const res = quizLevelResult(prev);
-      if (!res || res.total === 0) return false;
-      return (res.correct / res.total) * 100 >= QUIZ_UNLOCK_PCT;
+      if (i <= 0) return i === 0;
+      return QUIZ_LEVELS.slice(0, i).every(quizLevelPassed);
     }
-    function quizPct(res) {
-      if (!res || res.total === 0) return 0;
-      return Math.round((res.correct / res.total) * 100);
+    function quizPct(res) { return !res || !res.total ? 0 : Math.round((res.correct / res.total) * 100); }
+    function allQuizLevelsPassed() { return QUIZ_LEVELS.every(quizLevelPassed); }
+    function ensureActiveQuizLevel() {
+      if (quizIsUnlocked(activeQuizLevel)) return;
+      activeQuizLevel = [...QUIZ_LEVELS].reverse().find(quizIsUnlocked) || "mindest";
     }
-
-    function renderQuiz() {
-      const tabs = document.querySelector("#quizTabs");
-      [...tabs.querySelectorAll(".quiz-tab")].forEach(tab => {
+    function questionsForLevel(level) {
+      return testQuestions.map((question, index) => ({ question, index })).filter(item => item.question.level === level);
+    }
+    function updateQuizTabs() {
+      ensureActiveQuizLevel();
+      document.querySelectorAll("#quizTabs .quiz-tab").forEach(tab => {
         const level = tab.dataset.level;
         const unlocked = quizIsUnlocked(level);
+        const active = level === activeQuizLevel;
         tab.disabled = !unlocked;
-        tab.classList.toggle("active", level === activeQuizLevel);
+        tab.classList.toggle("active", active);
         tab.classList.toggle("locked", !unlocked);
-        tab.textContent = unlocked
-          ? QUIZ_LABELS[level]
-          : QUIZ_LABELS[level] + " 🔒";
+        tab.setAttribute("aria-selected", String(active));
+        tab.setAttribute("tabindex", active ? "0" : "-1");
+        tab.textContent = QUIZ_LABELS[level] + (unlocked ? "" : " 🔒");
       });
+      const activeTabId = { mindest: "quizTabMindest", regel: "quizTabRegel", experte: "quizTabExperte" }[activeQuizLevel];
+      document.querySelector("#quizContainer").setAttribute("aria-labelledby", activeTabId);
+    }
+    function renderQuiz() {
+      updateQuizTabs();
       const container = document.querySelector("#quizContainer");
       container.innerHTML = "";
       if (!quizIsUnlocked(activeQuizLevel)) {
-        container.innerHTML = '<div class="quiz-locked">Dieses Niveau ist noch gesperrt. Erreiche im vorherigen Niveau mindestens ' + QUIZ_UNLOCK_PCT + '% (' + QUIZ_UNLOCK_PCT + ' von 100 Punkten), um es freizuschalten.</div>';
+        container.innerHTML = '<div class="quiz-locked">Dieses Niveau ist noch gesperrt. Erreiche im vorherigen Niveau mindestens 16 von 20 Punkten (80 %), um es freizuschalten.</div>';
         document.querySelector("#quizScore").innerHTML = "";
         return;
       }
@@ -3525,201 +5133,119 @@
       sectionElement.className = "quiz-section";
       const prevRes = quizLevelResult(activeQuizLevel);
       const prevText = prevRes ? "Bisher: " + prevRes.correct + " von " + prevRes.total + " (" + quizPct(prevRes) + "%)" : "Noch nicht ausgewertet";
-      sectionElement.innerHTML = '<div class="quiz-section-header"><h3>' + escapeHtml(section.title) + '</h3><span class="quiz-section-score">' + prevText + '</span></div>';
-      for (let index = section.from; index <= section.to; index++) {
-        const q = testQuestions[index];
+      sectionElement.innerHTML = '<div class="quiz-section-header"><h3>' + escapeHtml(section.title) + '</h3><span class="quiz-section-score" aria-live="polite">' + prevText + '</span></div>';
+      questionsForLevel(activeQuizLevel).forEach((item, position) => {
+        const q = item.question, index = item.index;
         const card = document.createElement("article");
         card.className = "quiz-card";
         card.dataset.index = index;
-        let html = '<div class="question-title">' + escapeHtml((index + 1) + ". " + q.question) + '</div>';
-        if (q.type === "single") {
-          q.options.forEach((option, optionIndex) => {
-            html += '<label><input type="radio" name="q_' + index + '" value="' + optionIndex + '"> ' + escapeHtml(option) + '</label>';
-          });
-        }
-        if (q.type === "strategy") {
-          html += '<div class="strategy-badge">Erklärung mit Strategie</div>';
-          q.options.forEach((option, optionIndex) => {
-            html += '<label><input type="radio" name="q_' + index + '" value="' + optionIndex + '"> ' + escapeHtml(option) + '</label>';
-          });
+        const titleId = "quiz-question-" + index;
+        let html = '<div class="question-title" id="' + titleId + '">' + escapeHtml((position + 1) + ". " + q.question) + '</div>';
+        if (q.type === "single" || q.type === "strategy") {
+          if (q.type === "strategy") html += '<div class="strategy-badge">Erklärung mit Strategie</div>';
+          html += '<fieldset class="quiz-options" aria-labelledby="' + titleId + '"><legend class="sr-only">Eine Antwort auswählen</legend>';
+          q.options.forEach((option, optionIndex) => { html += '<label><input type="radio" name="q_' + index + '" value="' + optionIndex + '"> ' + escapeHtml(option) + '</label>'; });
+          html += '</fieldset>';
         }
         if (q.type === "multiple") {
-          q.options.forEach((option, optionIndex) => {
-            html += '<label><input type="checkbox" name="q_' + index + '" value="' + optionIndex + '"> ' + escapeHtml(option) + '</label>';
-          });
-          html += '<div class="hint">Mehrere Antworten können richtig sein.</div>';
+          html += '<fieldset class="quiz-options" aria-labelledby="' + titleId + '"><legend class="sr-only">Alle richtigen Antworten auswählen</legend>';
+          q.options.forEach((option, optionIndex) => { html += '<label><input type="checkbox" name="q_' + index + '" value="' + optionIndex + '"> ' + escapeHtml(option) + '</label>'; });
+          html += '<div class="hint">Mehrere Antworten können richtig sein.</div></fieldset>';
         }
-        if (q.type === "fill") {
-          html += '<input type="text" name="q_' + index + '" placeholder="Antwort eingeben">';
-        }
+        if (q.type === "fill") html += '<input type="text" name="q_' + index + '" aria-labelledby="' + titleId + '" placeholder="Antwort eingeben">';
         if (q.type === "contextFill") {
           html += '<div class="context-fill-line">';
-          q.parts.forEach((part, partIndex) => {
-            html += escapeHtml(part);
-            if (partIndex < q.answers.length) {
-              html += '<input type="text" name="q_' + index + '_' + partIndex + '" aria-label="Lücke ' + (partIndex + 1) + ' zu Aufgabe ' + (index + 1) + '">';
-            }
-          });
+          q.parts.forEach((part, partIndex) => { html += escapeHtml(part); if (partIndex < q.answers.length) html += '<input type="text" name="q_' + index + '_' + partIndex + '" aria-label="Lücke ' + (partIndex + 1) + ' zu Aufgabe ' + (position + 1) + '">'; });
           html += '</div>';
         }
-        if (q.type === "assign") {
-          q.items.forEach((item, itemIndex) => {
-            html += '<div class="assign-row"><div class="word">' + escapeHtml(item.left) + '</div><select name="q_' + index + '_' + itemIndex + '"><option value="">Bitte auswählen</option>' + q.options.map(option => '<option value="' + escapeHtml(option) + '">' + escapeHtml(option) + '</option>').join("") + '</select></div>';
-          });
-        }
+        if (q.type === "assign") q.items.forEach((row, rowIndex) => { html += '<div class="assign-row"><div class="word">' + escapeHtml(row.left) + '</div><select name="q_' + index + '_' + rowIndex + '" aria-label="Zuordnung für ' + escapeHtml(row.left) + '"><option value="">Bitte auswählen</option>' + q.options.map(option => '<option value="' + escapeHtml(option) + '">' + escapeHtml(option) + '</option>').join("") + '</select></div>'; });
         if (q.type === "errorfind") {
-          const marked = q.sentence.replace(q.errorWord, '<mark class="error-mark">' + escapeHtml(q.errorWord) + '</mark>');
-          html += '<div class="errorfind-sentence">' + marked + '</div>';
-          html += '<input type="text" name="q_' + index + '" placeholder="Richtige Schreibweise eingeben">';
+          const marked = escapeHtml(q.sentence).replace(escapeHtml(q.errorWord), '<mark class="error-mark">' + escapeHtml(q.errorWord) + '</mark>');
+          html += '<div class="errorfind-sentence">' + marked + '</div><input type="text" name="q_' + index + '" aria-labelledby="' + titleId + '" placeholder="Korrigiertes Wort eingeben">';
         }
-        html += '<div class="feedback"></div>';
+        if (q.type === "punctuationEdit") html += '<div class="errorfind-sentence">' + escapeHtml(q.sentence) + '</div><input type="text" name="q_' + index + '" aria-labelledby="' + titleId + '" placeholder="Vollständigen korrigierten Satz eingeben">';
+        html += '<div class="feedback" aria-live="polite"></div>';
         card.innerHTML = html;
         sectionElement.appendChild(card);
-      }
+      });
       container.appendChild(sectionElement);
       document.querySelector("#quizScore").innerHTML = "";
     }
-
+    function normalizePunctuationAnswer(value) {
+      return String(value).trim().replace(/[„“”]/g, '"').replace(/\s+([,.;:!?])/g, "$1").replace(/\s+/g, " ").toLowerCase();
+    }
     function scoreQuizQuestion(card) {
-      const index = Number(card.dataset.index);
-      const q = testQuestions[index];
-      let isCorrect = false;
-      let solution = "";
-      if (q.type === "single") {
-        const checked = card.querySelector('input[name="q_' + index + '"]:checked');
-        isCorrect = !!checked && Number(checked.value) === q.answer;
-        solution = q.options[q.answer];
-      }
-      if (q.type === "strategy") {
-        const checked = card.querySelector('input[name="q_' + index + '"]:checked');
-        isCorrect = !!checked && Number(checked.value) === q.answer;
-        solution = q.options[q.answer];
-      }
-      if (q.type === "multiple") {
-        const selected = [...card.querySelectorAll('input[name="q_' + index + '"]:checked')].map(input => Number(input.value)).sort((a,b) => a-b);
-        const answers = [...q.answers].sort((a,b) => a-b);
-        isCorrect = selected.length === answers.length && selected.every((value, i) => value === answers[i]);
-        solution = q.answers.map(i => q.options[i]).join(", ");
-      }
-      if (q.type === "fill") {
-        const input = card.querySelector('input[name="q_' + index + '"]');
-        const userAnswer = normalizeAnswer(input.value).replaceAll("ä", "ae").replaceAll("ö", "oe").replaceAll("ü", "ue").replaceAll("ß", "ss");
-        isCorrect = q.answers.some(answer => normalizeAnswer(answer).replaceAll("ä", "ae").replaceAll("ö", "oe").replaceAll("ü", "ue").replaceAll("ß", "ss") === userAnswer);
-        solution = q.answers[0];
-      }
-      if (q.type === "contextFill") {
-        isCorrect = q.answers.every((answer, answerIndex) => {
-          const input = card.querySelector('input[name="q_' + index + '_' + answerIndex + '"]');
-          const userAnswer = normalizeAnswer(input?.value || "").replaceAll("ä", "ae").replaceAll("ö", "oe").replaceAll("ü", "ue").replaceAll("ß", "ss");
-          const expected = normalizeAnswer(answer).replaceAll("ä", "ae").replaceAll("ö", "oe").replaceAll("ü", "ue").replaceAll("ß", "ss");
-          return userAnswer === expected;
-        });
-        solution = q.answers.map((answer, answerIndex) => "Lücke " + (answerIndex + 1) + ": " + answer).join("; ");
-      }
-      if (q.type === "assign") {
-        isCorrect = q.items.every((item, itemIndex) => {
-          const select = card.querySelector('select[name="q_' + index + '_' + itemIndex + '"]');
-          return select.value === item.answer;
-        });
-        solution = q.items.map(item => item.left + " = " + item.answer).join("; ");
-      }
-      if (q.type === "errorfind") {
-        const input = card.querySelector('input[name="q_' + index + '"]');
-        const userAnswer = normalizeAnswer(input.value).replaceAll("ä", "ae").replaceAll("ö", "oe").replaceAll("ü", "ue").replaceAll("ß", "ss");
-        isCorrect = q.answers.some(answer => normalizeAnswer(answer).replaceAll("ä", "ae").replaceAll("ö", "oe").replaceAll("ü", "ue").replaceAll("ß", "ss") === userAnswer);
-        solution = q.answers[0];
-      }
+      const index = Number(card.dataset.index), q = testQuestions[index];
+      let isCorrect = false, solution = "";
+      const preserveCase = q.caseSensitive === true || (["fill", "errorfind"].includes(q.type) && Array.isArray(q.answers) && q.answers.length > 0 && q.answers.every(answer => /^[A-ZÄÖÜ]/.test(String(answer).trim())));
+      if (q.type === "single" || q.type === "strategy") { const checked=card.querySelector('input[name="q_'+index+'"]:checked'); isCorrect=!!checked && Number(checked.value)===q.answer; solution=q.options[q.answer]; }
+      if (q.type === "multiple") { const selected=[...card.querySelectorAll('input[name="q_'+index+'"]:checked')].map(x=>Number(x.value)).sort((a,b)=>a-b); const answers=[...q.answers].sort((a,b)=>a-b); isCorrect=selected.length===answers.length&&selected.every((v,i)=>v===answers[i]); solution=q.answers.map(i=>q.options[i]).join(", "); }
+      if (q.type === "fill" || q.type === "errorfind") { const input=card.querySelector('input[name="q_'+index+'"]'); const user=foldAnswer(input.value, preserveCase); isCorrect=q.answers.some(answer=>foldAnswer(answer, preserveCase)===user); solution=q.answers[0]; }
+      if (q.type === "punctuationEdit") { const input=card.querySelector('input[name="q_'+index+'"]'); const user=normalizePunctuationAnswer(input.value); isCorrect=q.answers.some(answer=>normalizePunctuationAnswer(answer)===user); solution=q.answers[0]; }
+      if (q.type === "contextFill") { isCorrect=q.answers.every((answer,i)=>{ const input=card.querySelector('input[name="q_'+index+'_'+i+'"]'); return foldAnswer(input?.value||"",!!q.caseSensitive)===foldAnswer(answer,!!q.caseSensitive); }); solution=q.answers.join("; "); }
+      if (q.type === "assign") { isCorrect=q.items.every((row,i)=>card.querySelector('select[name="q_'+index+'_'+i+'"]').value===row.answer); solution=q.items.map(row=>row.left+" = "+row.answer).join("; "); }
       return { isCorrect, solution };
     }
-
+    function isQuizQuestionAnswered(card) {
+      const index=Number(card.dataset.index), q=testQuestions[index];
+      if (q.type === "single" || q.type === "strategy" || q.type === "multiple") return !!card.querySelector('input[name="q_'+index+'"]:checked');
+      if (q.type === "fill" || q.type === "errorfind" || q.type === "punctuationEdit") return !!card.querySelector('input[name="q_'+index+'"]').value.trim();
+      if (q.type === "contextFill") return q.answers.every((_,i)=>card.querySelector('input[name="q_'+index+'_'+i+'"]').value.trim());
+      if (q.type === "assign") return q.items.every((_,i)=>card.querySelector('select[name="q_'+index+'_'+i+'"]').value);
+      return false;
+    }
     function quizFeedback(pct) {
-      // Motivierende Rückmeldung in 10%-Schritten (0..100)
       if (pct >= 100) return "Perfekt! Du hast alles richtig – absolut spitze Leistung.";
-      if (pct >= 90)  return "Knapp an der Hundertprozent – das sitzt richtig fest. Prima!";
-      if (pct >= 80)  return "Top gemacht! Solide und sicher – das ist ein starkes Ergebnis.";
-      if (pct >= 70)  return "Guter Lauf! Die meisten Regeln beherrschst du schon.";
-      if (pct >= 60)  return "Schon ordentlich – mit etwas Wiederholung wird das noch sicherer.";
-      if (pct >= 50)  return "Die Hälfte stimmt – ein solider Zwischenstand, weiter so!";
-      if (pct >= 40)  return "Noch nicht ganz: übe die fraglichen Regeln gezielt weiter, dann klappt's. Setze den Test mit „Zurücksetzen“ zurück und versuche ihn erneut.";
-      if (pct >= 30)  return "Es fehlt noch das ein oder andere – mehr Übung lohnt sich jetzt richtig. Mit „Zurücksetzen“ kannst du den Test neu starten.";
-      if (pct >= 20)  return "Erste Schritte sind da, aber du solltest noch deutlich mehr üben. Setze den Test zurück und probiere ihn nach dem Üben noch einmal.";
-      if (pct >= 10)  return "Kaum was sitzt noch – nimm dir Zeit und trainiere die Regeln Schritt für Schritt. Danach den Test über „Zurücksetzen“ neu versuchen.";
-      return "Noch ganz am Anfang: keine Sorge, mit regelmäßigem Üben wird das deutlich besser. Setze den Test zurück und starte frisch.";
+      if (pct >= 90) return "Fast fehlerfrei – das sitzt richtig fest. Prima!";
+      if (pct >= 80) return "Top gemacht! Das ist ein starkes Ergebnis.";
+      if (pct >= 60) return "Schon ordentlich – mit etwas Wiederholung wird das noch sicherer.";
+      if (pct >= 40) return "Übe die unsicheren Regeln gezielt und versuche dieses Niveau danach erneut.";
+      return "Nimm dir Zeit und trainiere die Regeln Schritt für Schritt, bevor du es erneut versuchst.";
     }
-
+    function saveLevelResult(level, result) {
+      const previous = quizLevelResult(level);
+      const best = previous && previous.correct >= result.correct ? previous : result;
+      localStorage.setItem(QUIZ_KEYS[level], JSON.stringify(best));
+      window.SprachwissenProgress?.saveFinalTest("zeichensetzung", { level, ...best, section: { id:"zeichensetzung-test-"+level, title:QUIZ_LABELS[level], correct:best.correct, total:best.total } });
+      return best;
+    }
     function checkQuiz() {
-      const section = testSections[QUIZ_LEVELS.indexOf(activeQuizLevel)];
-      const sectionElement = document.querySelector("#testSection .quiz-section");
-      if (!sectionElement) return;
-      let correctCount = 0;
-      let total = 0;
-      sectionElement.querySelectorAll(".quiz-card").forEach(card => {
-        const result = scoreQuizQuestion(card);
-        const feedback = card.querySelector(".feedback");
-        card.classList.remove("correct", "wrong");
-        total++;
-        if (result.isCorrect) {
-          correctCount++;
-          card.classList.add("correct");
-          feedback.innerHTML = '<span class="correct-text">Richtig.</span>';
-        } else {
-          card.classList.add("wrong");
-          feedback.innerHTML = '<span class="wrong-text">Noch nicht richtig.</span>';
-        }
-      });
-      const pct = total ? Math.round((correctCount / total) * 100) : 0;
-      localStorage.setItem(QUIZ_KEYS[activeQuizLevel], JSON.stringify({ correct: correctCount, total: total, pct: pct, evaluatedAt: new Date().toISOString() }));
-      window.SprachwissenProgress?.saveFinalTest("zeichensetzung", {
-        correct: correctCount,
-        total: total,
-        level: activeQuizLevel,
-        pct: pct,
-        sections: [{ id: "zeichensetzung-test-" + activeQuizLevel, title: section.title, correct: correctCount, total: total }]
-      });
-      const nextLevel = QUIZ_LEVELS[QUIZ_LEVELS.indexOf(activeQuizLevel) + 1];
-      let msg = "Ergebnis " + QUIZ_LABELS[activeQuizLevel] + ": <b>" + correctCount + " von " + total + " (" + pct + "%)</b>.";
-      if (pct >= QUIZ_UNLOCK_PCT && nextLevel) {
-        msg += '<br><span class="correct-text">' + QUIZ_LABELS[nextLevel] + " ist jetzt freigeschaltet!</span>";
-      } else if (nextLevel) {
-        msg += '<br><span class="hint">Du brauchst mindestens ' + QUIZ_UNLOCK_PCT + '% im ' + QUIZ_LABELS[activeQuizLevel] + ", um " + QUIZ_LABELS[nextLevel] + " freizuschalten.</span>";
-      } else {
-        msg += '<br><span class="hint">Das war das höchste Niveau. Stark!</span>';
+      const cards=[...document.querySelectorAll("#testSection .quiz-section .quiz-card")];
+      if (!cards.length) return;
+      const unanswered=cards.filter(card=>!isQuizQuestionAnswered(card));
+      if (unanswered.length) {
+        document.querySelector("#quizScore").textContent="Bitte bearbeite noch "+unanswered.length+" Aufgabe"+(unanswered.length===1?"":"n")+".";
+        const firstControl = unanswered[0].querySelector('input, select, button, [tabindex="0"]');
+        if (firstControl) firstControl.focus();
+        return;
       }
-      msg += '<br><span class="feedback-motivation">' + escapeHtml(quizFeedback(pct)) + '</span>';
-      document.querySelector("#quizScore").innerHTML = msg;
-      // Hinweis: hier KEIN renderQuiz() – sonst würde das Ergebnis sofort
-      // wieder gelöscht und das Formular neu aufgebaut (Reset wirkte "kaputt").
+      let correctCount=0;
+      cards.forEach(card=>{ const result=scoreQuizQuestion(card), feedback=card.querySelector(".feedback"); card.classList.remove("correct","wrong"); if(result.isCorrect){correctCount++;card.classList.add("correct");feedback.innerHTML='<span class="correct-text">Richtig.</span>';}else{card.classList.add("wrong");feedback.innerHTML='<span class="wrong-text">Noch nicht richtig.</span>';} });
+      const total=cards.length, pct=Math.round(correctCount/total*100), passed=pct>=QUIZ_UNLOCK_PCT;
+      saveLevelResult(activeQuizLevel, {correct:correctCount,total,pct,passed,evaluatedAt:new Date().toISOString()});
+      const nextLevel=QUIZ_LEVELS[QUIZ_LEVELS.indexOf(activeQuizLevel)+1];
+      let msg="Ergebnis "+QUIZ_LABELS[activeQuizLevel]+": <b>"+correctCount+" von "+total+" ("+pct+"%)</b>.";
+      if (nextLevel && quizIsUnlocked(nextLevel)) msg+='<br><span class="correct-text">'+QUIZ_LABELS[nextLevel]+(passed?' ist jetzt freigeschaltet!':' bleibt aufgrund deines Bestwerts freigeschaltet.')+'</span>';
+      else if (nextLevel) msg+='<br><span class="hint">Du brauchst mindestens 16 von 20 Punkten (80 %), um '+QUIZ_LABELS[nextLevel]+' freizuschalten.</span>';
+      else if (allQuizLevelsPassed()) msg+='<br><span class="correct-text">Mit deinen Bestwerten hast du alle drei Niveaus bestanden. Du kannst jetzt den Gelingensnachweis schreiben.</span>';
+      else msg+='<br><span class="hint">Für den Gelingensnachweis brauchst du auch im Expertenstandard mindestens 16 von 20 Punkten.</span>';
+      msg+='<br><span class="feedback-motivation">'+escapeHtml(quizFeedback(pct))+'</span>';
+      document.querySelector("#quizScore").innerHTML=msg;
+      updateQuizTabs();
     }
-
-    function resetQuiz() {
-      document.querySelectorAll("#testSection input").forEach(input => {
-        if (input.type === "radio" || input.type === "checkbox") input.checked = false;
-        if (input.type === "text") input.value = "";
-      });
-      document.querySelectorAll("#testSection select").forEach(select => select.value = "");
-      document.querySelectorAll("#testSection .quiz-card").forEach(card => {
-        card.classList.remove("correct", "wrong");
-        const fb = card.querySelector(".feedback");
-        if (fb) fb.innerHTML = "";
-      });
-      if (document.querySelector("#quizScore")) document.querySelector("#quizScore").innerHTML = "";
-      // Auch die gespeicherten Testergebnisse + Freischaltung zurücksetzen
-      QUIZ_LEVELS.forEach(level => {
-        try { localStorage.removeItem(QUIZ_KEYS[level]); } catch (e) {}
-      });
+    function resetCurrentQuizInputs() { renderQuiz(); }
+    function resetAllQuizResults() {
+      if (!confirm("Willst du wirklich alle Testergebnisse und Freischaltungen dieses Pakets löschen?")) return;
+      QUIZ_LEVELS.forEach(level=>localStorage.removeItem(QUIZ_KEYS[level]));
       window.SprachwissenProgress?.clearFinalTest("zeichensetzung");
-      activeQuizLevel = QUIZ_LEVELS[0];
+      activeQuizLevel="mindest";
       renderQuiz();
     }
-
-    document.querySelector("#quizTabs").addEventListener("click", e => {
-      const tab = e.target.closest(".quiz-tab");
-      if (!tab || tab.disabled) return;
-      activeQuizLevel = tab.dataset.level;
-      renderQuiz();
-    });
-    document.querySelector("#quizCheckBtn").addEventListener("click", checkQuiz);
-    document.querySelector("#quizResetBtn").addEventListener("click", resetQuiz);
+    document.querySelector("#quizTabs").addEventListener("click",e=>{const tab=e.target.closest(".quiz-tab");if(!tab||tab.disabled)return;activeQuizLevel=tab.dataset.level;renderQuiz();});
+    document.querySelector("#quizTabs").addEventListener("keydown",e=>{if(!["ArrowLeft","ArrowRight"].includes(e.key))return;const open=QUIZ_LEVELS.filter(quizIsUnlocked),i=open.indexOf(activeQuizLevel),next=open[(i+(e.key==="ArrowRight"?1:-1)+open.length)%open.length];activeQuizLevel=next;renderQuiz();document.querySelector('.quiz-tab[data-level="'+next+'"]').focus();});
+    document.querySelector("#quizCheckBtn").addEventListener("click",checkQuiz);
+    document.querySelector("#quizResetBtn").addEventListener("click",resetCurrentQuizInputs);
+    document.querySelector("#quizClearResultsBtn").addEventListener("click",resetAllQuizResults);
 
     renderNav();
     renderQuiz();
