@@ -100,6 +100,138 @@
       font-size: 1.06rem;
     }
 
+    .podcast-feature {
+      position: relative;
+      display: grid;
+      grid-template-columns: 88px minmax(0, 1fr);
+      gap: 24px;
+      margin: 0 0 32px;
+      padding: 28px;
+      overflow: hidden;
+      border: 1px solid #d9bfc4;
+      border-left: 8px solid var(--accent);
+      border-radius: 12px;
+      background: linear-gradient(135deg, #fff 0%, #fff8f8 58%, #f4e5e8 100%);
+      box-shadow: 0 18px 38px rgba(78, 24, 34, .16);
+    }
+
+    .podcast-feature::after {
+      position: absolute;
+      right: -48px;
+      bottom: -70px;
+      width: 190px;
+      height: 190px;
+      border-radius: 50%;
+      background: rgba(157, 31, 47, .07);
+      content: "";
+      pointer-events: none;
+    }
+
+    .podcast-icon {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      width: 76px;
+      height: 76px;
+      place-items: center;
+      border: 2px solid #e3c3c9;
+      border-radius: 50%;
+      background: var(--paper);
+      box-shadow: 0 9px 22px rgba(116, 22, 34, .17);
+      font-size: 2.25rem;
+    }
+
+    .podcast-content {
+      position: relative;
+      z-index: 1;
+      min-width: 0;
+    }
+
+    .podcast-kicker {
+      width: fit-content;
+      margin: 0 0 7px;
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: var(--accent);
+      color: #fff;
+      font-size: .77rem;
+      font-weight: 800;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+    }
+
+    .podcast-feature h2 {
+      margin: 0 0 8px;
+      color: var(--accent-dark);
+      font-size: clamp(1.55rem, 3vw, 2.15rem);
+      line-height: 1.15;
+    }
+
+    .podcast-description {
+      max-width: 790px;
+      margin: 0;
+      color: #474747;
+      font-size: 1.02rem;
+      line-height: 1.6;
+    }
+
+    .podcast-benefits {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 18px;
+      margin: 16px 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .podcast-benefits li {
+      color: #454545;
+      font-size: .94rem;
+      font-weight: 700;
+    }
+
+    .podcast-benefits li::before {
+      margin-right: 7px;
+      color: var(--green);
+      content: "✓";
+      font-weight: 900;
+    }
+
+    .podcast-player {
+      display: block;
+      width: 100%;
+      min-height: 54px;
+      margin-top: 4px;
+      accent-color: var(--accent);
+    }
+
+    .podcast-player:focus-visible {
+      outline: 3px solid rgba(6, 57, 112, .55);
+      outline-offset: 4px;
+    }
+
+    .podcast-meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px 18px;
+      margin-top: 10px;
+      color: #5b5b5b;
+      font-size: .9rem;
+    }
+
+    .podcast-script-link {
+      color: var(--accent-dark);
+      font-weight: 800;
+      text-underline-offset: 3px;
+    }
+
+    .podcast-script-link:hover,
+    .podcast-script-link:focus-visible {
+      color: var(--blue);
+    }
+
     .cards {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -691,6 +823,24 @@
         padding: 5px;
         border-radius: 9px;
       }
+      .podcast-feature {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        padding: 22px;
+      }
+      .podcast-icon {
+        width: 62px;
+        height: 62px;
+        font-size: 1.8rem;
+      }
+      .podcast-benefits {
+        display: grid;
+        gap: 7px;
+      }
+      .podcast-meta {
+        align-items: flex-start;
+        flex-direction: column;
+      }
       .card { min-height: 270px; padding: 26px; }
       .card-preview {
         position: static;
@@ -731,6 +881,28 @@
       <p class="eyebrow">Rechtschreibung &amp; Zeichensetzung</p>
       <h1>Deutsch Rechtschreibung und Zeichensetzung · Phase 8 - 10</h1>
     </header>
+
+    <section class="podcast-feature" aria-labelledby="podcastTitle" aria-describedby="podcastDescription">
+      <div class="podcast-icon" aria-hidden="true">🎧</div>
+      <div class="podcast-content">
+        <p class="podcast-kicker">Lernpodcast · 12:39 Min.</p>
+        <h2 id="podcastTitle">Sicher schreiben – die wichtigsten Regeln im Ohr</h2>
+        <p class="podcast-description" id="podcastDescription">Hören lohnt sich: In knapp 13 Minuten wiederholst du die zentralen Regeln mit verständlichen Beispielen und einem Schnellcheck – ideal vor den Übungen, dem Abschlusstest oder dem Gelingensnachweis.</p>
+        <ul class="podcast-benefits" aria-label="Vorteile des Podcasts">
+          <li>Jugendliche deutsche Stimme</li>
+          <li>Rechtschreibung und Zeichensetzung kompakt</li>
+          <li>Schnellcheck zum Mitdenken</li>
+        </ul>
+        <audio class="podcast-player" controls preload="metadata" aria-label="Lernpodcast Sicher schreiben abspielen">
+          <source src="podcast/sicher-schreiben-rechtschreibung-und-zeichensetzung.mp3" type="audio/mpeg">
+          Dein Browser unterstützt die Audiowiedergabe nicht. <a href="podcast/sicher-schreiben-rechtschreibung-und-zeichensetzung.mp3">Podcast als MP3 öffnen</a>.
+        </audio>
+        <div class="podcast-meta">
+          <span>Deutsch · Phase 8–10 · 3 Kapitel</span>
+          <a class="podcast-script-link" href="podcast/podcastskript-rechtschreibung-und-zeichensetzung.md">Podcastskript öffnen</a>
+        </div>
+      </div>
+    </section>
 
     <section class="cards" aria-label="Themenauswahl">
       <a class="card" href="rechtschreibung-html/index.html">
