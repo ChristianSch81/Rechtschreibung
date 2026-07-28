@@ -1,0 +1,12 @@
+# Hermes agent internals
+.hermes/
+**/.hermes/
+
+# Worktrees
+.worktrees/
+
+# Large source PDFs (Lehrbücher etc.) – not part of the learning packages
+*.pdf
+
+# Scratch scripts
+.patch_*.py
