@@ -334,6 +334,39 @@
       box-shadow: var(--shadow);
     }
 
+    .overall-progress {
+      margin: 18px 0 6px;
+      padding: 16px 18px;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #f3f8ff, #eefaf0);
+      border: 1px solid rgba(39, 122, 50, .2);
+    }
+    .overall-progress-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 10px;
+      font-weight: 700;
+      color: #1f2933;
+      font-size: .98rem;
+    }
+    .overall-progress-head strong { color: #277a32; font-size: 1.02rem; }
+    .overall-bar {
+      margin-top: 10px;
+      height: 12px;
+      border-radius: 999px;
+      background: #e3e9ef;
+      overflow: hidden;
+    }
+    .overall-bar span {
+      display: block;
+      height: 100%;
+      width: 0;
+      border-radius: 999px;
+      background: linear-gradient(90deg, #277a32, #0ea5e9);
+      transition: width .3s ease;
+    }
+
     .dashboard-head {
       display: flex;
       align-items: flex-start;
@@ -807,6 +840,14 @@
         <span><i class="ring-sample inner" aria-hidden="true"></i>Innerer Ring: bearbeitete Übungen</span>
       </div>
 
+      <div class="overall-progress" id="overallProgress" aria-label="Gesamtfortschritt beider Lernpakete">
+        <div class="overall-progress-head">
+          <span>Gesamtfortschritt (Rechtschreibung &amp; Zeichensetzung)</span>
+          <strong id="overallProgressLabel">0 von 0 Themen</strong>
+        </div>
+        <div class="overall-bar"><span id="overallProgressBar"></span></div>
+      </div>
+
       <div class="progress-grid" id="progressCharts"></div>
       <p class="progress-status" id="progressStatus" aria-live="polite"></p>
     </section>
@@ -1005,6 +1046,25 @@
         charts.innerHTML = PACKAGE_CONFIG
           .map(config => panelMarkup(config, data.packages[config.id] || {}))
           .join("");
+        // Gesamtfortschritt über beide Pakete (anhand der erledigten Themen-Sets)
+        try {
+          const doneKeys = ["rechtschreibungDone", "zeichensetzungDone"];
+          let doneTotal = 0;
+          let maxTotal = 0;
+          PACKAGE_CONFIG.forEach(config => {
+            maxTotal += config.topicTotal;
+            const done = sanitizedArray(readJson(config.completedKey, []));
+            doneTotal += done.length;
+          });
+          const pct = maxTotal ? Math.round((doneTotal / maxTotal) * 100) : 0;
+          const label = document.getElementById("overallProgressLabel");
+          const bar = document.getElementById("overallProgressBar");
+          if (label) label.textContent = doneTotal + " von " + maxTotal + " Themen (" + pct + "%)";
+          if (bar) {
+            bar.style.width = pct + "%";
+            bar.setAttribute("aria-valuenow", String(pct));
+          }
+        } catch (e) { /* nicht kritisch */ }
         if (!storageAvailable) {
           status.textContent = "Der Browser erlaubt momentan keine lokale Fortschrittsspeicherung.";
         }

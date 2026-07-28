@@ -1223,6 +1223,18 @@
       font-weight: 800;
       color: var(--accent-dark);
     }
+    .feedback-motivation {
+      display: block;
+      margin-top: 8px;
+      padding: 10px 12px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #eefaf0, #eaf4ff);
+      border: 1px solid rgba(39, 122, 50, .25);
+      color: #1f4d2e;
+      font-weight: 700;
+      font-size: .96rem;
+      line-height: 1.4;
+    }
     .hint { font-size: .92rem; color: #566b80; margin-top: 6px; }
     .context-fill-line {
       line-height: 2.25;
@@ -1296,6 +1308,7 @@
           </a>
           <img class="grammar-icon" src="assets/rechtschreibung-icon.png" alt="Icon Rechtschreibung und Zeichensetzung">
           <a class="action" id="overviewBtn" href="../index.html">← Zurück zur Startseite</a>
+          <a class="action" id="siblingBtn" href="rechtschreibung-html/index.html">→ Rechtschreibung</a>
           <button class="action export-action" id="exportBtnTop" type="button">Export</button>
           <button class="action import-action" id="importBtnTop" type="button">Import</button>
           <button class="action primary" id="completeBtn" type="button">Ich habe das Thema verstanden</button>
@@ -1340,7 +1353,7 @@
 
         <section id="testSection">
           <h2>Teste dein Wissen: Zeichensetzung</h2>
-          <p class="intro">Der Abschlusstest ist in drei Niveaus unterteilt. Zuerst bearbeitest du den Mindeststandard. Erst wenn du dort mindestens 80&nbsp;% erreicht hast, schaltest du den Regelstandard frei – und mit 80&nbsp;% im Regelstandard den Expertenstandard.</p>
+          <p class="intro">Der Abschlusstest ist in drei Niveaus unterteilt. Zuerst bearbeitest du den Mindeststandard. Erst wenn du dort mindestens 80&nbsp;% erreicht hast, schaltest du den Regelstandard frei – und mit 80&nbsp;% im Regelstandard den Expertenstandard. Sobald du alle drei Niveaus erfolgreich gemeistert hast, kannst du den Gelingensnachweis (GN) schreiben.</p>
           <div class="quiz-tabs" id="quizTabs" role="tablist">
             <button class="quiz-tab" type="button" data-level="mindest" role="tab">Mindeststandard</button>
             <button class="quiz-tab" type="button" data-level="regel" role="tab">Regelstandard</button>
@@ -1367,74 +1380,8 @@
   "zitation": "Kapitel 1: Zitation",
   "komma": "Kapitel 2: Kommasetzung"
 };
-// Einzigartiges Comic-Organigramm je Teilbereich (Inhalt spezifisch, nicht identisch)
+// Einzigartiges Comic-Organigramm je Teilbereich (nur Zeichensetzungsthemen)
     const comicOrg = {
-  strategien: {
-    title: "Rechtschreibstrategien",
-    nodes: [
-      ["1 · Verlängerungsprobe", "Plural / Infinitiv / Komparativ", "Wald → Wälder"],
-      ["2 · Ableitungsprobe", "Wortfamilie suchen", "lästig → Last"],
-      ["3 · Silbenprobe", "Silben trennen", "ge|hen"],
-      ["4 · Ersatzprobe", "Synonym einsetzen", "das → welches?"],
-      ["5 · Artikel & Signal", "Hinweis auf Nomen", "beim Gehen"],
-      ["6 · Wortart", "Nachsilben -keit, -nis", "Geheimnis"],
-      ["7 · Vokallänge", "kurz → Doppelkonsonant", "Schrott"]
-    ]
-  },
-  kurzevokale: {
-    title: "Kurze Vokale",
-    nodes: [
-      ["Doppelkonsonant", "kurzer Vokal → Konsonant doppelt", "Koma → Komma"],
-      ["ck", "kurzer Vokal + k am Ende", "Mücke"],
-      ["tz", "kurzer Vokal + z am Ende", "Witze"],
-      ["Achtung", "einsilbig: das, mit, ob", "keine Verdopplung"]
-    ]
-  },
-  langevokale: {
-    title: "Lange Vokale",
-    nodes: [
-      ["ie", "langer Vokal i", "die, Liebe"],
-      ["Doppelvokal", "zwei gleiche Vokale", "Boot, Meer"],
-      ["Dehnungs-h", "h dehnt den Vokal", "Stuhl, Zäune"],
-      ["silbentrennendes h", "h trennt Vokale", "ge|hen"]
-    ]
-  },
-  slaute: {
-    title: "s-Laute",
-    nodes: [
-      ["s (stimmhaft)", "nach Vokal / Diphthong", "Hase, lesen"],
-      ["ß", "langer Vokal / Diphthong", "Straße, Fuß"],
-      ["ss", "kurzer Vokal", "Kissen, Fass"],
-      ["Achtung", "Fremdwort: einfaches s", "Sibelius"]
-    ]
-  },
-  dasdass: {
-    title: "das oder dass",
-    nodes: [
-      ["das", "Artikel / Pronomen", "das Buch"],
-      ["das", "Ersatz: welches?", "das ist mein"],
-      ["dass", "Subjunktion (Konjunktiv)", "ich hoffe, dass"],
-      ["Probe", "dass = ,dass ich …‘", "Ersatzprobe"]
-    ]
-  },
-  grossklein: {
-    title: "Groß- und Kleinschreibung",
-    nodes: [
-      ["Nomen", "immer groß", "der Hund"],
-      ["nominalisiert", "Substantivierung", "das Laufen"],
-      ["Anrede", "du / ihr / Sie", "Ich danke Ihnen"],
-      ["Eigennamen", "Personen / Orte", "Sandra, Köln"]
-    ]
-  },
-  zusammengetrennt: {
-    title: "Zusammen- und Getrenntschreibung",
-    nodes: [
-      ["getrennt", "steigerbar / betont", "laut singen"],
-      ["zusammen", "besondere Bedeutung", "krankschreiben"],
-      ["zusammen", "Nomen daraus", "Spazierengehen"],
-      ["Probe", "Steigerung möglich?", "lauter singen?"]
-    ]
-  },
   zitatgrundlagen: {
     title: "Zitation – Grundlagen",
     nodes: [
@@ -2961,7 +2908,7 @@
         btn.addEventListener('click', () => {
           const next = btn.getAttribute('data-org-style');
           if (next !== 'comic' && next !== 'modern') return;
-          setOrgStyle(next);
+          setOrgStyle(next, topic.id);
           renderTopic(topic);
           topicArea.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
         });
@@ -3005,16 +2952,23 @@
       return encodeURIComponent(JSON.stringify(value));
     }
 
-    function getOrgStyle() {
+    function getOrgStyle(topicId) {
       try {
+        if (topicId) {
+          const stored = localStorage.getItem("sprachwissenOrgStyle_" + topicId);
+          if (stored === "comic" || stored === "modern") return stored;
+        }
         const stored = localStorage.getItem("sprachwissenOrgStyle");
         return stored === "comic" || stored === "modern" ? stored : "modern";
       } catch (e) {
         return "modern";
       }
     }
-    function setOrgStyle(style) {
-      try { localStorage.setItem("sprachwissenOrgStyle", style); } catch (e) {}
+    function setOrgStyle(style, topicId) {
+      try {
+        if (topicId) localStorage.setItem("sprachwissenOrgStyle_" + topicId, style);
+        localStorage.setItem("sprachwissenOrgStyle", style);
+      } catch (e) {}
     }
 
     function renderComicOrg(topic) {
@@ -3048,15 +3002,15 @@
       return '<section class="corg modern" aria-label="Organigramm: ' + escapeHtml(data.title) + '">'
         + '<h3 class="corg-title">' + escapeHtml(data.title) + '</h3>'
         + '<div class="corg-stylebar" role="group" aria-label="Darstellung wählen">'
-        + '<button type="button" data-org-style="comic" aria-pressed="' + (getOrgStyle() === "comic" ? "true" : "false") + '">Comic</button>'
-        + '<button type="button" data-org-style="modern" aria-pressed="' + (getOrgStyle() === "modern" ? "true" : "false") + '">Modern</button>'
+        + '<button type="button" data-org-style="comic" aria-pressed="' + (getOrgStyle(topic.id) === "comic" ? "true" : "false") + '">Comic</button>'
+        + '<button type="button" data-org-style="modern" aria-pressed="' + (getOrgStyle(topic.id) === "modern" ? "true" : "false") + '">Modern</button>'
         + '</div>'
         + '<div class="corg-grid">' + nodes + '</div>'
         + '</section>';
     }
 
     function renderOrg(topic) {
-      const style = getOrgStyle();
+      const style = getOrgStyle(topic.id);
       const html = style === "comic" ? renderComicOrg(topic) : renderModernOrg(topic);
       return html;
     }
@@ -3121,15 +3075,19 @@
 
       card.querySelector(".error-check-btn").addEventListener("click", () => {
         const data = task[activeLevel];
+        const levelLabel = { mindest: "Mindeststandard", regel: "Regelstandard", experte: "Expertenstandard" }[activeLevel] || activeLevel;
         let allFound = true;
         let anySelected = false;
         const missed = [];
+        let totalErrors = 0;
+        let foundErrors = 0;
         card.querySelectorAll(".error-token").forEach(token => {
           token.classList.remove("correct", "wrong", "missed");
           const isError = token.dataset.error === "true";
+          if (isError) totalErrors++;
           const selected = token.classList.contains("selected");
           if (selected) anySelected = true;
-          if (selected && isError) token.classList.add("correct");
+          if (selected && isError) { token.classList.add("correct"); foundErrors++; }
           if (selected && !isError) { token.classList.add("wrong"); allFound = false; }
           if (!selected && isError) { token.classList.add("missed"); allFound = false; missed.push(token.textContent); }
         });
@@ -3137,12 +3095,14 @@
           card.querySelector(".feedback").textContent = "Markiere zuerst die Wörter, in denen du Fehler vermutest.";
           return;
         }
+        const pct = totalErrors ? Math.round((foundErrors / totalErrors) * 100) : 0;
+        const levelInfo = levelLabel + ": " + foundErrors + " von " + totalErrors + " Fehlern gefunden (" + pct + "%)";
         if (allFound) {
           card.dataset.solved = "true";
-          card.querySelector(".feedback").textContent = "Alle Fehler gefunden. Richtig: " + data.solution;
+          card.querySelector(".feedback").textContent = levelInfo + " – Alle Fehler gefunden! Lösung: " + data.solution;
         } else {
           card.dataset.solved = "false";
-          card.querySelector(".feedback").textContent = "Noch nicht ganz. " + (missed.length ? "Übersehen: " + missed.join(", ") + ". " : "") + "Lösung: " + data.solution;
+          card.querySelector(".feedback").textContent = levelInfo + ". " + (missed.length ? "Übersehen: " + missed.join(", ") + ". " : "") + "Lösung: " + data.solution;
         }
         saveExerciseProgress(topicId);
         updateProgress();
@@ -3672,6 +3632,21 @@
       return { isCorrect, solution };
     }
 
+    function quizFeedback(pct) {
+      // Motivierende Rückmeldung in 10%-Schritten (0..100)
+      if (pct >= 100) return "Perfekt! Du hast alles richtig – absolut spitze Leistung.";
+      if (pct >= 90)  return "Knapp an der Hundertprozent – das sitzt richtig fest. Prima!";
+      if (pct >= 80)  return "Top gemacht! Solide und sicher – das ist ein starkes Ergebnis.";
+      if (pct >= 70)  return "Guter Lauf! Die meisten Regeln beherrschst du schon.";
+      if (pct >= 60)  return "Schon ordentlich – mit etwas Wiederholung wird das noch sicherer.";
+      if (pct >= 50)  return "Die Hälfte stimmt – ein solider Zwischenstand, weiter so!";
+      if (pct >= 40)  return "Noch nicht ganz: übe die fraglichen Regeln gezielt weiter, dann klappt's. Setze den Test mit „Zurücksetzen“ zurück und versuche ihn erneut.";
+      if (pct >= 30)  return "Es fehlt noch das ein oder andere – mehr Übung lohnt sich jetzt richtig. Mit „Zurücksetzen“ kannst du den Test neu starten.";
+      if (pct >= 20)  return "Erste Schritte sind da, aber du solltest noch deutlich mehr üben. Setze den Test zurück und probiere ihn nach dem Üben noch einmal.";
+      if (pct >= 10)  return "Kaum was sitzt noch – nimm dir Zeit und trainiere die Regeln Schritt für Schritt. Danach den Test über „Zurücksetzen“ neu versuchen.";
+      return "Noch ganz am Anfang: keine Sorge, mit regelmäßigem Üben wird das deutlich besser. Setze den Test zurück und starte frisch.";
+    }
+
     function checkQuiz() {
       const section = testSections[QUIZ_LEVELS.indexOf(activeQuizLevel)];
       const sectionElement = document.querySelector("#testSection .quiz-section");
@@ -3710,6 +3685,7 @@
       } else {
         msg += '<br><span class="hint">Das war das höchste Niveau. Stark!</span>';
       }
+      msg += '<br><span class="feedback-motivation">' + escapeHtml(quizFeedback(pct)) + '</span>';
       document.querySelector("#quizScore").innerHTML = msg;
       // Hinweis: hier KEIN renderQuiz() – sonst würde das Ergebnis sofort
       // wieder gelöscht und das Formular neu aufgebaut (Reset wirkte "kaputt").
